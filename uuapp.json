@@ -1,0 +1,185 @@
+{
+  "product": "uu_videolibrary_maing01",
+  "version": "0.1.0",
+  "license": "License Commercial",
+  "description": {
+    "en": "",
+    "cs": ""
+  },
+  "devkit": {
+    "development": {
+      "appBoxLocationUri": "----- VALUE REQUIRED -----",
+      "appDeploymentUri": null
+    }
+  },
+  "uu_videolibrary_maing01-hi": {
+    "componentList": [
+      {
+        "code": "UuVideolibrary.Routes.AddVideo",
+        "name": "AddVideo",
+        "tagList": [
+          "UuVideolibrary",
+          "Routes",
+          "AddVideo"
+        ],
+        "docCode": "UuVideolibraryRoutesAddVideo",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<UuVideolibrary.Routes.AddVideo />"
+      },
+      {
+        "code": "UuVideolibrary.Bricks.VideoCreateForm",
+        "name": "VideoCreateForm",
+        "tagList": [
+          "UuVideolibrary",
+          "Bricks",
+          "VideoCreateForm"
+        ],
+        "docCode": "UuVideolibraryBricksVideoCreateForm",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<UuVideolibrary.Bricks.VideoCreateForm />"
+      },
+      {
+        "code": "UuVideolibrary.Bricks.VideoCreate",
+        "name": "VideoCreate",
+        "tagList": [
+          "UuVideolibrary",
+          "Bricks",
+          "VideoCreate"
+        ],
+        "docCode": "UuVideolibraryBricksVideoCreate",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<UuVideolibrary.Bricks.VideoCreate />"
+      },
+      {
+        "code": "UuVideolibrary.Bricks.VideoProvider",
+        "name": "VideoProvider",
+        "tagList": [
+          "UuVideolibrary",
+          "Bricks",
+          "VideoProvider"
+        ],
+        "docCode": "UuVideolibraryBricksVideoProvider",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<UuVideolibrary.Bricks.VideoProvider />"
+      },
+      {
+        "code": "UuVideolibrary.Bricks.Video",
+        "name": "Video",
+        "tagList": [
+          "UuVideolibrary",
+          "Bricks",
+          "Video"
+        ],
+        "docCode": "UuVideolibraryBricksVideo",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<UuVideolibrary.Bricks.Video />"
+      },
+      {
+        "code": "UuVideolibrary.Bricks.VideoList",
+        "name": "VideoList",
+        "tagList": [
+          "UuVideolibrary",
+          "Bricks",
+          "VideoList"
+        ],
+        "docCode": "UuVideolibraryBricksVideoList",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<UuVideolibrary.Bricks.VideoList />"
+      },
+      {
+        "code": "UuVideolibrary.Bricks.CategoryList",
+        "name": "CategoryList",
+        "tagList": [
+          "UuVideolibrary",
+          "Bricks",
+          "CategoryList"
+        ],
+        "docCode": "UuVideolibraryBricksCategoryList",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<UuVideolibrary.Bricks.CategoryList />"
+      },
+      {
+        "code": "UuVideolibrary.Bricks.CategoryProvider",
+        "name": "CategoryProvider",
+        "tagList": [
+          "UuVideolibrary",
+          "Bricks",
+          "CategoryProvider"
+        ],
+        "docCode": "UuVideolibraryBricksCategoryProvider",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<UuVideolibrary.Bricks.CategoryProvider />"
+      },
+      {
+        "code": "UuVideolibrary.Bricks.CategoryCreate",
+        "name": "CategoryCreate",
+        "tagList": [
+          "UuVideolibrary",
+          "Bricks",
+          "CategoryCreate"
+        ],
+        "docCode": "UuVideolibraryBricksCategoryCreate",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<UuVideolibrary.Bricks.CategoryCreate />"
+      },
+      {
+        "code": "UuVideolibrary.Bricks.Category",
+        "name": "Category",
+        "tagList": [
+          "UuVideolibrary",
+          "Bricks",
+          "Category"
+        ],
+        "docCode": "UuVideolibraryBricksCategory",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<UuVideolibrary.Bricks.Category />"
+      },
+      {
+        "code": "UuVideolibrary.Bricks.CategoryCreateFrom",
+        "name": "CategoryCreateFrom",
+        "tagList": [
+          "UuVideolibrary",
+          "Bricks",
+          "CategoryCreateFrom"
+        ],
+        "docCode": "UuVideolibraryBricksCategoryCreateFrom",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<UuVideolibrary.Bricks.CategoryCreateFrom />"
+      }
+    ]
+  },
+  "uu_videolibrary_maing01-server": {}
+}

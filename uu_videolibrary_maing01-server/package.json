@@ -1,0 +1,19 @@
+{
+  "name": "uuproject",
+  "version": "1.0.0",
+  "description": "Unicorn university video library project",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "TEMP",
+  "license": "MIT",
+  "dependencies": {
+    "ajv": "^8.3.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
