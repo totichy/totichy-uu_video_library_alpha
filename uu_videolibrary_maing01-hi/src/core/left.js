@@ -36,8 +36,9 @@ export const Left = createVisualComponent({
       <Plus4U5.App.Left
         {...props}
         logoProps={{
-          backgroundColor: UU5.Environment.colors.blue.c900,
-          backgroundColorTo: UU5.Environment.colors.blue.c400,
+          colorSchema: "blue",
+          backgroundColor: UU5.Environment.colors.indigo.c900,
+          backgroundColorTo: UU5.Environment.colors.blue.c600,
           title: "uuVideoLibrary",
           companyLogo: Plus4U5.Environment.basePath + "assets/img/unicorn-logo.svg",
           generation: "1",
