@@ -36,13 +36,13 @@ const CLASS_NAMES = {
   align-items: center;
   padding: 16px;
   cursor: pointer;
-  line-height: 25px;
+  line-height: 20px;
   `,
   right: () => Config.Css.css`
   float:right;
   `,
   content: () => Config.Css.css`
-  padding: 16px;
+  padding: 0 16px;
   overflow: hidden;
   `,
   textContent: () => Config.Css.css`
