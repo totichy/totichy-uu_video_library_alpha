@@ -24,6 +24,9 @@ const CLASS_NAMES = {
     .plus4u5-app-technologies > .uu5-bricks-header {
       border-bottom: 0;
     }
+    .plus4u5-app-about {
+      margin: 0 20px;
+    }
 
     .plus4u5-app-authors > .uu5-bricks-header {
       margin: 20px 0 10px 0;

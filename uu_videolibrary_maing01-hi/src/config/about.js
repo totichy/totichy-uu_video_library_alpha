@@ -2,7 +2,9 @@ import UU5 from "uu5g04";
 
 export const About = {
   about: {
-    cs: "uuVideoLibrary je online aplikace pro sdílení odkazů na vzdělávací videa mezi studenty Unicorn University. Aplikace umožňuje studentům zveřejňovat odkazy na vzdělávací videa, sdílet podrobnosti o videu, upravovat podrobnosti nebo hodnotit video. Studenti také můžou vyhledávat podle kategorií. Každé nové registrované video musí být schváleno administrátorem. Studenti mají zájem o sdílení know-how mezi sebou a uuVideoLibrary je tím nejlepším řešením.",
+    cs: [
+      `<uu5string/>uuVideoLibrary je online aplikace pro sdílení odkazů na vzdělávací videa mezi studenty Unicorn University. Aplikace umožňuje studentům zveřejňovat odkazy na vzdělávací videa, sdílet podrobnosti o videu, upravovat podrobnosti nebo hodnotit video. Studenti také můžou vyhledávat podle kategorií. Každé nové registrované video musí být schváleno administrátorem. Studenti mají zájem o sdílení know-how mezi sebou a uuVideoLibrary je tím nejlepším řešením.`
+    ],
     en: "uuVideoLibrary is an online application for sharing links to educational videos between students of Unicorn University. The application will enable students to post links to educational videos, share details about video, edit details or rate video. Students will also be able to search by categories. Each new registered video must be approved by the administrator. Students are keen on sharing know-how between themselves and uuVideoLibrary is the best solution for it.",
   },
   licence: {
