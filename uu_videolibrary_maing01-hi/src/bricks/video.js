@@ -29,12 +29,12 @@ const CLASS_NAMES = {
   border-radius: 4px;
 `,
   header: () => Config.Css.css`
-  font-size: 16px;
+  font-size: 20px;
   color: #005da7;
   font-family: ClearSans-Medium, ClearSans, sans-serif;
   display: flex;
   align-items: center;
-  padding: 0 16px;
+  padding: 16px;
   cursor: pointer;
   line-height: 25px;
   `,
@@ -65,7 +65,7 @@ export const Video = createVisualComponent({
       category: UU5.PropTypes.any.isRequired,
       videoUrl: UU5.PropTypes.string.isRequired,
       description: UU5.PropTypes.string.isRequired,
-      visible: UU5.PropTypes.boolean,
+      visible: UU5.PropTypes.bool,
       ratingCount: UU5.PropTypes.number,
       averageRating: UU5.PropTypes.number.isRequired,
       rating: UU5.PropTypes.number,
@@ -108,14 +108,13 @@ export const Video = createVisualComponent({
     //@@viewOn:interface
     function renderHeader() {
       return (
-        <UU5.Bricks.Header level="6" className={CLASS_NAMES.header()} onClick={handleDetail}>
+        <UU5.Bricks.Div level={6} className={CLASS_NAMES.header()} onClick={handleDetail}>
           <UU5.Bricks.Link
             content={video.title}
             href={"video/get/" + video.code}
             target="_self"
-            key="video"
           ></UU5.Bricks.Link>
-        </UU5.Bricks.Header>
+        </UU5.Bricks.Div>
       );
     }
     let nameAuthor = video.authorName + " " + video.authorSurname;
@@ -166,7 +165,7 @@ export const Video = createVisualComponent({
     }
 
     return (
-      <UU5.Bricks.Column key={video.code} colWidth="xs-12 m-6 l-4 xl-4">
+      <UU5.Bricks.Column colWidth="xs-12 m-6 l-4 xl-4">
         <UU5.Bricks.Card className={CLASS_NAMES.main()} colorSchema="green" header={renderHeader()}>
           <UU5.Bricks.Div className={CLASS_NAMES.content()}>
             <UU5.Bricks.Div className={CLASS_NAMES.textContent()} onClick={handleDetail}>

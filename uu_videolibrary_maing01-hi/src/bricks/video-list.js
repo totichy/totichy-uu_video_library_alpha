@@ -94,14 +94,13 @@ export const VideoList = createVisualComponent({
   </Uu5Tiles.ControllerProvider>
         <UU5.Bricks.Container>
           <UU5.Bricks.Header level={1} content={VideoListHeader} underline={true} />
-            {videos.map((video) => {
+            {videos.map((video,index) => {
             return (  
               <UU5.Bricks.Div>
-                <Video video={video} onDelete={onDelete} />
+                <Video key={index} video={video} onDelete={onDelete} />
               </UU5.Bricks.Div>
             );
           })}
-
         </UU5.Bricks.Container>
       </div>
     );
