@@ -5,7 +5,7 @@ export const VideoLsi = {
   },
   AllVideos: {
     cs: "Všechny videa",
-    en: "All Video",
+    en: "All Videos",
   },
   delVideo: {
     cs: "Video s názvem ",
