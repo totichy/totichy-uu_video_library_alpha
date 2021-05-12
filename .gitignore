@@ -21,3 +21,5 @@ webpack-tmp/
 chunks/
 node_modules/
 *-lock.json
+*-update.json
+*-update.js

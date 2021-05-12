@@ -38,6 +38,9 @@ const CLASS_NAMES = {
   cursor: pointer;
   line-height: 25px;
   `,
+  right: () => Config.Css.css`
+  float:right;
+  `,
   content: () => Config.Css.css`
   padding: 16px;
   overflow: hidden;
@@ -75,10 +78,11 @@ export const Video = createVisualComponent({
   defaultProps: {
     video: null,
     onDelete: () => {},
+    onUpdate: () => {},
   },
   //@@viewOff:defaultProps
 
-  render({ video, onDelete }) {
+  render({ video, onDelete, onUpdate }) {
     //@@viewOn:hooks
     const date = new Date(Number(video.code)).toLocaleDateString("cs-CZ");
     const { identity } = useSession();
@@ -90,6 +94,10 @@ export const Video = createVisualComponent({
     }
 
     function handleDetail() {
+      //TO-DO: zobrazit detail videa.
+    }
+
+    function handleUpdate() {
       //TO-DO: zobrazit detail videa.
     }
     //@@viewOff:private
@@ -129,7 +137,7 @@ export const Video = createVisualComponent({
     function renderDelete() {
       if (nameAuthor === identity.name) {
         return (
-          <UU5.Bricks.Button onClick={handleDelete} bgStyle="transparent">
+          <UU5.Bricks.Button onClick={handleDelete} bgStyle="transparent" colorSchema="red">
             <UU5.Bricks.Icon icon="mdi-delete" />
           </UU5.Bricks.Button>
         );
@@ -137,6 +145,18 @@ export const Video = createVisualComponent({
         return null;
       }
     }
+    function renderUpdate() {
+      if (nameAuthor === identity.name) {
+        return (
+          <UU5.Bricks.Button onClick={handleUpdate} bgStyle="transparent"  colorSchema="blue">
+            <UU5.Bricks.Icon icon="mdi-pencil" />
+          </UU5.Bricks.Button>
+        );
+      } else {
+        return null;
+      }
+    }
+
 
     //@@viewOff:interface
 
@@ -144,14 +164,6 @@ export const Video = createVisualComponent({
     if (!video) {
       return null;
     }
-
-    //  function renderVideoUrl() {
-    //   let videURL = video.videoUrl;
-    //         if (video.videoUrl.length > 100 ) {
-    //           videURL = video.videoUrl.slice(0, 90) + "...";
-    //         }
-    //         return videURL;
-    //       }
 
     return (
       <UU5.Bricks.Column key={video.code} colWidth="xs-12 m-6 l-4 xl-4">
@@ -164,7 +176,10 @@ export const Video = createVisualComponent({
           </UU5.Bricks.Div>
           <UU5.Bricks.Div className={CLASS_NAMES.footer()}>
             {renderRating()}
-            {renderDelete()}
+            <UU5.Bricks.Div className={CLASS_NAMES.right()}>
+              {renderUpdate()}
+              {renderDelete()}
+            </UU5.Bricks.Div>
           </UU5.Bricks.Div>
         </UU5.Bricks.Card>
       </UU5.Bricks.Column>
