@@ -1,6 +1,6 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
-import { createVisualComponent, useLsi, useSession } from "uu5g04-hooks";
+import { createVisualComponent, useLsi, useSession, useState,useEffect } from "uu5g04-hooks";
 import "uu5g04-forms";
 import "uu5g04-block-layout";
 import Config from "./config/config";
@@ -13,6 +13,8 @@ const STATICS = {
   //nestingLevel: "bigBoxCollection",
   //@@viewOff:statics
 };
+
+
 
 export const VideoCreateForm = createVisualComponent({
   ...STATICS,
@@ -28,6 +30,8 @@ export const VideoCreateForm = createVisualComponent({
       margin: 0,
     };
   },
+  
+
 
   //@@viewOn:propTypes
   propTypes: {
@@ -46,7 +50,27 @@ export const VideoCreateForm = createVisualComponent({
   render({ onSubmit, onCancel }) {
     //@@viewOn:hooks
     const { identity } = useSession();
+    const [categories, setCategories] = useState([]);
+
     //@@viewOff:hooks
+
+    useEffect(() => {
+      async function fetchData() {
+        let data = await fetch("http://localhost:3000/category/list");
+        if (data.status >= 200 && data.status < 300) {
+          let response;
+          try {
+            response = await data.json();
+          } catch (e) {
+//            setError("Unable to parse response.");
+          }
+          setCategories(response);
+        } else {
+  //        setError("Unable to load data.");
+        }
+      }
+      fetchData();
+    }, []);
 
     const titleCg = Form.titleCgi || {};
     const descCg = Form.descriptionCgi || {};
@@ -62,33 +86,23 @@ export const VideoCreateForm = createVisualComponent({
     let autorSurname = useLsi(autorSurnameCg);
     let headerAdd = useLsi(addVideoCg);
     let categoriesCg = useLsi(categoryCg);
+
+
+  
+   
     //@@viewOn:private
     function renderCategories() {
-      return categoryList.map((category) => (
-        <UU5.Forms.Select.Option value={category.id} key={category.id}>
-          {category.name}
+
+
+
+      return categories.map((category) => (
+        <UU5.Forms.Select.Option value={category.categoryId} key={category.categoryId}>
+          {category.categoryName}
         </UU5.Forms.Select.Option>
       ));
     }
 
-    let categoryList = [
-      {
-        id: "123",
-        name: "Matematika",
-      },
-      {
-        id: "124",
-        name: "Anglický jazyk",
-      },
-      {
-        id: "125",
-        name: "Cloudové aplikace",
-      },
-      {
-        id: "126",
-        name: "Test",
-      },
-    ];
+
 
     //@@viewOff:private
 
@@ -108,6 +122,7 @@ export const VideoCreateForm = createVisualComponent({
     ) : null;
     */
     return (
+      
       <UU5.Bricks.Container>
         <UU5.Bricks.Header level="1" content={headerAdd} underline={true} />
         <UU5.Bricks.Card className="padding-s" colorSchema="blue">
@@ -115,6 +130,7 @@ export const VideoCreateForm = createVisualComponent({
             <UU5.Forms.Text inputAttrs={{ maxLength: 255 }} name="title" label={titles} required />
             <UU5.Forms.Text inputAttrs={{ maxLength: 255 }} name="videoUrl" label={videoUrl} required />
             <UU5.Forms.Select label={categoriesCg} name="category" multiple required>
+           
               {renderCategories()}
             </UU5.Forms.Select>
             <UU5.Forms.Text
