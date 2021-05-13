@@ -55,6 +55,7 @@ const CLASS_NAMES = {
 export const Video = createVisualComponent({
   ...STATICS,
 
+  
   //@@viewOn:propTypes
   propTypes: {
     video: UU5.PropTypes.shape({
@@ -93,6 +94,7 @@ export const Video = createVisualComponent({
       onDelete(video);
     }
 
+    
     function handleDetail() {
       //TO-DO: zobrazit detail videa.
     }
@@ -123,8 +125,15 @@ export const Video = createVisualComponent({
         return null;
       }
       let ratingSize = screenSize === "s" ? "m" : "s";
-      return <UU5.Bricks.Rating value={video.averageRating} size={ratingSize} colorSchema="orange" />;
-    }
+      
+      return (
+      <UU5.Bricks.Section>
+      <UU5.Bricks.Rating
+      value={video.averageRating} size={ratingSize} colorSchema="orange"
+        onClick={(i, e, icon) => handleRating(i, e, icon)}
+      />
+      </UU5.Bricks.Section>
+    )}
 
     function descriptionLength() {
       if (video.description.length > 200) {

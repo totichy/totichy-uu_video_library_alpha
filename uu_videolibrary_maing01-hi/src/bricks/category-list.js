@@ -59,7 +59,7 @@ export const CategoryList = createVisualComponent({
           <UU5.Bricks.Header level="1" content={CatetegoryListHeader} underline={true} />
           {categories.map((category) => {
             return (
-              // eslint-disable-next-line react/jsx-key
+              
               <UU5.Bricks.Div>
                 <Category key={category.categoryId} category={category} onDelete={onDelete} />
               </UU5.Bricks.Div>
