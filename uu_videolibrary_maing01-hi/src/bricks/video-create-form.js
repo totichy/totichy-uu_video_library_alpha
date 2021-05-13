@@ -110,23 +110,13 @@ export const VideoCreateForm = createVisualComponent({
     //@@viewOff:interface
 
     //@@viewOn:render
-    /*  const className = Config.Css.css``;
-    const attrs = UU5.Common.VisualComponent.getAttrs(props, className);
-    const currentNestingLevel = UU5.Utils.NestingLevel.getNestingLevel(props, STATICS);
 
-    return currentNestingLevel ? (
-      <div {...attrs}>
-        <div>Visual Component {STATICS.displayName}</div>
-        {UU5.Utils.Content.getChildren(props.children, props, STATICS)}
-      </div>
-    ) : null;
-    */
     return (
       
       <UU5.Bricks.Container>
         <UU5.Bricks.Header level="1" content={headerAdd} underline={true} />
         <UU5.Bricks.Card className="padding-s" colorSchema="blue">
-          <UU5.Forms.Form onSave={onSubmit} onCancel={onCancel} labelColWidth="xs-12 m-12" inputColWidth="xs-12 m-12">
+          <UU5.Forms.Form onSave={onSubmit} onCancel={onCancel} labelColWidth="xs-12 m-3" inputColWidth="xs-12 m-9">
             <UU5.Forms.Text inputAttrs={{ maxLength: 255 }} name="title" label={titles} required />
             <UU5.Forms.Text inputAttrs={{ maxLength: 255 }} name="videoUrl" label={videoUrl} required />
             <UU5.Forms.Select label={categoriesCg} name="category" multiple required>
