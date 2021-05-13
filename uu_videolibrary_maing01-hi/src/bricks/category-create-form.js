@@ -58,8 +58,8 @@ export const CategoryCreateFrom = createVisualComponent({
     return (
       <UU5.Bricks.Container>
         <UU5.Bricks.Header level="1" content={headerAdd} underline={true} />
-        <UU5.Bricks.Card className="padding-s" colorSchema="default">
-          <UU5.Forms.Form onSave={onSubmit} onCancel={onCancel} labelColWidth="xs-12 m-12" inputColWidth="xs-12 m-12">
+        <UU5.Bricks.Card className="padding-s" colorSchema="indigo">
+          <UU5.Forms.Form onSave={onSubmit} onCancel={onCancel} labelColWidth="xs-12 m-2" inputColWidth="xs-12 m-8">
             <UU5.Forms.Text inputAttrs={{ maxLength: 255 }} name="categoryName" label={titles} required />
             <UU5.Forms.Controls />
           </UU5.Forms.Form>
