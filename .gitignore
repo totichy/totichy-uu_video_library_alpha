@@ -24,4 +24,4 @@ node_modules/
 *-update.json
 *-update.js
 *.DS_Store
-*public/
+public/
