@@ -57,20 +57,19 @@ export const SpaAuthenticated = createVisualComponent({
       <Plus4U5.App.MenuProvider activeItemId={initialActiveItemId}>
         <Plus4U5.App.Page
           {...props}
-          top={<Plus4U5.App.TopBt />}
           topFixed="smart"
-          type={3}
+          leftWrapperProps={{ style: { backgroundColor: '#fafafa' } }}
+          top={<Plus4U5.App.Top content="TEAM 17" />}
+          type={1}
+          displayedLanguages={["cs", "en"]}
           left={<Left />}
           leftWidth="!xs-300px !s-300px !m-288px !l-288px !xl-288px"
-          leftFixed
           leftRelative="m l xl"
           leftResizable="m l xl"
           leftResizableMinWidth={220}
           leftResizableMaxWidth={500}
           isLeftOpen="m l xl"
-          showLeftToggleButton
           fullPage
-          homeHref="home"
         >
           <Plus4U5.App.MenuConsumer>
             {({ setActiveItemId }) => {
