@@ -17,7 +17,8 @@ const STATICS = {
 const FILTERS = [
   {
     key: "kategorie",
-    label: { cs: "Kategorie", en: "Kategory" },
+    label: { cs: "Kategorie", en: "Category" },
+    //TODO - Pochopit jak to funguje, plus, Namiesto litu je tam input
     filterFn: (item, value) => {
       let fragments = value.split(/[\s,.-;:_]/);
       return fragments.some(frag => {
@@ -62,7 +63,7 @@ export const VideoList = createVisualComponent({
   },
   //@@viewOff:defaultProps
 
-  render({ videos, onDelete }) {
+  render({ videos, onDelete}) {
     //@@viewOn:private
     const noVideo = VideoLsi.noVideo || {};
     const AllVideos = VideoLsi.AllVideos || {};
