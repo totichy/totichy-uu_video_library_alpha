@@ -23,4 +23,5 @@ node_modules/
 *-lock.json
 *-update.json
 *-update.js
-.DS_Store
+*.DS_Store
+*public/
