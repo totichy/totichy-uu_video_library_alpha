@@ -37,6 +37,10 @@ export const Left = createVisualComponent({
         {...props}
         logoProps={{
           colorSchema: "blue",
+          decoration: "assets/background.png",
+          decorationWidth: 136,
+          decorationRight: -8,
+          decorationBottom: -8,
           backgroundColor: UU5.Environment.colors.indigo.c900,
           backgroundColorTo: UU5.Environment.colors.blue.c600,
           title: "uuVideoLibrary",
@@ -50,7 +54,7 @@ export const Left = createVisualComponent({
           borderBottom
           // NOTE Item "id" equals to useCase so that item gets automatically selected when route changes (see spa-autheticated.js).
           items={[
-            { id: "home", href: "home", content: <UU5.Bricks.Lsi lsi={Lsi.left.home} /> },
+            { id: "home", icon:"plus4u-video" , href: "home", content: <UU5.Bricks.Lsi lsi={Lsi.left.home} /> },
             { id: "categories", href: "categories", content: <UU5.Bricks.Lsi lsi={Lsi.left.category} /> },
           ]}
         />
