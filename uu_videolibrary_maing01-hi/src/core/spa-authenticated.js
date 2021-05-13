@@ -4,10 +4,10 @@ import "uu5g04-bricks";
 import { createVisualComponent, useState } from "uu5g04-hooks";
 import Plus4U5 from "uu_plus4u5g01";
 import "uu_plus4u5g01-app";
-import Bottom from "./bottom";
+
 import Config from "./config/config";
 import Left from "./left";
-//@@import Bottom from "./bottom";
+import Bottom from "./bottom";
 import Home from "../routes/home";
 import Categories from "../routes/categories";
 //@@viewOff:imports
