@@ -25,4 +25,5 @@ node_modules/
 *-update.js
 *.DS_Store
 public/
+target/
 .finished
