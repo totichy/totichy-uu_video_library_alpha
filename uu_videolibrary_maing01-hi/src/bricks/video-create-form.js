@@ -62,11 +62,11 @@ export const VideoCreateForm = createVisualComponent({
           try {
             response = await data.json();
           } catch (e) {
-//            setError("Unable to parse response.");
+           //@@ setError("Unable to parse response.");
           }
           setCategories(response);
         } else {
-  //        setError("Unable to load data.");
+         //@@ setError("Unable to load data.");
         }
       }
       fetchData();
