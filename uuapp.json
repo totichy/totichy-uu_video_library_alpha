@@ -15,21 +15,6 @@
   "uu_videolibrary_maing01-hi": {
     "componentList": [
       {
-        "code": "UuVideolibrary.Routes.AddVideo",
-        "name": "AddVideo",
-        "tagList": [
-          "UuVideolibrary",
-          "Routes",
-          "AddVideo"
-        ],
-        "docCode": "UuVideolibraryRoutesAddVideo",
-        "desc": "",
-        "icon": "",
-        "imageUri": "",
-        "uuEccReady": false,
-        "template": "<UuVideolibrary.Routes.AddVideo />"
-      },
-      {
         "code": "UuVideolibrary.Bricks.VideoCreateForm",
         "name": "VideoCreateForm",
         "tagList": [
