@@ -57,7 +57,7 @@ export const Home = createVisualComponent({
               return (
                 <div>
                   <UU5.Bricks.Container>
-                    <UU5.Common.Div content="Loading..." />
+                  <UU5.Bricks.Loading/>
                   </UU5.Bricks.Container>
                 </div>
               );

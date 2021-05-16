@@ -17,17 +17,6 @@ let Calls = {
     let commandUri = Calls.getCommandUri("loadDemoContent");
     return Calls.call("get", commandUri, dtoIn);
   },
-
-  addVideo(dtoInData) {
-    return new Promise((resolve, reject) => {
-      let commandUri = Calls.getCommandUri("video/create");
-      Calls.call("post", commandUri, {
-        data: dtoInData,
-        done: data => resolve({ ...data, inProgress: false }),
-        fail: reject
-      });
-    });
-  },
   loadIdentityProfiles() {
     let commandUri = Calls.getCommandUri("sys/uuAppWorkspace/initUve");
     return Calls.call("get", commandUri, {});
