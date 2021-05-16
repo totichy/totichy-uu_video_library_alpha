@@ -97,6 +97,7 @@ export const Video = createVisualComponent({
     
     function handleDetail() {
       //TO-DO: zobrazit detail videa.
+     
     }
 
     function handleUpdate() {
@@ -174,7 +175,7 @@ export const Video = createVisualComponent({
     }
 
     return (
-      <UU5.Bricks.Column colWidth="xs-12 m-6 l-4 xl-4">
+      <UU5.Bricks.Column colWidth="xs-12 m-6 l-4">
         <UU5.Bricks.Card className={CLASS_NAMES.main()} colorSchema="green" header={renderHeader()}>
           <UU5.Bricks.Div className={CLASS_NAMES.content()}>
             <UU5.Bricks.Div className={CLASS_NAMES.textContent()} onClick={handleDetail}>
@@ -191,6 +192,7 @@ export const Video = createVisualComponent({
           </UU5.Bricks.Div>
         </UU5.Bricks.Card>
       </UU5.Bricks.Column>
+      
     );
     //@@viewOff:render
   },

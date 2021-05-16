@@ -87,7 +87,7 @@ export const Category = createVisualComponent({
     }
 
     return (
-      <UU5.Bricks.Column key={category.categoryId} colWidth="xs-12 m-6 l-4 xl-4">
+      <UU5.Bricks.Column key={category.categoryId} colWidth="xs-12 m-6 l-4">
         <UU5.Bricks.Card className={CLASS_NAMES.main()} colorSchema="blue" header={renderHeader()}></UU5.Bricks.Card>
       </UU5.Bricks.Column>
     );
