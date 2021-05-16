@@ -59,9 +59,9 @@ export const SpaAuthenticated = createVisualComponent({
           {...props}
           top={<Plus4U5.App.Top />}
           topFixed="smart"
-          bottom={<Bottom />}
+         //@@ bottom={<Bottom />}
           leftWrapperProps={{ style: { backgroundColor: '#fafafa' } }}
-          type={3}
+          type={1}
           displayedLanguages={["cs", "en"]}
           left={<Left />}
           leftWidth="!xs-300px !s-300px !m-288px !l-288px !xl-288px"
