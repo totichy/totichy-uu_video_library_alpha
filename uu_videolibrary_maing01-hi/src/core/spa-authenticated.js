@@ -57,7 +57,7 @@ export const SpaAuthenticated = createVisualComponent({
       <Plus4U5.App.MenuProvider activeItemId={initialActiveItemId}>
         <Plus4U5.App.Page
           {...props}
-          top={<Plus4U5.App.TopBt />}
+          top={<Plus4U5.App.Top />}
           topFixed="smart"
           bottom={<Bottom />}
           leftWrapperProps={{ style: { backgroundColor: '#fafafa' } }}
@@ -70,7 +70,6 @@ export const SpaAuthenticated = createVisualComponent({
           leftResizableMinWidth={220}
           leftResizableMaxWidth={500}
           isLeftOpen="m l xl"
-          showLeftToggleButton
           fullPage
         >
           <Plus4U5.App.MenuConsumer>
