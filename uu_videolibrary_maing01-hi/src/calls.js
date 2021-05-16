@@ -6,13 +6,25 @@ import Plus4U5 from "uu_plus4u5g01";
 
 let Calls = {
   /** URL containing app base, e.g. "https://uuapp.plus4u.net/vendor-app-subapp/awid/". */
-  APP_BASE_URI: location.protocol + "//" + location.host + UU5.Environment.getAppBasePath(),
-
+  //@@APP_BASE_URI: location.protocol + "//" + location.host + UU5.Environment.getAppBasePath(),
+  APP_BASE_URI: "http://localhost:3000/",
   async call(method, url, dtoIn, clientOptions) {
     let response = await Plus4U5.Common.Calls.call(method, url, dtoIn, clientOptions);
     return response.data;
   },
 
+  listVideos() {
+    let commandUri = Calls.getCommandUri("video/list");
+    return Calls.call("get", commandUri, {});
+  },
+  createVideo(dtoIn) {
+    let commandUri = Calls.getCommandUri("video/create");
+    return Calls.call("post", commandUri, dtoIn);
+  },
+  deleteVideo(dtoIn) {
+    let commandUri = Calls.getCommandUri("video/delete");
+    return Calls.call("post", commandUri, dtoIn);
+  },
   loadDemoContent(dtoIn) {
     let commandUri = Calls.getCommandUri("loadDemoContent");
     return Calls.call("get", commandUri, dtoIn);
@@ -56,7 +68,6 @@ let Calls = {
     // useCase <=> e.g. "getSomething" or "sys/getSomething"
     // add useCase to the application base URI
     let targetUriStr = Calls.APP_BASE_URI + aUseCase.replace(/^\/+/, "");
-
     // override tid / awid if it's present in environment (use also its gateway in such case)
     if (process.env.NODE_ENV !== "production") {
       let env = UU5.Environment;

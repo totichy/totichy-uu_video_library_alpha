@@ -1,6 +1,6 @@
 //@@viewOn:imports
 import "uu5g04-bricks";
-import { createVisualComponent } from "uu5g04-hooks";
+import { createVisualComponent, useRef, useLsi } from "uu5g04-hooks";
 import "uu_plus4u5g01-bricks";
 
 import UU5 from "uu5g04";
@@ -8,6 +8,7 @@ import Config from "./config/config.js";
 import VideoList from "../bricks/video-list.js";
 import VideoProvider from "../bricks/video-provider.js";
 import VideoCreate from "../bricks/video-create.js";
+import VideoLsi from "../config/video";
 //@@viewOff:imports
 
 const STATICS = {
@@ -29,10 +30,69 @@ export const Home = createVisualComponent({
   //@@viewOff:defaultProps
 
   render(props) {
+    //@@viewOn:hook
+    const createVideoRef = useRef();
+    const deleteVideoRef = useRef();
+    //@@viewOff:hook
+
+    const delVideoText = VideoLsi.delVideo || {};
+    const wasDeleted = VideoLsi.wasDeleted || {};
+    const createError = VideoLsi.errorCreate || {};
+    const errorServerData = VideoLsi.errorServer || {};
+
+    let VideoWithTitle = useLsi(delVideoText);
+    let WasDeleted = useLsi(wasDeleted);
+    let errorCreated = useLsi(createError);
+    let serverErrorData = useLsi(errorServerData);
+
     //@@viewOn:private
+    function showError(content) {
+      UU5.Environment.getPage().getAlertBus().addAlert({
+    content,
+    colorSchema: "red"
+      })
+    }
+
+    async function handleCreateVideo(video) {
+      try {
+      await createVideoRef.current(video);
+      } catch (e) {
+      showError(errorCreated)
+      }
+    }    
+
+    async function handleDeleteVideo(video) {
+      try {
+      await deleteVideoRef.current({code : video.code});
+      } catch (e) {
+      showError(`Deletion of ${video.title} is failed.`)
+      }
+    }   
     //@@viewOff:private
 
+    function renderLoad() {
+      return <UU5.Bricks.Loading />;
+    }
+
+    function renderError(errorData) {
+      return <UU5.Bricks.Error content={serverErrorData} />;
+      }
+
+    function renderReady(videos) {
+
+      return (
+        <>
+          <VideoCreate onCreate={handleCreateVideo} />
+          <UU5.Bricks.Section>
+            <VideoList videos={videos} onDelete={handleDeleteVideo} />
+          </UU5.Bricks.Section>
+        </>
+      );
+    }
+
+
     //@@viewOn:interface
+
     //@@viewOff:interface
 
     //@@viewOn:render
@@ -40,37 +100,25 @@ export const Home = createVisualComponent({
     return (
       <div>
         <VideoProvider>
-          {({ error, isLoaded, videos, handleDelete, handleCreate }) => {
-            if (error) {
-              return (
-                <div>
-                  <VideoCreate onCreate={handleCreate} />
-                  <UU5.Bricks.Container>
-                    <UU5.Common.Error content={error} />
-                  </UU5.Bricks.Container>
-                  <UU5.Bricks.Section>
-                    <VideoList videos={videos} onDelete={handleDelete} />
-                  </UU5.Bricks.Section>
-                </div>
-              );
-            } else if (!isLoaded) {
-              return (
-                <div>
-                  <UU5.Bricks.Container>
-                  <UU5.Bricks.Loading/>
-                  </UU5.Bricks.Container>
-                </div>
-              );
-            } else {
-              return (
-                <>
-                  <VideoCreate onCreate={handleCreate} />
-                  <UU5.Bricks.Section>
-                    <VideoList videos={videos} onDelete={handleDelete} />
-                  </UU5.Bricks.Section>
-                </>
-              );
+          {({ state, data, newData, pendingData, errorData, handlerMap }) => {
+
+            createVideoRef.current = handlerMap.createVideo;
+            deleteVideoRef.current = handlerMap.deleteVideo;
+
+            switch (state) {
+                case "pending":
+                case "pendingNoData":
+                  return renderLoad();
+                case "error":
+                case "errorNoData":
+                  return renderError(errorData);
+                  case "itemPending":
+                case "ready":
+                case "readyNoData":
+                default:
+                  return renderReady(data);  
             }
+
           }}
         </VideoProvider>
       </div>

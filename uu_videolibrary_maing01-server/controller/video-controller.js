@@ -22,7 +22,7 @@ router.put("/update", async (req, res) => {
   await UpdateAbl(body, res);
 });
 
-router.delete("/delete", async (req, res) => {
+router.post("/delete", async (req, res) => {
   const { body } = req;
   await DeleteAbl(body, res);
 });

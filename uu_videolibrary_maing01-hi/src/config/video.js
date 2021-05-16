@@ -1,4 +1,8 @@
 export const VideoLsi = {
+  errorServer: {
+    cz: "Nastala chyba při získání dat na straně serveru.",
+    en: "An error occurred while retrieving server-side data.",
+  },
   noVideo: {
     cs: "Není zde žádne video",
     en: "No Video",

@@ -1,8 +1,9 @@
 //@@viewOn:imports
-import UU5 from "uu5g04";
-import { createComponent, useState, useLsi, useEffect } from "uu5g04-hooks";
+//@@import UU5 from "uu5g04";
+import { createComponent, useDataList } from "uu5g04-hooks";
 import Config from "./config/config";
-import VideoLsi from "../config/video";
+//@@import VideoLsi from "../config/video";
+import Calls from "../calls";
 //@@viewOff:imports
 
 const STATICS = {
@@ -22,87 +23,30 @@ export const VideoProvider = createComponent({
 
   render({ children }) {
     //@@viewOn:hooks
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [videos, setVideos] = useState([]);
-    const [error, setError] = useState(null);
 
-    useEffect(() => {
-      async function fetchData() {
-        let data = await fetch("http://localhost:3000/video/list");
-        setIsLoaded(true);
-        if (data.status >= 200 && data.status < 300) {
-          let response;
-          try {
-            response = await data.json();
-          } catch (e) {
-            setError("Unable to parse response.");
-          }
-          setVideos(response);
-        } else {
-          setError("Unable to load data.");
-        }
+    let listData = useDataList({
+      itemIdentifier: "code",
+      handlerMap: {
+        load: Calls.listVideos,
+        createVideo: Calls.createVideo,
+        deleteVideo: Calls.deleteVideo,
       }
-      fetchData();
-    }, []);
+    });
 
-    const delVideoText = VideoLsi.delVideo || {};
-    const wasDeleted = VideoLsi.wasDeleted || {};
-    const createError = VideoLsi.errorCreate || {};
+    let { state, data, newData, pendingData, errorData, handlerMap } = listData;
 
-    let VideoWithTitle = useLsi(delVideoText);
-    let WasDeleted = useLsi(wasDeleted);
-    let errorCreated = useLsi(createError);
 
     //@@viewOff:hooks
 
     //@@viewOn:private
-    async function handleDelete(video) {
-      await fetch("http://localhost:3000/video/delete", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          mode: "cors",
-        },
-        body: JSON.stringify(video),
-      });
 
-      setVideos((prevVideos) => {
-        return prevVideos.filter((item) => item.code !== video.code);
-      });
-      UU5.Environment.getPage()
-        .getAlertBus()
-        .addAlert({
-          content: `${VideoWithTitle} ${video.title} ${WasDeleted}`,
-        });
-    }
-
-    async function handleCreate(video) {
-      let response = await fetch("http://localhost:3000/video/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          mode: "cors",
-        },
-        body: JSON.stringify(video),
-      });
-      if (response.status >= 200 && response.status < 300) {
-        setVideos((prevVideos) => prevVideos.concat([video]));
-      } else {
-        UU5.Environment.getPage()
-          .getAlertBus()
-          .addAlert({
-            content: `${errorCreated}`,
-            colorSchema: "red",
-          });
-      }
-    }
     //@@viewOff:private
 
     //@@viewOn:interface
     //@@viewOff:interface
 
     //@@viewOn:render
-    return children({ error, isLoaded, videos, handleDelete, handleCreate });
+    return children({ state, data, newData, pendingData, errorData, handlerMap });
     //@@viewOff:render
   },
 });
