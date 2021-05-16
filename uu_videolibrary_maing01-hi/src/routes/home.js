@@ -2,7 +2,6 @@
 import "uu5g04-bricks";
 import { createVisualComponent, useRef, useLsi } from "uu5g04-hooks";
 import "uu_plus4u5g01-bricks";
-
 import UU5 from "uu5g04";
 import Config from "./config/config.js";
 import VideoList from "../bricks/video-list.js";
@@ -53,19 +52,27 @@ export const Home = createVisualComponent({
       })
     }
 
+    function showSuccess(content) {
+      UU5.Environment.getPage().getAlertBus().addAlert({
+    content,
+    colorSchema: "green"
+      })
+    }
+
     async function handleCreateVideo(video) {
       try {
       await createVideoRef.current(video);
       } catch (e) {
-      showError(errorCreated)
+      showError(errorCreated);
       }
     }    
 
     async function handleDeleteVideo(video) {
       try {
       await deleteVideoRef.current({code : video.code});
+      showSuccess(`${VideoWithTitle} ${video.title} ${WasDeleted}`);
       } catch (e) {
-      showError(`Deletion of ${video.title} is failed.`)
+      showError(`Deletion of ${video.title} is failed.`);
       }
     }   
     //@@viewOff:private

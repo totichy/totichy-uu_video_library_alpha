@@ -25,6 +25,18 @@ let Calls = {
     let commandUri = Calls.getCommandUri("video/delete");
     return Calls.call("post", commandUri, dtoIn);
   },
+  listCategory() {
+    let commandUri = Calls.getCommandUri("category/list");
+    return Calls.call("get", commandUri, {});
+  },
+  createCategory(dtoIn) {
+    let commandUri = Calls.getCommandUri("category/create");
+    return Calls.call("post", commandUri, dtoIn);
+  },
+  deleteCategory(dtoIn) {
+    let commandUri = Calls.getCommandUri("category/delete");
+    return Calls.call("post", commandUri, dtoIn);
+  },
   loadDemoContent(dtoIn) {
     let commandUri = Calls.getCommandUri("loadDemoContent");
     return Calls.call("get", commandUri, dtoIn);

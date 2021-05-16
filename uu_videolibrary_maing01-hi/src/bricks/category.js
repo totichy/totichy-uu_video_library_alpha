@@ -60,7 +60,7 @@ export const Category = createVisualComponent({
 
     function renderHeader() {
       return (
-        <UU5.Bricks.Header level="6" className={CLASS_NAMES.header()}>
+        <UU5.Bricks.Header level={6} className={CLASS_NAMES.header()}>
           <UU5.Bricks.Link
             content={category.categoryName}
             href={"video/category/" + category.categoryId}

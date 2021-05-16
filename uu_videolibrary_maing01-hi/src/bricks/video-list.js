@@ -63,7 +63,7 @@ export const VideoList = createVisualComponent({
   },
   //@@viewOff:defaultProps
 
-  render({ videos, onDelete}) {
+  render({ videos, onDelete }) {
     //@@viewOn:private
     const noVideo = VideoLsi.noVideo || {};
     const AllVideos = VideoLsi.AllVideos || {};
