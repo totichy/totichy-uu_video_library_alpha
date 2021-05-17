@@ -119,7 +119,7 @@ export const Home = createVisualComponent({
                 case "error":
                 case "errorNoData":
                   return renderError(errorData);
-                  case "itemPending":
+                case "itemPending":
                 case "ready":
                 case "readyNoData":
                 default:

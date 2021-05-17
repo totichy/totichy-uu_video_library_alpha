@@ -7,7 +7,7 @@ import "uu_plus4u5g01-app";
 
 import Config from "./config/config";
 import Left from "./left";
-import Bottom from "./bottom";
+//@@import Bottom from "./bottom";
 import Home from "../routes/home";
 import Categories from "../routes/categories";
 //@@viewOff:imports
