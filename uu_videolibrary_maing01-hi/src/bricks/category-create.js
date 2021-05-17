@@ -86,7 +86,7 @@ export const CategoryCreate = createVisualComponent({
     function renderButton() {
       return (
         <UU5.Bricks.Div className={CLASS_NAMES.addCategoryUse()}>
-          <UU5.Bricks.Button onClick={handleClick} content={addButton} colorSchema="default" />
+          <UU5.Bricks.Button onClick={handleClick} content={addButton} colorSchema="blue" />
         </UU5.Bricks.Div>
       );
     }
