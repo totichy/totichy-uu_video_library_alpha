@@ -35,11 +35,13 @@ export const Categories = createVisualComponent({
 
     const delcategoryText = CategoryLsi.delCategory || {};
     const wasDeleted = CategoryLsi.wasDeleted || {};
+    const wasCreated = CategoryLsi.wasCreated || {};
     const createError = CategoryLsi.errorCreate || {};
     const errorServerData = CategoryLsi.errorServer || {};
 
-    let CategoryWithTitle = useLsi(delcategoryText);
-    let WasDeleted = useLsi(wasDeleted);
+    let categoryWithTitle = useLsi(delcategoryText);
+    let wasDeletedC = useLsi(wasDeleted);
+    let wasCreatedC = useLsi(wasCreated);
     let errorCreated = useLsi(createError);
     let serverErrorData = useLsi(errorServerData);
     //@@viewOff:hook
@@ -48,14 +50,16 @@ export const Categories = createVisualComponent({
     function showError(content) {
       UU5.Environment.getPage().getAlertBus().addAlert({
     content,
-    colorSchema: "red"
+    colorSchema: "red",
+    closeTimer: 1000
       })
     }
 
     function showSuccess(content) {
       UU5.Environment.getPage().getAlertBus().addAlert({
     content,
-    colorSchema: "green"
+    colorSchema: "green",
+    closeTimer: 1000
       })
     }
 
@@ -63,6 +67,7 @@ export const Categories = createVisualComponent({
     async function handleCreateCategory(category) {
       try {
       await createCategoryRef.current(category);
+      showSuccess(`${categoryWithTitle} ${category.categoryName} ${wasCreatedC}`);
       } catch (e) {
       showError(errorCreated);
       }
@@ -71,7 +76,7 @@ export const Categories = createVisualComponent({
     async function handleDeleteCategory(category) {
       try {
       await deleteCategoryRef.current({categoryId : category.categoryId});
-      showSuccess(`${CategoryWithTitle} ${category.categoryName} ${WasDeleted}`);
+      showSuccess(`${categoryWithTitle} ${category.categoryName} ${wasDeletedC}`);
       } catch (e) {
       showError(`Deletion of ${category.categoryName} is failed.`);
       }
@@ -83,9 +88,15 @@ export const Categories = createVisualComponent({
       return <UU5.Bricks.Loading />;
     }
 
+
     function renderError(errorData) {
-      return <UU5.Bricks.Error content={serverErrorData} />;
+      switch (errorData.operation) {
+        case "load":
+        case "loadNext":
+        default:
+          return <UU5.Bricks.Error content={serverErrorData} error={errorData.error} errorData={errorData.data} />;
       }
+    }
 
     function renderReady(categories) {
 
@@ -117,7 +128,7 @@ switch (state) {
     case "error":
     case "errorNoData":
       return renderError(errorData);
-      case "itemPending":
+    case "itemPending":
     case "ready":
     case "readyNoData":
     default:

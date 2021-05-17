@@ -23,5 +23,9 @@ export const CategoryLsi = {
     cs: " byla smazána.",
     en: " was deleted.",
   },
+  wasCreated: {
+    cs: " byla vytvořena.",
+    en: " was created.",
+  },
 };
 export default CategoryLsi;

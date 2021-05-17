@@ -48,14 +48,16 @@ export const Home = createVisualComponent({
     function showError(content) {
       UU5.Environment.getPage().getAlertBus().addAlert({
     content,
-    colorSchema: "red"
+    colorSchema: "red",
+    closeTimer: 1000
       })
     }
 
     function showSuccess(content) {
       UU5.Environment.getPage().getAlertBus().addAlert({
     content,
-    colorSchema: "green"
+    colorSchema: "green",
+    closeTimer: 1000
       })
     }
 
