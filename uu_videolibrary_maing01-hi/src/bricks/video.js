@@ -41,6 +41,9 @@ const CLASS_NAMES = {
   right: () => Config.Css.css`
   float:right;
   `,
+  iframe: () => Config.Css.css`
+  height:168px;
+  `,
   content: () => Config.Css.css`
   padding: 0 16px;
   overflow: hidden;
@@ -55,7 +58,6 @@ const CLASS_NAMES = {
 export const Video = createVisualComponent({
   ...STATICS,
 
-  
   //@@viewOn:propTypes
   propTypes: {
     video: UU5.PropTypes.shape({
@@ -94,10 +96,8 @@ export const Video = createVisualComponent({
       onDelete(video);
     }
 
-    
     function handleDetail() {
       //TO-DO: zobrazit detail videa.
-     
     }
 
     function handleUpdate() {
@@ -112,11 +112,7 @@ export const Video = createVisualComponent({
     function renderHeader() {
       return (
         <UU5.Bricks.Div level={6} className={CLASS_NAMES.header()} onClick={handleDetail}>
-          <UU5.Bricks.Link
-            content={video.title}
-            href={"video/get/" + video.code}
-            target="_self"
-          ></UU5.Bricks.Link>
+          <UU5.Bricks.Link content={video.title} href={"video/get/" + video.code} target="_self"></UU5.Bricks.Link>
         </UU5.Bricks.Div>
       );
     }
@@ -125,16 +121,19 @@ export const Video = createVisualComponent({
       if (screenSize === "xs") {
         return null;
       }
-      let ratingSize = screenSize === "s" ? "m" : "s";
-      
+      let ratingSize = screenSize === "s" ? null : "s";
+
       return (
-      <UU5.Bricks.Section>
-      <UU5.Bricks.Rating
-      value={video.averageRating} size={ratingSize} colorSchema="orange"
-        onClick={(i, e, icon) => handleRating(i, e, icon)}
-      />
-      </UU5.Bricks.Section>
-    )}
+        <UU5.Bricks.Section>
+          <UU5.Bricks.Rating
+            value={video.averageRating}
+            size={ratingSize}
+            colorSchema="orange"
+            onClick={(i, e, icon) => handleRating(i, e, icon)}
+          />
+        </UU5.Bricks.Section>
+      );
+    }
 
     function descriptionLength() {
       if (video.description.length > 110) {
@@ -146,25 +145,43 @@ export const Video = createVisualComponent({
 
     function viodeShow() {
       var videoId = "";
-      if( video.videoUrl.indexOf("youtube") !== -1 ){
+      if (video.videoUrl.indexOf("youtube") !== -1) {
         var urlParts = video.videoUrl.split("?v=");
-        videoId = "https://www.youtube.com/embed/" + urlParts[1].substring(0,11);
-      }else if( video.videoUrl.indexOf("youtu.be") !== -1 ){
-        var urlParts2 = video.videoUrl.replace("//", "").split("/");    
-        videoId = "https://www.youtube.com/embed/" + urlParts2[1].substring(0,11);
+        videoId = "https://www.youtube.com/embed/" + urlParts[1].substring(0, 11);
+      } else if (video.videoUrl.indexOf("youtu.be") !== -1) {
+        var urlParts2 = video.videoUrl.replace("//", "").split("/");
+        videoId = "https://www.youtube.com/embed/" + urlParts2[1].substring(0, 11);
       }
       if (videoId !== "") {
-return  <UU5.Bricks.Iframe src={videoId} height={168} allowfullscreen />;
-      } else {  
-        if( video.videoUrl.indexOf("vimeo") !== -1 ){
-        var urlParts3 = video.videoUrl.replace("//", "").split("/");    
-        videoId = "https://player.vimeo.com/video/" + urlParts3[1].substring(0,11);
+        return (
+          <UU5.Bricks.Div>
+            <iframe
+              src={videoId}
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </UU5.Bricks.Div>
+        );
+        //@@return  <UU5.Bricks.Iframe src={videoId} height={168} allow="fullscreen" allowfullscreen />;
+      } else {
+        if (video.videoUrl.indexOf("vimeo") !== -1) {
+          var urlParts3 = video.videoUrl.replace("//", "").split("/");
+          videoId = "https://player.vimeo.com/video/" + urlParts3[1].substring(0, 11);
+        }
       }
-    }
       if (videoId !== "") {
-      return <UU5.Bricks.Iframe src={videoId} height={168} allowfullscreen />
+        return (
+          <iframe
+            src={videoId}
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        );
       }
-  return <UU5.Bricks.Video src={video.videoUrl} poster={"/assets/logo.png"} autoPlay={false} />
+      return <UU5.Bricks.Video src={video.videoUrl} poster={"/assets/logo.png"} autoPlay={false} />;
     }
 
     function renderDelete() {
@@ -181,7 +198,7 @@ return  <UU5.Bricks.Iframe src={videoId} height={168} allowfullscreen />;
     function renderUpdate() {
       if (nameAuthor === identity.name) {
         return (
-          <UU5.Bricks.Button onClick={handleUpdate} bgStyle="transparent"  colorSchema="blue">
+          <UU5.Bricks.Button onClick={handleUpdate} bgStyle="transparent" colorSchema="blue">
             <UU5.Bricks.Icon icon="mdi-pencil" />
           </UU5.Bricks.Button>
         );
@@ -189,7 +206,6 @@ return  <UU5.Bricks.Iframe src={videoId} height={168} allowfullscreen />;
         return null;
       }
     }
-
 
     //@@viewOff:interface
 
@@ -202,9 +218,7 @@ return  <UU5.Bricks.Iframe src={videoId} height={168} allowfullscreen />;
       <UU5.Bricks.Column colWidth="xs-12 m-6 l-4">
         <UU5.Bricks.Card className={CLASS_NAMES.main()} colorSchema="green" header={renderHeader()}>
           <UU5.Bricks.Div className={CLASS_NAMES.content()}>
-          <UU5.Bricks.Div>
-            {viodeShow()}
-            </UU5.Bricks.Div>
+            <UU5.Bricks.Div>{viodeShow()}</UU5.Bricks.Div>
             <UU5.Bricks.Div className={CLASS_NAMES.textContent()} onClick={handleDetail}>
               {descriptionLength()}
             </UU5.Bricks.Div>
@@ -219,7 +233,6 @@ return  <UU5.Bricks.Iframe src={videoId} height={168} allowfullscreen />;
           </UU5.Bricks.Div>
         </UU5.Bricks.Card>
       </UU5.Bricks.Column>
-      
     );
     //@@viewOff:render
   },
