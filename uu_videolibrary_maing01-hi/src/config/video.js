@@ -27,5 +27,9 @@ export const VideoLsi = {
     cs: "Načítám...",
     en: "Loading...",
   },
+  wasCreated: {
+    cs: " bylo vytvořeno.",
+    en: " was created.",
+  },
 };
 export default VideoLsi;

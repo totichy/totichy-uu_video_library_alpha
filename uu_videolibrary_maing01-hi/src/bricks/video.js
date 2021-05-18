@@ -47,7 +47,7 @@ const CLASS_NAMES = {
   `,
   textContent: () => Config.Css.css`
   overflow: hidden;
-  height: 150px;
+  height: 80px;
   color: black;
   `,
 };
@@ -137,12 +137,36 @@ export const Video = createVisualComponent({
     )}
 
     function descriptionLength() {
-      if (video.description.length > 200) {
-        return nl2br(video.description.slice(0, 200) + "...");
+      if (video.description.length > 110) {
+        return nl2br(video.description.slice(0, 110) + "...");
       } else {
         return nl2br(video.description);
       }
     }
+
+    function viodeShow() {
+      var videoId = "";
+      if( video.videoUrl.indexOf("youtube") !== -1 ){
+        var urlParts = video.videoUrl.split("?v=");
+        videoId = "https://www.youtube.com/embed/" + urlParts[1].substring(0,11);
+      }else if( video.videoUrl.indexOf("youtu.be") !== -1 ){
+        var urlParts2 = video.videoUrl.replace("//", "").split("/");    
+        videoId = "https://www.youtube.com/embed/" + urlParts2[1].substring(0,11);
+      }
+      if (videoId !== "") {
+return  <UU5.Bricks.Iframe src={videoId} height={165} allowfullscreen />;
+      } else {  
+        if( video.videoUrl.indexOf("vimeo") !== -1 ){
+        var urlParts3 = video.videoUrl.replace("//", "").split("/");    
+        videoId = "https://player.vimeo.com/video/" + urlParts3[1].substring(0,11);
+      }
+    }
+      if (videoId !== "") {
+      return <UU5.Bricks.Iframe src={videoId} height={165} allowfullscreen />
+      }
+  return <UU5.Bricks.Video src={video.videoUrl} poster={"/assets/logo.png"} autoPlay={false} />
+    }
+
     function renderDelete() {
       if (nameAuthor === identity.name) {
         return (
@@ -178,6 +202,9 @@ export const Video = createVisualComponent({
       <UU5.Bricks.Column colWidth="xs-12 m-6 l-4">
         <UU5.Bricks.Card className={CLASS_NAMES.main()} colorSchema="green" header={renderHeader()}>
           <UU5.Bricks.Div className={CLASS_NAMES.content()}>
+          <UU5.Bricks.Div>
+            {viodeShow()}
+            </UU5.Bricks.Div>
             <UU5.Bricks.Div className={CLASS_NAMES.textContent()} onClick={handleDetail}>
               {descriptionLength()}
             </UU5.Bricks.Div>

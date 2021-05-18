@@ -36,11 +36,13 @@ export const Home = createVisualComponent({
 
     const delVideoText = VideoLsi.delVideo || {};
     const wasDeleted = VideoLsi.wasDeleted || {};
+    const wasCreated = VideoLsi.wasCreated || {};
     const createError = VideoLsi.errorCreate || {};
     const errorServerData = VideoLsi.errorServer || {};
 
-    let VideoWithTitle = useLsi(delVideoText);
-    let WasDeleted = useLsi(wasDeleted);
+    let videoWithTitle = useLsi(delVideoText);
+    let wasDeletedC = useLsi(wasDeleted);
+    let wasCreatedC = useLsi(wasCreated);
     let errorCreated = useLsi(createError);
     let serverErrorData = useLsi(errorServerData);
 
@@ -64,6 +66,7 @@ export const Home = createVisualComponent({
     async function handleCreateVideo(video) {
       try {
       await createVideoRef.current(video);
+      showSuccess(`${categoryWithTitle} ${video.title} ${wasCreatedC}`);
       } catch (e) {
       showError(errorCreated);
       }
@@ -72,7 +75,7 @@ export const Home = createVisualComponent({
     async function handleDeleteVideo(video) {
       try {
       await deleteVideoRef.current({code : video.code});
-      showSuccess(`${VideoWithTitle} ${video.title} ${WasDeleted}`);
+      showSuccess(`${videoWithTitle} ${video.title} ${wasDeletedC}`);
       } catch (e) {
       showError(`Deletion of ${video.title} is failed.`);
       }
