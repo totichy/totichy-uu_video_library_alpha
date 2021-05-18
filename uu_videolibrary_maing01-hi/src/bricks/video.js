@@ -41,9 +41,6 @@ const CLASS_NAMES = {
   right: () => Config.Css.css`
   float:right;
   `,
-  iframe: () => Config.Css.css`
-  height:168px;
-  `,
   content: () => Config.Css.css`
   padding: 0 16px;
   overflow: hidden;
@@ -81,11 +78,10 @@ export const Video = createVisualComponent({
   defaultProps: {
     video: null,
     onDelete: () => {},
-    onUpdate: () => {},
   },
   //@@viewOff:defaultProps
 
-  render({ video, onDelete, onUpdate }) {
+  render({ video, onDelete }) {
     //@@viewOn:hooks
     const date = new Date(Number(video.code)).toLocaleDateString("cs-CZ");
     const { identity } = useSession();
@@ -153,22 +149,20 @@ export const Video = createVisualComponent({
         videoId = "https://www.youtube.com/embed/" + urlParts2[1].substring(0, 11);
       }
       if (videoId !== "") {
-        return (
-          <UU5.Bricks.Div>
+        return ( 
             <iframe
               src={videoId}
               title="YouTube video player"
               frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
               allowfullscreen
             ></iframe>
-          </UU5.Bricks.Div>
         );
         //@@return  <UU5.Bricks.Iframe src={videoId} height={168} allow="fullscreen" allowfullscreen />;
       } else {
         if (video.videoUrl.indexOf("vimeo") !== -1) {
           var urlParts3 = video.videoUrl.replace("//", "").split("/");
-          videoId = "https://player.vimeo.com/video/" + urlParts3[1].substring(0, 11);
+          videoId = "https://player.vimeo.com/video/" + urlParts3[1].substring(0, 11) + "?title=0&byline=0&portrait=0";
         }
       }
       if (videoId !== "") {
