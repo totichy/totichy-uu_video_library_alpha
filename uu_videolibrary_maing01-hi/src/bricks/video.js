@@ -28,6 +28,9 @@ const CLASS_NAMES = {
   flex-direction: column;
   border-radius: 4px;
 `,
+  video: () => Config.Css.css`
+  margin 0 16px 0 16px;
+  `,
   header: () => Config.Css.css`
   font-size: 20px;
   color: #005da7;
@@ -153,6 +156,8 @@ export const Video = createVisualComponent({
             <iframe
               src={videoId}
               title="YouTube video player"
+              width="100%"
+              height="100%"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
               allowfullscreen
@@ -170,12 +175,17 @@ export const Video = createVisualComponent({
           <iframe
             src={videoId}
             frameborder="0"
+            width="100%"
+            height="100%"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen
           ></iframe>
         );
       }
-      return <UU5.Bricks.Video src={video.videoUrl} poster={"/assets/logo.png"} autoPlay={false} />;
+      return (
+      <UU5.Bricks.Div  className={CLASS_NAMES.video()}>
+      <UU5.Bricks.Video src={video.videoUrl} poster={"/assets/logo.png"} autoPlay={false} />
+      </UU5.Bricks.Div>);
     }
 
     function renderDelete() {
