@@ -45,5 +45,20 @@
     "averageRating": 0,
     "ratingCount": 0,
     "rating": 0
+  },
+  {
+    "code": "1621296930029",
+    "authorName": "Patrik",
+    "authorSurname": "Sekerka",
+    "title": "UU5 - Responsivity",
+    "videoUrl": "https://vimeo.com/540126577",
+    "description": "In this lesson, you will learn to adjust rendered content for different types of devices such as mobiles, tablets or laptops.",
+    "category": [
+      "0lg"
+    ],
+    "visible": true,
+    "averageRating": 0,
+    "ratingCount": 0,
+    "rating": 0
   }
 ]

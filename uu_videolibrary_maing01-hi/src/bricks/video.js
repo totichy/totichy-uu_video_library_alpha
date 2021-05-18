@@ -154,7 +154,7 @@ export const Video = createVisualComponent({
         videoId = "https://www.youtube.com/embed/" + urlParts2[1].substring(0,11);
       }
       if (videoId !== "") {
-return  <UU5.Bricks.Iframe src={videoId} height={165} allowfullscreen />;
+return  <UU5.Bricks.Iframe src={videoId} height={168} allowfullscreen />;
       } else {  
         if( video.videoUrl.indexOf("vimeo") !== -1 ){
         var urlParts3 = video.videoUrl.replace("//", "").split("/");    
@@ -162,7 +162,7 @@ return  <UU5.Bricks.Iframe src={videoId} height={165} allowfullscreen />;
       }
     }
       if (videoId !== "") {
-      return <UU5.Bricks.Iframe src={videoId} height={165} allowfullscreen />
+      return <UU5.Bricks.Iframe src={videoId} height={168} allowfullscreen />
       }
   return <UU5.Bricks.Video src={video.videoUrl} poster={"/assets/logo.png"} autoPlay={false} />
     }
