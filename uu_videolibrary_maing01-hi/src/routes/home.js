@@ -80,7 +80,6 @@ export const Home = createVisualComponent({
       showError(`Deletion of ${video.title} is failed.`);
       }
     }   
-    //@@viewOff:private
 
     function renderLoad() {
       return <UU5.Bricks.Loading />;
@@ -91,7 +90,6 @@ export const Home = createVisualComponent({
       }
 
     function renderReady(videos) {
-
       return (
         <>
           <VideoCreate onCreate={handleCreateVideo} />
