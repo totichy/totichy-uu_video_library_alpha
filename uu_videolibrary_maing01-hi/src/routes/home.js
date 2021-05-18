@@ -66,7 +66,7 @@ export const Home = createVisualComponent({
     async function handleCreateVideo(video) {
       try {
       await createVideoRef.current(video);
-      showSuccess(`${categoryWithTitle} ${video.title} ${wasCreatedC}`);
+      showSuccess(`${videoWithTitle} ${video.title} ${wasCreatedC}`);
       } catch (e) {
       showError(errorCreated);
       }
