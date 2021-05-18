@@ -95,13 +95,7 @@ export const Video = createVisualComponent({
       onDelete(video);
     }
 
-    function handleDetail() {
-      //TO-DO: zobrazit detail videa.
-    }
 
-    function handleUpdate() {
-      //TO-DO: zobrazit detail videa.
-    }
     //@@viewOff:private
 
     //@@viewOn: hooks
@@ -110,8 +104,7 @@ export const Video = createVisualComponent({
     //@@viewOn:interface
     function renderHeader() {
       return (
-        <UU5.Bricks.Div level={6} className={CLASS_NAMES.header()} onClick={handleDetail}>
-          <UU5.Bricks.Link content={video.title} href={"video/get/" + video.code} target="_self"></UU5.Bricks.Link>
+        <UU5.Bricks.Div level={6} content={video.title} className={CLASS_NAMES.header()}>
         </UU5.Bricks.Div>
       );
     }
@@ -133,6 +126,16 @@ export const Video = createVisualComponent({
         </UU5.Bricks.Section>
       );
     }
+
+   const isValidUrl = (url) => {
+      try {
+        new URL(url);
+      } catch (e) {
+        console.error(e);
+        return false;
+      }
+      return true;
+    };
 
     function descriptionLength() {
       if (video.description.length > 110) {
@@ -202,7 +205,7 @@ export const Video = createVisualComponent({
     function renderUpdate() {
       if (nameAuthor === identity.name) {
         return (
-          <UU5.Bricks.Button onClick={handleUpdate} bgStyle="transparent" colorSchema="blue">
+          <UU5.Bricks.Button bgStyle="transparent" colorSchema="blue">
             <UU5.Bricks.Icon icon="mdi-pencil" />
           </UU5.Bricks.Button>
         );
@@ -217,13 +220,15 @@ export const Video = createVisualComponent({
     if (!video) {
       return null;
     }
-
+if (!isValidUrl(video.videoUrl)) {
+  return null;
+}
     return (
       <UU5.Bricks.Column colWidth="xs-12 m-6 l-4">
         <UU5.Bricks.Card className={CLASS_NAMES.main()} colorSchema="green" header={renderHeader()}>
           <UU5.Bricks.Div className={CLASS_NAMES.content()}>
             <UU5.Bricks.Div>{viodeShow()}</UU5.Bricks.Div>
-            <UU5.Bricks.Div className={CLASS_NAMES.textContent()} onClick={handleDetail}>
+            <UU5.Bricks.Div className={CLASS_NAMES.textContent()}>
               {descriptionLength()}
             </UU5.Bricks.Div>
             <UU5.Bricks.Div>{nameAuthor + " | " + date}</UU5.Bricks.Div>
