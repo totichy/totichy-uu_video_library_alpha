@@ -21,29 +21,24 @@ const FILTERS = [
     //TODO - Pochopit jak to funguje, plus, Namiesto litu je tam input
     filterFn: (item, value) => {
       let fragments = value.split(/[\s,.-;:_]/);
-      return fragments.some(frag => {
+      return fragments.some((frag) => {
         let itemValue =
-          typeof item.category === "object"
-            ? UU5.Common.Tools.getLsiItemByLanguage(item.category)
-            : item.category;
+          typeof item.category === "object" ? UU5.Common.Tools.getLsiItemByLanguage(item.category) : item.category;
         return itemValue.toLowerCase().indexOf(frag.toLowerCase()) !== -1;
       });
-    }
+    },
   },
   {
     key: "Názvu",
     label: { cs: "Název", en: "Title" },
     filterFn: (item, value) => {
       let fragments = value.split(/[\s,.-;:_]/);
-      return fragments.some(frag => {
-        let itemValue =
-          typeof item.title === "object"
-            ? UU5.Common.Tools.getLsiItemByLanguage(item.title)
-            : item.title;
+      return fragments.some((frag) => {
+        let itemValue = typeof item.title === "object" ? UU5.Common.Tools.getLsiItemByLanguage(item.title) : item.title;
         return itemValue.toLowerCase().indexOf(frag.toLowerCase()) !== -1;
       });
-    }
-  }
+    },
+  },
 ];
 
 export const VideoList = createVisualComponent({
@@ -88,15 +83,15 @@ export const VideoList = createVisualComponent({
       );
     }
     return (
-      
-      <div> 
-        <Uu5Tiles.ControllerProvider data={videos.data} filters={FILTERS}>
-  <Uu5Tiles.FilterBar />
-  </Uu5Tiles.ControllerProvider>
+      <div>
         <UU5.Bricks.Container>
           <UU5.Bricks.Header level={1} content={VideoListHeader} underline={true} />
-            {videos.map((video) => {
-            return (  
+          <Uu5Tiles.ControllerProvider data={videos.data} filters={FILTERS}>
+            <Uu5Tiles.FilterBar />
+          </Uu5Tiles.ControllerProvider>
+          <br />
+          {videos.map((video) => {
+            return (
               <UU5.Bricks.Div>
                 <Video key={video.data.code} video={video.data} onDelete={onDelete} />
               </UU5.Bricks.Div>
@@ -106,9 +101,7 @@ export const VideoList = createVisualComponent({
       </div>
     );
     //@@viewOff:render
-    
   },
 });
-
 
 export default VideoList;
