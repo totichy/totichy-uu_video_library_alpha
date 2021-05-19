@@ -69,7 +69,7 @@ export const Categories = createVisualComponent({
       await createCategoryRef.current(category);
       showSuccess(`${categoryWithTitle} ${category.categoryName} ${wasCreatedC}`);
       } catch (e) {
-        showError( category.error);
+        showError(errorCreated);
       }
     }   
 
