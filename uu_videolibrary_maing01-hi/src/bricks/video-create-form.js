@@ -1,6 +1,6 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
-import { createVisualComponent, useLsi, useSession, useState,useEffect } from "uu5g04-hooks";
+import { createVisualComponent, useLsi, useSession, useState, useEffect } from "uu5g04-hooks";
 import "uu5g04-forms";
 import "uu5g04-block-layout";
 import Config from "./config/config";
@@ -13,8 +13,6 @@ const STATICS = {
   //nestingLevel: "bigBoxCollection",
   //@@viewOff:statics
 };
-
-
 
 export const VideoCreateForm = createVisualComponent({
   ...STATICS,
@@ -30,8 +28,6 @@ export const VideoCreateForm = createVisualComponent({
       margin: 0,
     };
   },
-  
-
 
   //@@viewOn:propTypes
   propTypes: {
@@ -62,11 +58,11 @@ export const VideoCreateForm = createVisualComponent({
           try {
             response = await data.json();
           } catch (e) {
-           //@@ setError("Unable to parse response.");
+            //@@ setError("Unable to parse response.");
           }
           setCategories(response);
         } else {
-         //@@ setError("Unable to load data.");
+          //@@ setError("Unable to load data.");
         }
       }
       fetchData();
@@ -87,22 +83,14 @@ export const VideoCreateForm = createVisualComponent({
     let headerAdd = useLsi(addVideoCg);
     let categoriesCg = useLsi(categoryCg);
 
-
-  
-   
     //@@viewOn:private
     function renderCategories() {
-
-
-
       return categories.map((category) => (
         <UU5.Forms.Select.Option value={category.categoryId} key={category.categoryId}>
           {category.categoryName}
         </UU5.Forms.Select.Option>
       ));
     }
-
-
 
     //@@viewOff:private
 
@@ -112,7 +100,6 @@ export const VideoCreateForm = createVisualComponent({
     //@@viewOn:render
 
     return (
-      
       <UU5.Bricks.Container>
         <UU5.Bricks.Header level="1" content={headerAdd} underline={true} />
         <UU5.Bricks.Card className="padding-s" colorSchema="indigo">
@@ -120,7 +107,6 @@ export const VideoCreateForm = createVisualComponent({
             <UU5.Forms.Text inputAttrs={{ maxLength: 255 }} name="title" label={titles} required />
             <UU5.Forms.Text inputAttrs={{ maxLength: 255 }} name="videoUrl" label={videoUrl} required />
             <UU5.Forms.Select label={categoriesCg} name="category" multiple required>
-           
               {renderCategories()}
             </UU5.Forms.Select>
             <UU5.Forms.Text

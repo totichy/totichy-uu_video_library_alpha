@@ -5,7 +5,6 @@ import Config from "./config/config";
 import { nl2br } from "../helpers/string-helper";
 //@@viewOff:imports
 
-
 const CLASS_NAMES = {
   footer: () => Config.Css.css`
   display: flex;
@@ -105,7 +104,6 @@ export const VideoDetail = createVisualComponent({
       );
     }
 
-
     function viodeShow() {
       var videoId = "";
       if (video.videoUrl.indexOf("youtube") !== -1) {
@@ -116,15 +114,15 @@ export const VideoDetail = createVisualComponent({
         videoId = "https://www.youtube.com/embed/" + urlParts2[1].substring(0, 11);
       }
       if (videoId !== "") {
-        return ( 
-            <UU5.Bricks.Iframe
-              src={videoId}
-              title="YouTube video player"
-              height="30vw"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
-              allowfullscreen
-            ></UU5.Bricks.Iframe>
+        return (
+          <UU5.Bricks.Iframe
+            src={videoId}
+            title="YouTube video player"
+            height="30vw"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+            allowfullscreen
+          ></UU5.Bricks.Iframe>
         );
         //@@return  <UU5.Bricks.Iframe src={videoId} height={168} allow="fullscreen" allowfullscreen />;
       } else {
@@ -146,29 +144,26 @@ export const VideoDetail = createVisualComponent({
         );
       }
       return (
-      <UU5.Bricks.Div  className={CLASS_NAMES.video()}>
-      <UU5.Bricks.Video src={video.videoUrl}  height="30em" poster={"/assets/logo.png"} autoPlay={false} />
-      </UU5.Bricks.Div>);
+        <UU5.Bricks.Div className={CLASS_NAMES.video()}>
+          <UU5.Bricks.Video src={video.videoUrl} height="30em" poster={"/assets/logo.png"} autoPlay={false} />
+        </UU5.Bricks.Div>
+      );
     }
 
     //@@viewOn:render
     if (!video) {
       return null;
     }
-return ( 
-  <UU5.Bricks.Modal offsetTop={100} size={"l"} header={video.title} shown={true}>    
-<UU5.Bricks.Div className={CLASS_NAMES.content()}>
-  <UU5.Bricks.Div>{viodeShow()}</UU5.Bricks.Div>
-  <UU5.Bricks.Div className={CLASS_NAMES.textContent()}>
-    {nl2br(video.description)}
-  </UU5.Bricks.Div>
-  <UU5.Bricks.Div>{nameAuthor + " | " + date}</UU5.Bricks.Div>
-</UU5.Bricks.Div>
-<UU5.Bricks.Div className={CLASS_NAMES.footer()}>
-  {renderRating()}
-</UU5.Bricks.Div>
-</UU5.Bricks.Modal>   
-);
+    return (
+      <UU5.Bricks.Modal offsetTop={100} size={"l"} header={video.title} shown={true}>
+        <UU5.Bricks.Div className={CLASS_NAMES.content()}>
+          <UU5.Bricks.Div>{viodeShow()}</UU5.Bricks.Div>
+          <UU5.Bricks.Div className={CLASS_NAMES.textContent()}>{nl2br(video.description)}</UU5.Bricks.Div>
+          <UU5.Bricks.Div>{nameAuthor + " | " + date}</UU5.Bricks.Div>
+        </UU5.Bricks.Div>
+        <UU5.Bricks.Div className={CLASS_NAMES.footer()}>{renderRating()}</UU5.Bricks.Div>
+      </UU5.Bricks.Modal>
+    );
     //@@viewOff:render
   },
 });

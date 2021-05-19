@@ -30,11 +30,10 @@ export const VideoProvider = createComponent({
         load: Calls.listVideos,
         createVideo: Calls.createVideo,
         deleteVideo: Calls.deleteVideo,
-      }
+      },
     });
 
     let { state, data, newData, pendingData, errorData, handlerMap } = listData;
-
 
     //@@viewOff:hooks
 

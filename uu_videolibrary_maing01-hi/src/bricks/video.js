@@ -13,7 +13,6 @@ const STATICS = {
   //@@viewOff:statics
 };
 
-
 const CLASS_NAMES = {
   footer: () => Config.Css.css`
   display: flex;
@@ -98,12 +97,12 @@ export const Video = createVisualComponent({
       onDelete(video);
     }
 
-    function handleRating(i, e, icon){
+    function handleRating(i, e, icon) {
       UU5.Environment.getPage().getAlertBus().addAlert({
         content: "Hodnocení je momentálně mimo provoz.",
         colorSchema: "red",
-        closeTimer: 1000
-          });
+        closeTimer: 1000,
+      });
     }
     //@@viewOff:private
 
@@ -114,7 +113,7 @@ export const Video = createVisualComponent({
     function renderHeader() {
       return (
         <UU5.Bricks.Div level={6} className={CLASS_NAMES.header()}>
-          <UU5.Bricks.Link  href="#" content={video.title}></UU5.Bricks.Link>
+          <UU5.Bricks.Link href="#" content={video.title}></UU5.Bricks.Link>
         </UU5.Bricks.Div>
       );
     }
@@ -137,7 +136,7 @@ export const Video = createVisualComponent({
       );
     }
 
-   const isValidUrl = (url) => {
+    const isValidUrl = (url) => {
       try {
         new URL(url);
       } catch (e) {
@@ -165,16 +164,16 @@ export const Video = createVisualComponent({
         videoId = "https://www.youtube.com/embed/" + urlParts2[1].substring(0, 11);
       }
       if (videoId !== "") {
-        return ( 
-            <iframe
-              src={videoId}
-              title="YouTube video player"
-              width="100%"
-              height="100%"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
-              allowfullscreen
-            ></iframe>
+        return (
+          <iframe
+            src={videoId}
+            title="YouTube video player"
+            width="100%"
+            height="100%"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+            allowfullscreen
+          ></iframe>
         );
         //@@return  <UU5.Bricks.Iframe src={videoId} height={168} allow="fullscreen" allowfullscreen />;
       } else {
@@ -196,9 +195,10 @@ export const Video = createVisualComponent({
         );
       }
       return (
-      <UU5.Bricks.Div  className={CLASS_NAMES.video()}>
-      <UU5.Bricks.Video src={video.videoUrl} poster={"/assets/logo.png"} autoPlay={false} />
-      </UU5.Bricks.Div>);
+        <UU5.Bricks.Div className={CLASS_NAMES.video()}>
+          <UU5.Bricks.Video src={video.videoUrl} poster={"/assets/logo.png"} autoPlay={false} />
+        </UU5.Bricks.Div>
+      );
     }
 
     function renderDelete() {
@@ -230,19 +230,16 @@ export const Video = createVisualComponent({
     if (!video) {
       return null;
     }
-if (!isValidUrl(video.videoUrl)) {
-  return null;
-}
-
+    if (!isValidUrl(video.videoUrl)) {
+      return null;
+    }
 
     return (
       <UU5.Bricks.Column colWidth="xs-12 m-6 l-4">
         <UU5.Bricks.Card className={CLASS_NAMES.main()} colorSchema="green" header={renderHeader()}>
           <UU5.Bricks.Div className={CLASS_NAMES.content()}>
             <UU5.Bricks.Div>{viodeShow()}</UU5.Bricks.Div>
-            <UU5.Bricks.Div className={CLASS_NAMES.textContent()}>
-              {descriptionLength()}
-            </UU5.Bricks.Div>
+            <UU5.Bricks.Div className={CLASS_NAMES.textContent()}>{descriptionLength()}</UU5.Bricks.Div>
             <UU5.Bricks.Div>{nameAuthor + " | " + date}</UU5.Bricks.Div>
           </UU5.Bricks.Div>
           <UU5.Bricks.Div className={CLASS_NAMES.footer()}>

@@ -28,16 +28,13 @@ export const CategoryProvider = createComponent({
         load: Calls.listCategory,
         createCategory: Calls.createCategory,
         deleteCategory: Calls.deleteCategory,
-      }
+      },
     });
 
     let { state, data, newData, pendingData, errorData, handlerMap } = listCategoryData;
     //@@viewOff:hooks
 
-    
-
     //@@viewOn:private
-   
     //@@viewOff:private
 
     //@@viewOn:interface
