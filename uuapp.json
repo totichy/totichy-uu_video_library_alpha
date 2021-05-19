@@ -163,6 +163,21 @@
         "imageUri": "",
         "uuEccReady": false,
         "template": "<UuVideolibrary.Bricks.CategoryCreateFrom />"
+      },
+      {
+        "code": "UuVideolibrary.Bricks.VideoDetail",
+        "name": "VideoDetail",
+        "tagList": [
+          "UuVideolibrary",
+          "Bricks",
+          "VideoDetail"
+        ],
+        "docCode": "UuVideolibraryBricksVideoDetail",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<UuVideolibrary.Bricks.VideoDetail />"
       }
     ]
   },

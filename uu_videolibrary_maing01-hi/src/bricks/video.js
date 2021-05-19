@@ -174,10 +174,9 @@ export const Video = createVisualComponent({
             src={videoId}
             title="YouTube video player"
             width="100%"
+            style={{border: 0}}
             height="100%"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
-            allowfullscreen
+            allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; picture-in-picture"
           ></iframe>
         );
         //@@return  <UU5.Bricks.Iframe src={videoId} height={168} allow="fullscreen" allowfullscreen />;
@@ -191,11 +190,10 @@ export const Video = createVisualComponent({
         return (
           <iframe
             src={videoId}
-            frameborder="0"
             width="100%"
+            style={{border: 0}}
             height="100%"
             allow="autoplay; fullscreen; picture-in-picture"
-            allowfullscreen
           ></iframe>
         );
       }
@@ -235,7 +233,7 @@ export const Video = createVisualComponent({
     if (!video) {
       return null;
     }
-    if (!isValidUrl(video.videoUrl)) {
+    if (video.videoUrl.indexOf("https://") === -1) {
       return null;
     }
 

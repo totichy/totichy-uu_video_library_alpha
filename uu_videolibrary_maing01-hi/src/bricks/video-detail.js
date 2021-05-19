@@ -115,14 +115,14 @@ export const VideoDetail = createVisualComponent({
       }
       if (videoId !== "") {
         return (
-          <UU5.Bricks.Iframe
+          <iframe
             src={videoId}
             title="YouTube video player"
-            height="30vw"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
-            allowfullscreen
-          ></UU5.Bricks.Iframe>
+            width="100%"
+            style={{border: 0}}
+            height="420"
+            allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+          ></iframe>
         );
         //@@return  <UU5.Bricks.Iframe src={videoId} height={168} allow="fullscreen" allowfullscreen />;
       } else {
@@ -136,10 +136,9 @@ export const VideoDetail = createVisualComponent({
           <UU5.Bricks.Iframe
             src={videoId}
             resize={false}
-            frameborder="0"
+            style={{border: 0}}
             height="30em"
             allow="autoplay; fullscreen; picture-in-picture"
-            allowfullscreen
           ></UU5.Bricks.Iframe>
         );
       }
