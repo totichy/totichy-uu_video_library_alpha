@@ -6,6 +6,7 @@ const CreateAbl = require("../abl/video/create-abl");
 const UpdateAbl = require("../abl/video/update-abl");
 const DeleteAbl = require("../abl/video/delete-abl");
 const ListAbl = require("../abl/video/list-abl");
+const RatingAbl = require("../abl/video/rating-abl");
 
 router.post("/create", async (req, res) => {
   const { body } = req;
@@ -31,5 +32,8 @@ router.get("/list", async (req, res) => {
   const { body } = req;
   await ListAbl(body, res);
 });
-
+router.put("/rating", async (req, res) => {
+  const { body } = req;
+  await RatingAbl(body, res);
+});
 module.exports = router;

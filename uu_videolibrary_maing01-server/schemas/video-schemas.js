@@ -13,7 +13,7 @@ const createVideoSchema = {
     visible: { type: "boolean" },
     averageRating: { type: "integer" },
     ratingCount: { type: "integer" },
-    rating: { type: "integer", minimum: 0, maximum: 5 },
+    rating: { type: "integer" },
   },
 
   required: [
