@@ -1,17 +1,9 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
-import { createVisualComponent, useScreenSize, useSession } from "uu5g04-hooks";
+import { createVisualComponent, useScreenSize } from "uu5g04-hooks";
 import Config from "./config/config";
 import { nl2br } from "../helpers/string-helper";
-import VideoDetail from "./video-detail";
 //@@viewOff:imports
-
-const STATICS = {
-  //@@viewOn:statics
-  displayName: Config.TAG + "Video",
-  nestingLevel: "bigBoxCollection",
-  //@@viewOff:statics
-};
 
 
 const CLASS_NAMES = {
@@ -38,27 +30,24 @@ const CLASS_NAMES = {
   color: #005da7;
   font-family: ClearSans-Medium, ClearSans, sans-serif;
   display: flex;
-  width: 100%;
   align-items: center;
   padding: 16px;
+  cursor: pointer;
   line-height: 20px;
   `,
   right: () => Config.Css.css`
   float:right;
   `,
   content: () => Config.Css.css`
-  padding: 0 16px;
-  overflow: hidden;
+  padding: 16px;
   `,
   textContent: () => Config.Css.css`
-  overflow: hidden;
-  height: 80px;
   color: black;
   `,
 };
 
-export const Video = createVisualComponent({
-  ...STATICS,
+export const VideoDetail = createVisualComponent({
+  displayName: Config.TAG + "VideoDetail",
 
   //@@viewOn:propTypes
   propTypes: {
@@ -75,49 +64,28 @@ export const Video = createVisualComponent({
       averageRating: UU5.PropTypes.number.isRequired,
       rating: UU5.PropTypes.number,
     }),
-    onDelete: UU5.PropTypes.func,
   },
   //@@viewOff:propTypes
 
   //@@viewOn:defaultProps
   defaultProps: {
     video: null,
-    onDelete: () => {},
   },
   //@@viewOff:defaultProps
 
-  render({ video, onDelete }) {
-    //@@viewOn:hooks
+  render({ video }) {
     const date = new Date(Number(video.code)).toLocaleDateString("cs-CZ");
-    const { identity } = useSession();
     //@@viewOff:hooks
 
     //@@viewOn:private
 
-    function handleDelete() {
-      onDelete(video);
-    }
-
-    function handleRating(i, e, icon){
-      UU5.Environment.getPage().getAlertBus().addAlert({
-        content: "Hodnocení je momentálně mimo provoz.",
-        colorSchema: "red",
-        closeTimer: 1000
-          });
-    }
     //@@viewOff:private
 
     //@@viewOn: hooks
     const screenSize = useScreenSize();
     //@@viewOff: hooks
     //@@viewOn:interface
-    function renderHeader() {
-      return (
-        <UU5.Bricks.Div level={6} className={CLASS_NAMES.header()}>
-          <UU5.Bricks.Link  href="#" content={video.title}></UU5.Bricks.Link>
-        </UU5.Bricks.Div>
-      );
-    }
+
     let nameAuthor = video.authorName + " " + video.authorSurname;
     function renderRating() {
       if (screenSize === "xs") {
@@ -137,23 +105,6 @@ export const Video = createVisualComponent({
       );
     }
 
-   const isValidUrl = (url) => {
-      try {
-        new URL(url);
-      } catch (e) {
-        console.error(e);
-        return false;
-      }
-      return true;
-    };
-
-    function descriptionLength() {
-      if (video.description.length > 110) {
-        return nl2br(video.description.slice(0, 110) + "...");
-      } else {
-        return nl2br(video.description);
-      }
-    }
 
     function viodeShow() {
       var videoId = "";
@@ -166,15 +117,14 @@ export const Video = createVisualComponent({
       }
       if (videoId !== "") {
         return ( 
-            <iframe
+            <UU5.Bricks.Iframe
               src={videoId}
               title="YouTube video player"
-              width="100%"
-              height="100%"
+              height="30vw"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
               allowfullscreen
-            ></iframe>
+            ></UU5.Bricks.Iframe>
         );
         //@@return  <UU5.Bricks.Iframe src={videoId} height={168} allow="fullscreen" allowfullscreen />;
       } else {
@@ -185,78 +135,42 @@ export const Video = createVisualComponent({
       }
       if (videoId !== "") {
         return (
-          <iframe
+          <UU5.Bricks.Iframe
             src={videoId}
+            resize={false}
             frameborder="0"
-            width="100%"
-            height="100%"
+            height="30em"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen
-          ></iframe>
+          ></UU5.Bricks.Iframe>
         );
       }
       return (
       <UU5.Bricks.Div  className={CLASS_NAMES.video()}>
-      <UU5.Bricks.Video src={video.videoUrl} poster={"/assets/logo.png"} autoPlay={false} />
+      <UU5.Bricks.Video src={video.videoUrl}  height="30em" poster={"/assets/logo.png"} autoPlay={false} />
       </UU5.Bricks.Div>);
     }
-
-    function renderDelete() {
-      if (nameAuthor === identity.name) {
-        return (
-          <UU5.Bricks.Button onClick={handleDelete} bgStyle="transparent" colorSchema="red">
-            <UU5.Bricks.Icon icon="mdi-delete" />
-          </UU5.Bricks.Button>
-        );
-      } else {
-        return null;
-      }
-    }
-    function renderUpdate() {
-      if (nameAuthor === identity.name) {
-        return (
-          <UU5.Bricks.Button bgStyle="transparent" colorSchema="blue">
-            <UU5.Bricks.Icon icon="mdi-pencil" />
-          </UU5.Bricks.Button>
-        );
-      } else {
-        return null;
-      }
-    }
-
-    //@@viewOff:interface
 
     //@@viewOn:render
     if (!video) {
       return null;
     }
-if (!isValidUrl(video.videoUrl)) {
-  return null;
-}
-
-
-    return (
-      <UU5.Bricks.Column colWidth="xs-12 m-6 l-4">
-        <UU5.Bricks.Card className={CLASS_NAMES.main()} colorSchema="green" header={renderHeader()}>
-          <UU5.Bricks.Div className={CLASS_NAMES.content()}>
-            <UU5.Bricks.Div>{viodeShow()}</UU5.Bricks.Div>
-            <UU5.Bricks.Div className={CLASS_NAMES.textContent()}>
-              {descriptionLength()}
-            </UU5.Bricks.Div>
-            <UU5.Bricks.Div>{nameAuthor + " | " + date}</UU5.Bricks.Div>
-          </UU5.Bricks.Div>
-          <UU5.Bricks.Div className={CLASS_NAMES.footer()}>
-            {renderRating()}
-            <UU5.Bricks.Div className={CLASS_NAMES.right()}>
-              {renderUpdate()}
-              {renderDelete()}
-            </UU5.Bricks.Div>
-          </UU5.Bricks.Div>
-        </UU5.Bricks.Card>
-      </UU5.Bricks.Column>
-    );
+return ( 
+  <UU5.Bricks.Modal offsetTop={100} size={"l"} header={video.title} shown={true}>    
+<UU5.Bricks.Div className={CLASS_NAMES.content()}>
+  <UU5.Bricks.Div>{viodeShow()}</UU5.Bricks.Div>
+  <UU5.Bricks.Div className={CLASS_NAMES.textContent()}>
+    {nl2br(video.description)}
+  </UU5.Bricks.Div>
+  <UU5.Bricks.Div>{nameAuthor + " | " + date}</UU5.Bricks.Div>
+</UU5.Bricks.Div>
+<UU5.Bricks.Div className={CLASS_NAMES.footer()}>
+  {renderRating()}
+</UU5.Bricks.Div>
+</UU5.Bricks.Modal>   
+);
     //@@viewOff:render
   },
 });
 
-export default Video;
+export default VideoDetail;
