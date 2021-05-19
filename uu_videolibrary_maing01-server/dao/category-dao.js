@@ -22,9 +22,9 @@ class CategoryDao {
   async addCategory(category) {
     const categories = await this._loadAllCategories();
 
-    if (this._isDuplicate(categories, category.categoryId)) {
+    if (this._isDuplicate(categories, category.categoryName)) {
       const e = new Error(
-        `Category with code '${category.categoryId}' already exists.`
+        `Category with name '${category.categoryName}' already exists.`
       );
       e.code = "DUPLICATE_CODE";
       throw e;
@@ -137,7 +137,7 @@ class CategoryDao {
 
   _isDuplicate(categories, code) {
     const result = categories.find((b) => {
-      return b.categoryId === code;
+      return b.categoryName === code;
     });
     return result ? true : false;
   }

@@ -57,10 +57,10 @@ export const CategoryList = createVisualComponent({
       <div>
         <UU5.Bricks.Container>
           <UU5.Bricks.Header level={1} content={CatetegoryListHeader} underline={true} />
-          {categories.map((category) => {
+          {categories.map((category,index) => {
             return (
-              <UU5.Bricks.Div>
-                <Category key={category.data.categoryId} category={category.data} onDelete={onDelete} />
+              <UU5.Bricks.Div key={index}>
+                <Category category={category.data} onDelete={onDelete} />
               </UU5.Bricks.Div>
             );
           })}

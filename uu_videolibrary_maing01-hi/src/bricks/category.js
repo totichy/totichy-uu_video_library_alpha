@@ -26,7 +26,7 @@ const CLASS_NAMES = {
   color: #005da7;
   font-family: ClearSans-Medium, ClearSans, sans-serif;
   align-items: left;
-  padding: 0 16px;
+  padding: 16px 16px 0;
   cursor: pointer;
   line-height: 25px;
   `,
@@ -60,15 +60,14 @@ export const Category = createVisualComponent({
 
     function renderHeader() {
       return (
-        <UU5.Bricks.Header level={6} className={CLASS_NAMES.header()}>
+        <UU5.Bricks.Div level={6} className={CLASS_NAMES.header()}>
           <UU5.Bricks.Link
             content={category.categoryName}
             href={"home/?category=" + category.categoryId}
             target="_self"
-            key={category.categoryId}
           ></UU5.Bricks.Link>
           {renderDelete()}
-        </UU5.Bricks.Header>
+        </UU5.Bricks.Div>
       );
     }
     function renderDelete() {
@@ -87,7 +86,7 @@ export const Category = createVisualComponent({
     }
 
     return (
-      <UU5.Bricks.Column key={category.categoryId} colWidth="xs-12 m-6 l-4">
+      <UU5.Bricks.Column colWidth="xs-12 m-6 l-4">
         <UU5.Bricks.Card className={CLASS_NAMES.main()} colorSchema="blue" header={renderHeader()}></UU5.Bricks.Card>
       </UU5.Bricks.Column>
     );
