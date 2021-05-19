@@ -90,7 +90,7 @@ export const Video = createVisualComponent({
     const date = new Date(Number(video.code)).toLocaleDateString("cs-CZ");
     const { identity } = useSession();
     //@@viewOff:hooks
-
+    const videoDetailModal = <VideoDetail video={video} />;
     //@@viewOn:private
 
     function handleDelete() {
@@ -113,7 +113,12 @@ export const Video = createVisualComponent({
     function renderHeader() {
       return (
         <UU5.Bricks.Div level={6} className={CLASS_NAMES.header()}>
-          <UU5.Bricks.Link href="#" content={video.title}></UU5.Bricks.Link>
+          <UU5.Bricks.LinkModal
+            children={video.title}
+            hidden={false}
+            modalProps={{ size: "l" }}
+            component={videoDetailModal}
+          />
         </UU5.Bricks.Div>
       );
     }

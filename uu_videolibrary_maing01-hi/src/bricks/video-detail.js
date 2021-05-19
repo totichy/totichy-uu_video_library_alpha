@@ -155,14 +155,14 @@ export const VideoDetail = createVisualComponent({
       return null;
     }
     return (
-      <UU5.Bricks.Modal offsetTop={100} size={"l"} header={video.title} shown={true}>
+      <UU5.Bricks.Div>
         <UU5.Bricks.Div className={CLASS_NAMES.content()}>
           <UU5.Bricks.Div>{viodeShow()}</UU5.Bricks.Div>
           <UU5.Bricks.Div className={CLASS_NAMES.textContent()}>{nl2br(video.description)}</UU5.Bricks.Div>
           <UU5.Bricks.Div>{nameAuthor + " | " + date}</UU5.Bricks.Div>
         </UU5.Bricks.Div>
         <UU5.Bricks.Div className={CLASS_NAMES.footer()}>{renderRating()}</UU5.Bricks.Div>
-      </UU5.Bricks.Modal>
+      </UU5.Bricks.Div>
     );
     //@@viewOff:render
   },
