@@ -48,6 +48,7 @@ export const VideoList = createVisualComponent({
   propTypes: {
     videos: UU5.PropTypes.array,
     onDelete: UU5.PropTypes.func,
+    onRating: UU5.PropTypes.func, 
   },
   //@@viewOff:propTypes
 
@@ -55,10 +56,11 @@ export const VideoList = createVisualComponent({
   defaultProps: {
     videos: [],
     onDelete: () => {},
+    onRating: () => {},
   },
   //@@viewOff:defaultProps
 
-  render({ videos, onDelete }) {
+  render({ videos, onDelete, onRating }) {
     //@@viewOn:private
     const noVideo = VideoLsi.noVideo || {};
     const AllVideos = VideoLsi.AllVideos || {};
@@ -93,7 +95,7 @@ export const VideoList = createVisualComponent({
           {videos.map((video,index) => {
             return (
               <UU5.Bricks.Div key={index}>
-                <Video video={video.data} onDelete={onDelete} />
+                <Video video={video.data} onDelete={onDelete} onRating={onRating} />
               </UU5.Bricks.Div>
             );
           })}

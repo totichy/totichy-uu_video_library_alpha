@@ -14,7 +14,7 @@ async function RatingAbl(req, res) {
     let newRating = ((Number(video.ratingCount) + mrating) / (Number(video.rating) + 1)).toFixed(1); 
       video.ratingCount += mrating;
       video.rating += 1;
-      video.averageRating = newRating;
+      video.averageRating = Number(newRating);
 
 
    

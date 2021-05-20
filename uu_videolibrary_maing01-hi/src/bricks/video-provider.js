@@ -30,6 +30,7 @@ export const VideoProvider = createComponent({
         load: Calls.listVideos,
         createVideo: Calls.createVideo,
         deleteVideo: Calls.deleteVideo,
+        ratingVideo: Calls.ratingVideo,
       },
     });
 

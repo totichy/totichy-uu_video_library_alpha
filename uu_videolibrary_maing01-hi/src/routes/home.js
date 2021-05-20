@@ -32,6 +32,7 @@ export const Home = createVisualComponent({
     //@@viewOn:hook
     const createVideoRef = useRef();
     const deleteVideoRef = useRef();
+    const ratingVideoRef = useRef();
     //@@viewOff:hook
 
     const delVideoText = VideoLsi.delVideo || {};
@@ -81,6 +82,13 @@ export const Home = createVisualComponent({
       }
     }   
 
+    async function handleRatingVideo(video, mrating) {
+      try {
+      await ratingVideoRef.current({code : video.code, mrating: Number(mrating)});
+      } catch (e) {
+      showError(`Rating of ${video.title} is failed.`);
+      }
+    }  
     function renderLoad() {
       return <UU5.Bricks.Loading />;
     }
@@ -94,7 +102,7 @@ export const Home = createVisualComponent({
         <>
           <VideoCreate onCreate={handleCreateVideo} />
           <UU5.Bricks.Section>
-            <VideoList videos={videos} onDelete={handleDeleteVideo} />
+            <VideoList videos={videos} onDelete={handleDeleteVideo} onRating={handleRatingVideo} />
           </UU5.Bricks.Section>
         </>
       );
@@ -114,6 +122,7 @@ export const Home = createVisualComponent({
 
             createVideoRef.current = handlerMap.createVideo;
             deleteVideoRef.current = handlerMap.deleteVideo;
+            ratingVideoRef.current = handlerMap.ratingVideo;
 
             switch (state) {
                 case "pending":

@@ -25,6 +25,11 @@ let Calls = {
     let commandUri = Calls.getCommandUri("video/delete");
     return Calls.call("post", commandUri, dtoIn);
   },
+  ratingVideo(dtoIn) {
+    let commandUri = Calls.getCommandUri("video/rating");
+    console.log(dtoIn)
+    return Calls.call("post", commandUri, dtoIn);
+  },
   listCategory() {
     let commandUri = Calls.getCommandUri("category/list");
     return Calls.call("get", commandUri, {});

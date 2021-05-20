@@ -32,7 +32,7 @@ router.get("/list", async (req, res) => {
   const { body } = req;
   await ListAbl(body, res);
 });
-router.put("/rating", async (req, res) => {
+router.post("/rating", async (req, res) => {
   const { body } = req;
   await RatingAbl(body, res);
 });
