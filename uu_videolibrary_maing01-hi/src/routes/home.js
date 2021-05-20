@@ -52,7 +52,7 @@ export const Home = createVisualComponent({
       UU5.Environment.getPage().getAlertBus().addAlert({
     content,
     colorSchema: "red",
-    closeTimer: 1000
+    closeTimer: 3000
       })
     }
 
@@ -60,7 +60,7 @@ export const Home = createVisualComponent({
       UU5.Environment.getPage().getAlertBus().addAlert({
     content,
     colorSchema: "green",
-    closeTimer: 1000
+    closeTimer: 3000
       })
     }
 
@@ -69,7 +69,15 @@ export const Home = createVisualComponent({
       await createVideoRef.current(video);
       showSuccess(`${videoWithTitle} ${video.title} ${wasCreatedC}`);
       } catch (e) {
-      showError(errorCreated);
+        if (e.response) {
+          // client received an error response (5xx, 4xx)
+          showError(`ERROR: ${e.response.data.error_message}`);
+        } else if (e.request) {
+          // client never received a response, or request never left
+          showError(errorCreated);
+        } else {
+          showError(errorCreated);
+        }
       }
     }    
 
@@ -78,7 +86,17 @@ export const Home = createVisualComponent({
       await deleteVideoRef.current({code : video.code},video.code);
       showSuccess(`${videoWithTitle} ${video.title} ${wasDeletedC}`);
       } catch (e) {
-      showError(`Deletion of ${video.title} is failed.`);
+
+        if (e.response) {
+          // client received an error response (5xx, 4xx)
+          showError(`ERROR: ${e.response.data.error_message}`);
+        } else if (e.request) {
+          // client never received a response, or request never left
+          showError(`Deletion of ${video.title} is failed.`);
+        } else {
+          showError(`Deletion of ${video.title} is failed.`);
+        }
+     
       }
     }   
 

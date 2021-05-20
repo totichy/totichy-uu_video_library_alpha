@@ -51,7 +51,7 @@ export const Categories = createVisualComponent({
       UU5.Environment.getPage().getAlertBus().addAlert({
     content,
     colorSchema: "red",
-    closeTimer: 2000
+    closeTimer: 3000
       })
     }
 
@@ -59,7 +59,7 @@ export const Categories = createVisualComponent({
       UU5.Environment.getPage().getAlertBus().addAlert({
     content,
     colorSchema: "green",
-    closeTimer: 2000
+    closeTimer: 3000
       })
     }
 
