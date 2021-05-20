@@ -96,7 +96,7 @@ export const Video = createVisualComponent({
       setRating(Number(value));
     }
     const nameAuthor = video.authorName + " " + video.authorSurname;
-    const videoDetailModal = <VideoDetail video={video} />;
+    const videoDetailModal = <VideoDetail video={video}  onRating={onRating} />;
     //@@viewOff:hooks
     
     //@@viewOn:private
@@ -109,7 +109,6 @@ export const Video = createVisualComponent({
       let ratingAverage = ((Number(video.ratingCount) + i) / (Number(video.rating) + 1)).toFixed(1); 
       handleChange(ratingAverage);
       onRating(video, Number(i));
-
     }
     //@@viewOff:private
 

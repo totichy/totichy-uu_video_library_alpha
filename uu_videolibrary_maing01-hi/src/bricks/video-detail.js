@@ -1,6 +1,6 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
-import { createVisualComponent, useScreenSize } from "uu5g04-hooks";
+import { createVisualComponent, useState, useScreenSize } from "uu5g04-hooks";
 import Config from "./config/config";
 import { nl2br } from "../helpers/string-helper";
 //@@viewOff:imports
@@ -63,21 +63,31 @@ export const VideoDetail = createVisualComponent({
       averageRating: UU5.PropTypes.number.isRequired,
       rating: UU5.PropTypes.number,
     }),
+    onRating: UU5.PropTypes.func,
   },
   //@@viewOff:propTypes
 
   //@@viewOn:defaultProps
   defaultProps: {
     video: null,
+    onRating: () => {},
   },
   //@@viewOff:defaultProps
 
-  render({ video }) {
+  render({ video, onRating }) {
     const date = new Date(Number(video.code)).toLocaleDateString("cs-CZ");
+    const [mrating, setRating] = useState(video.averageRating);
+    const handleChange = (value) => {
+      setRating(Number(value));
+    }
     //@@viewOff:hooks
 
     //@@viewOn:private
-
+    function handleRating(i) {
+      let ratingAverage = ((Number(video.ratingCount) + i) / (Number(video.rating) + 1)).toFixed(1); 
+      handleChange(ratingAverage);
+      onRating(video, Number(i));
+    }
     //@@viewOff:private
 
     //@@viewOn: hooks
@@ -86,23 +96,26 @@ export const VideoDetail = createVisualComponent({
     //@@viewOn:interface
 
     let nameAuthor = video.authorName + " " + video.authorSurname;
-    function renderRating() {
-      if (screenSize === "xs") {
-        return null;
+    
+      function renderRating() {
+        if (screenSize === "xs") {
+          return null;
+        }
+       
+        let ratingSize = screenSize === "s" ? null : "s";
+        return (
+          <UU5.Bricks.Section>
+            <UU5.Bricks.Rating
+              count={5}
+              value={mrating}
+              size={ratingSize}
+              colorSchema="orange"
+              onChange={handleChange}
+              onClick={(i) => handleRating(i)}
+            />
+          </UU5.Bricks.Section>
+        );
       }
-      let ratingSize = screenSize === "s" ? null : "s";
-
-      return (
-        <UU5.Bricks.Section>
-          <UU5.Bricks.Rating
-            value={video.averageRating}
-            size={ratingSize}
-            colorSchema="orange"
-            onClick={(i, e, icon) => handleRating(i, e, icon)}
-          />
-        </UU5.Bricks.Section>
-      );
-    }
 
     function viodeShow() {
       var videoId = "";
