@@ -31,5 +31,9 @@ export const VideoLsi = {
     cs: " bylo vytvořeno.",
     en: " was created.",
   },
+  vote: {
+    cs: "  počet hlasů: ",
+    en: " votes: ",
+  },
 };
 export default VideoLsi;

@@ -1,8 +1,9 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
-import { createVisualComponent, useState, useScreenSize } from "uu5g04-hooks";
+import { createVisualComponent, useScreenSize, useLsi } from "uu5g04-hooks";
 import Config from "./config/config";
 import { nl2br } from "../helpers/string-helper";
+import VideoLsi from "../config/video";
 //@@viewOff:imports
 
 const CLASS_NAMES = {
@@ -63,31 +64,21 @@ export const VideoDetail = createVisualComponent({
       averageRating: UU5.PropTypes.number.isRequired,
       rating: UU5.PropTypes.number,
     }),
-    onRating: UU5.PropTypes.func,
   },
   //@@viewOff:propTypes
 
   //@@viewOn:defaultProps
   defaultProps: {
     video: null,
-    onRating: () => {},
   },
   //@@viewOff:defaultProps
 
-  render({ video, onRating }) {
+  render({ video }) {
     const date = new Date(Number(video.code)).toLocaleDateString("cs-CZ");
-    const [mrating, setRating] = useState(video.averageRating);
-    const handleChange = (value) => {
-      setRating(Number(value));
-    }
     //@@viewOff:hooks
 
     //@@viewOn:private
-    function handleRating(i) {
-      let ratingAverage = ((Number(video.ratingCount) + i) / (Number(video.rating) + 1)).toFixed(1); 
-      handleChange(ratingAverage);
-      onRating(video, Number(i));
-    }
+
     //@@viewOff:private
 
     //@@viewOn: hooks
@@ -104,16 +95,17 @@ export const VideoDetail = createVisualComponent({
        
         let ratingSize = screenSize === "s" ? null : "s";
         return (
+          <>
           <UU5.Bricks.Section>
             <UU5.Bricks.Rating
               count={5}
-              value={mrating}
-              size={ratingSize}
+              value={video.averageRating}
+              size={"m"}
               colorSchema="orange"
-              onChange={handleChange}
-              onClick={(i) => handleRating(i)}
-            />
-          </UU5.Bricks.Section>
+            /> <UU5.Bricks.Lsi lsi={VideoLsi.vote} /> {video.rating}
+          </UU5.Bricks.Section> 
+           
+          </>
         );
       }
 
