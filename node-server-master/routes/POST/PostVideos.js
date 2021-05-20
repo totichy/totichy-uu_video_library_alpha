@@ -25,28 +25,40 @@ router.post('/create', async(req, res) => {
         //console.log(data.title)
         //console.log(newVideo)
         if (err) {
-            return res.json({
+            return res.status(400).json({
                 error_message: 'Server not responding or something bad happened'
             })
         }
         if (data !== null) {
-            res.json({
+            res.status(400).json({
                 error_message: 'Video with this title name already exists!'
             })
         } else {
             newVideo.save(function(err, newVideo) {
                 if (err) return res.status(400).json(err);
                 //newVideo.confirm();
-                res.json({
-                    post_message: `Video with code: ${newVideo.code} name: "${newVideo.title}" Successfully put into database`,
-                    new_video: newVideo
-                }); // prints video after successful creation
+                res.json(
+                         newVideo
+                ); // prints video after successful creation
             });
         }
 
     })
 
 })
+
+//DELETE a video
+router.post('/delete', async(req, res) => {
+    uuVideo.findOneAndDelete({ code: req.body.code }, function(err, delVideo) {
+        if (err) {
+            return res.status(400).json(err);
+        } else {
+            return res.status(200).json({})
+
+        }
+    })
+});
+
 
 
 

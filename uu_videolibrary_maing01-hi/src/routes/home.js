@@ -75,7 +75,7 @@ export const Home = createVisualComponent({
 
     async function handleDeleteVideo(video) {
       try {
-      await deleteVideoRef.current({code : video.code});
+      await deleteVideoRef.current({code : video.code},video.code);
       showSuccess(`${videoWithTitle} ${video.title} ${wasDeletedC}`);
       } catch (e) {
       showError(`Deletion of ${video.title} is failed.`);

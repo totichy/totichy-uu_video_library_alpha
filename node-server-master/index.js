@@ -22,10 +22,10 @@ app.use('/video', require('./routes/POST/PostVideos'))
 app.use('/category', require('./routes/POST/PostCategories'))
 
 //PUT routy pro videa a kategorie
-app.use('/videos', require('./routes/PUT/PutRequests'))
+app.use('/video', require('./routes/PUT/PutRequests'))
 
 //DELETE routy pro videa a kategorie
-app.use('/video', require('./routes/DELETE/DeleteRequests'))
+//app.use('/video', require('./routes/DELETE/DeleteRequests'))
 
 
 

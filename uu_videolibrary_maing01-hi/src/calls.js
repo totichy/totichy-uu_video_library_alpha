@@ -22,7 +22,7 @@ let Calls = {
     return Calls.call("post", commandUri, dtoIn);
   },
   deleteVideo(dtoIn) {
-    let commandUri = Calls.getCommandUri("video/delete");
+    let commandUri = Calls.getCommandUri(`video/delete`);
     return Calls.call("post", commandUri, dtoIn);
   },
   ratingVideo(dtoIn) {
