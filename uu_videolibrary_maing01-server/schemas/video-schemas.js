@@ -34,8 +34,17 @@ const getVideoSchema = {
 
   required: ["code"],
 };
+const ratingVideoSchema = {
+  type: "object",
+  properties: {
+    code: { type: "string", minLength: 1, maxLength: 30 },
+    mrating: { type: "integer" },
+  },
 
+  required: ["code"],
+};
 module.exports = {
   getVideoSchema,
+  ratingVideoSchema,
   createVideoSchema,
 };

@@ -4,8 +4,19 @@ let dao = new LibraryDao(
   path.join(__dirname, "..", "..", "storage", "videos.json")
 );
 
-// update video - accepts all parameters
+// load validation schema
+const Ajv = require("ajv").default;
+const { ratingVideoSchema } = require("../../schemas/video-schemas");
+
+
+// Rating video - accepts all parameters
 async function RatingAbl(req, res) {
+  const ajv = new Ajv();
+  const valid = ajv.validate(ratingVideoSchema, req);
+  
+  if (!valid) {
+    return res.status(400).json({ error: ajv.errors });
+  }
   let { code, mrating } = req;
 
   if (code) {

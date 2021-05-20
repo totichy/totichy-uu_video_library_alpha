@@ -85,6 +85,7 @@ export const Home = createVisualComponent({
     async function handleRatingVideo(video, mrating) {
       try {
       await ratingVideoRef.current({code : video.code, mrating: Number(mrating)});
+      showSuccess("Děkujeme za hodnocení, které bylo: " + mrating );
       } catch (e) {
       showError(`Rating of ${video.title} is failed.`);
       }

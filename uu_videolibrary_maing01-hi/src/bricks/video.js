@@ -1,6 +1,6 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
-import { createVisualComponent, useScreenSize, useSession } from "uu5g04-hooks";
+import { createVisualComponent, useScreenSize, useSession, useState } from "uu5g04-hooks";
 import Config from "./config/config";
 import { nl2br } from "../helpers/string-helper";
 import VideoDetail from "./video-detail";
@@ -51,7 +51,7 @@ const CLASS_NAMES = {
   `,
   textContent: () => Config.Css.css`
   overflow: hidden;
-  height: 80px;
+  height: 90px;
   color: black;
   `,
 };
@@ -71,10 +71,11 @@ export const Video = createVisualComponent({
       description: UU5.PropTypes.string.isRequired,
       visible: UU5.PropTypes.bool,
       ratingCount: UU5.PropTypes.number,
-      averageRating: UU5.PropTypes.number.isRequired,
+      averageRating: UU5.PropTypes.number,
       rating: UU5.PropTypes.number,
     }),
     onDelete: UU5.PropTypes.func,
+    onRating: UU5.PropTypes.func,
   },
   //@@viewOff:propTypes
 
@@ -82,27 +83,33 @@ export const Video = createVisualComponent({
   defaultProps: {
     video: null,
     onDelete: () => {},
+    onRating: () => {},
   },
   //@@viewOff:defaultProps
 
-  render({ video, onDelete }) {
+  render({ video, onDelete, onRating }) {
     //@@viewOn:hooks
     const date = new Date(Number(video.code)).toLocaleDateString("cs-CZ");
     const { identity } = useSession();
-    //@@viewOff:hooks
+    const [mrating, setRating] = useState(video.averageRating);
+    const handleChange = (value) => {
+      setRating(Number(value));
+    }
+    const nameAuthor = video.authorName + " " + video.authorSurname;
     const videoDetailModal = <VideoDetail video={video} />;
+    //@@viewOff:hooks
+    
     //@@viewOn:private
 
     function handleDelete() {
       onDelete(video);
     }
 
-    function handleRating(i, e, icon) {
-      UU5.Environment.getPage().getAlertBus().addAlert({
-        content: "Hodnocení je momentálně mimo provoz.",
-        colorSchema: "red",
-        closeTimer: 1000,
-      });
+    function handleRating(i) {
+      let ratingAverage = ((Number(video.ratingCount) + i) / (Number(video.rating) + 1)).toFixed(1); 
+      handleChange(ratingAverage);
+      onRating(video, Number(i));
+
     }
     //@@viewOff:private
 
@@ -122,34 +129,36 @@ export const Video = createVisualComponent({
         </UU5.Bricks.Div>
       );
     }
-    let nameAuthor = video.authorName + " " + video.authorSurname;
+   
     function renderRating() {
       if (screenSize === "xs") {
         return null;
       }
+     
       let ratingSize = screenSize === "s" ? null : "s";
-
       return (
         <UU5.Bricks.Section>
           <UU5.Bricks.Rating
-            value={video.averageRating}
+            count={5}
+            value={mrating}
             size={ratingSize}
             colorSchema="orange"
-            onClick={(i, e, icon) => handleRating(i, e, icon)}
+            onChange={handleChange}
+            onClick={(i) => handleRating(i)}
           />
         </UU5.Bricks.Section>
       );
     }
 
-    const isValidUrl = (url) => {
-      try {
-        new URL(url);
-      } catch (e) {
-        console.error(e);
-        return false;
-      }
-      return true;
-    };
+    // const isValidUrl = (url) => {
+    //   try {
+    //     new URL(url);
+    //   } catch (e) {
+    //     console.error(e);
+    //     return false;
+    //   }
+    //   return true;
+    // };
 
     function descriptionLength() {
       if (video.description.length > 110) {
