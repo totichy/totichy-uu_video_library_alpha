@@ -11,7 +11,7 @@ async function GetAbl(req, res) {
   if (!videoCode) {
     return res
       .status(400)
-      .json({ error: "Invalid input: code parameter is missing." });
+      .json({ error_message: "Invalid input: code parameter is missing." });
   }
 
   const video = await dao.getVideo(videoCode);
@@ -19,7 +19,7 @@ async function GetAbl(req, res) {
   if (!video) {
     return res
       .status(400)
-      .json({ error: `Video with code '${videoCode}' doesn't exist.` });
+      .json({ error_message: `Video with code '${videoCode}' doesn't exist.` });
   }
 
   res.json(video);

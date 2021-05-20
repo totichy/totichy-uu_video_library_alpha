@@ -14,14 +14,14 @@ async function DeleteAbl(req, res) {
       res.status(200).json({});
     } catch (e) {
       if (e.code === "FAILED_TO_DELETE_CATEGORY") {
-        res.status(500).json({ error: e });
+        res.status(400).json({ error_message: e });
       } else {
-        res.status(500).json({ error: e });
+        res.status(500).json({ error_message: e });
       }
     }
   } else {
     res.status(400).json({
-      error: "Invalid dtoIn",
+      error_message: "Invalid dtoIn",
     });
   }
 }

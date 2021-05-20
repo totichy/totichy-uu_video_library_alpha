@@ -19,11 +19,11 @@ async function ListAbl(req, res) {
       console.log(categoryList);
       res.status(200).json(categoryList);
     } catch (e) {
-      res.status(500).json({ error: e });
+      res.status(500).json({ error_message: e });
     }
   } else {
     res.status(400).json({
-      error: "Invalid dtoIn",
+      error_message: "Invalid dtoIn",
     });
   }
 }

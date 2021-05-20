@@ -11,7 +11,7 @@ async function GetAbl(req, res) {
   if (!categoryId) {
     return res
       .status(400)
-      .json({ error: "Invalid input: code parameter is missing." });
+      .json({ error_message: "Invalid input: code parameter is missing." });
   }
 
   const category = await dao.getCategory(categoryId);
@@ -19,7 +19,7 @@ async function GetAbl(req, res) {
   if (!category) {
     return res
       .status(400)
-      .json({ error: `Category with code '${categoryId}' doesn't exist.` });
+      .json({ error_message: `Category with code '${categoryId}' doesn't exist.` });
   }
   res.json(category);
 }
