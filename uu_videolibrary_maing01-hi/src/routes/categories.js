@@ -51,7 +51,7 @@ export const Categories = createVisualComponent({
       UU5.Environment.getPage().getAlertBus().addAlert({
     content,
     colorSchema: "red",
-    closeTimer: 1000
+    closeTimer: 2000
       })
     }
 
@@ -59,7 +59,7 @@ export const Categories = createVisualComponent({
       UU5.Environment.getPage().getAlertBus().addAlert({
     content,
     colorSchema: "green",
-    closeTimer: 1000
+    closeTimer: 2000
       })
     }
 
@@ -69,7 +69,17 @@ export const Categories = createVisualComponent({
       await createCategoryRef.current(category);
       showSuccess(`${categoryWithTitle} ${category.categoryName} ${wasCreatedC}`);
       } catch (e) {
-        showError(errorCreated);
+
+        if (e.response) {
+          // client received an error response (5xx, 4xx)
+          showError(`ERROR: ${e.response.data.error_message}`);
+        } else if (e.request) {
+          // client never received a response, or request never left
+          showError(errorCreated);
+        } else {
+          showError(errorCreated);
+        }
+
       }
     }   
 
@@ -78,7 +88,16 @@ export const Categories = createVisualComponent({
       await deleteCategoryRef.current({categoryId : category.categoryId});
       showSuccess(`${categoryWithTitle} ${category.categoryName} ${wasDeletedC}`);
       } catch (e) {
-      showError(`Deletion of ${category.categoryName} is failed.`);
+        if (e.response) {
+          // client received an error response (5xx, 4xx)
+          showError(`ERROR: ${e.response.data.error_message}`);
+        } else if (e.request) {
+          // client never received a response, or request never left
+          showError(`Deletion of ${category.categoryName} is failed.`);
+        } else {
+          showError(`Deletion of ${category.categoryName} is failed.`);
+        }
+     
       }
     }   
     //@@viewOff:private
