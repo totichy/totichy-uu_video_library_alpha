@@ -29,8 +29,22 @@ const CLASS_NAMES = {
   flex-direction: column;
   border-radius: 4px;
 `,
+  vimeo: () => Config.Css.css`
+  margin:0 0 12px 0;
+  padding: 57% 0 0 0;
+  position:relative;
+  `,
+  vimeoframe: () => Config.Css.css`
+  position: absolute;
+  border:0;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  `,
   video: () => Config.Css.css`
-  margin 0 16px 0 16px;
+  width: 100%;
+  margin 16px 0 0 16px;
   `,
   header: () => Config.Css.css`
   font-size: 20px;
@@ -38,8 +52,9 @@ const CLASS_NAMES = {
   font-family: ClearSans-Medium, ClearSans, sans-serif;
   display: flex;
   width: 100%;
+  min-height: 50px;
   align-items: center;
-  padding: 16px;
+  margin: 16px 0;
   line-height: 20px;
   `,
   right: () => Config.Css.css`
@@ -94,11 +109,11 @@ export const Video = createVisualComponent({
     const [mrating, setRating] = useState(video.averageRating);
     const handleChange = (value) => {
       setRating(Number(value));
-    }
+    };
     const nameAuthor = video.authorName + " " + video.authorSurname;
-    const videoDetailModal = <VideoDetail video={video}  onRating={onRating} />;
+    const videoDetailModal = <VideoDetail video={video} onRating={onRating} />;
     //@@viewOff:hooks
-    
+
     //@@viewOn:private
 
     function handleDelete() {
@@ -106,7 +121,7 @@ export const Video = createVisualComponent({
     }
 
     function handleRating(i) {
-      let ratingAverage = ((Number(video.ratingCount) + i) / (Number(video.rating) + 1)).toFixed(1); 
+      let ratingAverage = ((Number(video.ratingCount) + i) / (Number(video.rating) + 1)).toFixed(1);
       handleChange(ratingAverage);
       onRating(video, Number(i));
     }
@@ -118,22 +133,23 @@ export const Video = createVisualComponent({
     //@@viewOn:interface
     function renderHeader() {
       return (
-        <UU5.Bricks.Div level={6} className={CLASS_NAMES.header()}>
+        <UU5.Bricks.Div level={6} className={CLASS_NAMES.header()} >
           <UU5.Bricks.LinkModal
             children={video.title}
             hidden={false}
             modalProps={{ size: "l" }}
+            colorSchema="green"
             component={videoDetailModal}
           />
         </UU5.Bricks.Div>
       );
     }
-   
+
     function renderRating() {
       if (screenSize === "xs") {
         return null;
       }
-     
+
       let ratingSize = screenSize === "s" ? null : "s";
       return (
         <UU5.Bricks.Section>
@@ -178,31 +194,34 @@ export const Video = createVisualComponent({
       }
       if (videoId !== "") {
         return (
-          <iframe
+          <UU5.Bricks.Div className={CLASS_NAMES.vimeo()}>
+            <iframe
+              className={CLASS_NAMES.vimeoframe()}
             src={videoId}
             title="YouTube video player"
             width="100%"
-            style={{border: 0}}
+            style={{ border: 0 }}
             height="100%"
             allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; picture-in-picture"
           ></iframe>
+          </UU5.Bricks.Div>
         );
-        //@@return  <UU5.Bricks.Iframe src={videoId} height={168} allow="fullscreen" allowfullscreen />;
       } else {
         if (video.videoUrl.indexOf("vimeo") !== -1) {
           var urlParts3 = video.videoUrl.replace("//", "").split("/");
-          videoId = "https://player.vimeo.com/video/" + urlParts3[1].substring(0, 11) + "?title=0&byline=0&portrait=0";
+          videoId = "https://player.vimeo.com/video/" + urlParts3[1].substring(0, 11) + "?byline=0&portrait=0";
         }
       }
       if (videoId !== "") {
         return (
-          <iframe
-            src={videoId}
-            width="100%"
-            style={{border: 0}}
-            height="100%"
-            allow="autoplay; fullscreen; picture-in-picture"
-          ></iframe>
+          <UU5.Bricks.Div className={CLASS_NAMES.vimeo()}>
+            <iframe
+              className={CLASS_NAMES.vimeoframe()}
+              src={videoId}
+              allow="autoplay; fullscreen; picture-in-picture"
+            ></iframe>
+            <script src="https://player.vimeo.com/api/player.js"></script>
+          </UU5.Bricks.Div>
         );
       }
       return (
@@ -247,9 +266,10 @@ export const Video = createVisualComponent({
 
     return (
       <UU5.Bricks.Column colWidth="xs-12 m-6 l-4">
-        <UU5.Bricks.Card className={CLASS_NAMES.main()} colorSchema="green" header={renderHeader()}>
+        <UU5.Bricks.Card className={CLASS_NAMES.main()} >
+          <UU5.Bricks.Div>{viodeShow()}</UU5.Bricks.Div>
           <UU5.Bricks.Div className={CLASS_NAMES.content()}>
-            <UU5.Bricks.Div>{viodeShow()}</UU5.Bricks.Div>
+            {renderHeader()}
             <UU5.Bricks.Div className={CLASS_NAMES.textContent()}>{descriptionLength()}</UU5.Bricks.Div>
             <UU5.Bricks.Div>{nameAuthor + " | " + date}</UU5.Bricks.Div>
           </UU5.Bricks.Div>

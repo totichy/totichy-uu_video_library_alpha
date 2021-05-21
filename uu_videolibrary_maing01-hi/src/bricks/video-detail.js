@@ -43,6 +43,7 @@ const CLASS_NAMES = {
   `,
   textContent: () => Config.Css.css`
   color: black;
+  padding: 16px 0;
   `,
 };
 
