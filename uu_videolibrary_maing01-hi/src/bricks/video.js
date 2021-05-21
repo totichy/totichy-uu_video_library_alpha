@@ -44,7 +44,7 @@ const CLASS_NAMES = {
   `,
   video: () => Config.Css.css`
   width: 100%;
-  margin 16px 0 0 16px;
+  margin 0px;
   `,
   header: () => Config.Css.css`
   font-size: 20px;
