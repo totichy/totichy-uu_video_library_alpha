@@ -11,7 +11,7 @@ const videoSchema = new mongoose.Schema({
         visible: Boolean,
         averageRating: { type: Number, max: 5, min: 0 },
         ratingCount: { type: Number, min: 0 },
-        rating: { type: Number, max: 5, min: 0 },
+        rating: { type: Number, min: 0 },
     })
     //confirm method
 videoSchema.methods.confirm = function() {

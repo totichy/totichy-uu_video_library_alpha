@@ -165,16 +165,6 @@ export const Video = createVisualComponent({
       );
     }
 
-    // const isValidUrl = (url) => {
-    //   try {
-    //     new URL(url);
-    //   } catch (e) {
-    //     console.error(e);
-    //     return false;
-    //   }
-    //   return true;
-    // };
-
     function descriptionLength() {
       if (video.description.length > 110) {
         return nl2br(video.description.slice(0, 110) + "...");
