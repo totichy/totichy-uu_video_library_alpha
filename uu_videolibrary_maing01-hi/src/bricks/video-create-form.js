@@ -1,9 +1,10 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
-import { createVisualComponent, useLsi, useSession, useState, useEffect } from "uu5g04-hooks";
+import { createVisualComponent, useLsi, useSession, useState,useDataList, useEffect } from "uu5g04-hooks";
 import "uu5g04-forms";
 import "uu5g04-block-layout";
 import Config from "./config/config";
+import Calls from "../calls";
 import Form from "../config/createForm.js";
 //@@viewOff:imports
 
@@ -20,11 +21,11 @@ export const VideoCreateForm = createVisualComponent({
   getInitialState() {
     return {
       bgStyle: "filled",
-      colorSchema: undefined,
+      colorSchema: "default",
       elevation: "0",
       borderRadius: 0,
       width: 360,
-      padding: undefined,
+      padding: "5",
       margin: 0,
     };
   },
@@ -52,7 +53,7 @@ export const VideoCreateForm = createVisualComponent({
 
     useEffect(() => {
       async function fetchData() {
-        let data = await fetch("http://localhost:3000/category/list");
+        let data = await fetch(Calls.APP_BASE_URI + "category/list");
         if (data.status >= 200 && data.status < 300) {
           let response;
           try {

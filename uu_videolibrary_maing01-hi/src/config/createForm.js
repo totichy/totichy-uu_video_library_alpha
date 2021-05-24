@@ -8,8 +8,8 @@ export const Form = {
     en: "Add Category",
   },
   titleCgi: {
-    cs: "Název (max. 30 znaků)",
-    en: "Title (max. 30 char.)",
+    cs: "Název",
+    en: "Title",
   },
   titleCategoryCgi: {
     cs: "Název",
@@ -20,8 +20,8 @@ export const Form = {
     en: "Categories",
   },
   urlCgi: {
-    cs: "URL videa (min. 8 znaků)",
-    en: "Video URL (min. 8 char.)",
+    cs: "URL videa",
+    en: "Video URL",
   },
   autorNameCgi: {
     cs: "Jméno autora",
@@ -32,8 +32,8 @@ export const Form = {
     en: "Autor Surmane",
   },
   descriptionCgi: {
-    cs: "Popis (min. 10 znaků)",
-    en: "Description (min. 10 char.)",
+    cs: "Popis",
+    en: "Description",
   },
   addButtonCgi: {
     cs: "Přidat video",

@@ -4,12 +4,16 @@ export const VideoLsi = {
     en: "An error occurred while retrieving server-side data.",
   },
   noVideo: {
-    cs: "Není zde žádne video",
-    en: "No Video",
+    cs: "Žádná videa nenalezena",
+    en: "No Videos found",
   },
   AllVideos: {
     cs: "Všechny videa",
     en: "All Videos",
+  },
+  SelectedVideos: {
+    cs: "Vybraná videa",
+    en: "Selected Videos",
   },
   delVideo: {
     cs: "Video s názvem ",
