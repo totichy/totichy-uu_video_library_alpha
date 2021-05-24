@@ -61,18 +61,18 @@ export const Category = createVisualComponent({
     function renderHeader() {
       return (
         <UU5.Bricks.Div level={6} className={CLASS_NAMES.header()}>
+          
           <UU5.Bricks.Link
-            content={category.categoryName}
             href={"home/?category=" + category.categoryId}
             target="_self"
-          ></UU5.Bricks.Link>
+          ><UU5.Bricks.Icon icon="mdi-tag" /> {category.categoryName}</UU5.Bricks.Link>
           {renderDelete()}
         </UU5.Bricks.Div>
       );
     }
     function renderDelete() {
       return (
-        <UU5.Bricks.Button className={CLASS_NAMES.delet()} onClick={handleDelete} bgStyle="transparent">
+        <UU5.Bricks.Button className={CLASS_NAMES.delet()} onClick={handleDelete} bgStyle="transparent" colorSchema="red">
           <UU5.Bricks.Icon icon="mdi-delete" />
         </UU5.Bricks.Button>
       );
@@ -87,7 +87,7 @@ export const Category = createVisualComponent({
 
     return (
       <UU5.Bricks.Column colWidth="xs-12 m-6 l-4">
-        <UU5.Bricks.Card className={CLASS_NAMES.main()} colorSchema="blue" header={renderHeader()}></UU5.Bricks.Card>
+        <UU5.Bricks.Card className={CLASS_NAMES.main()}  colorSchema="blue" header={renderHeader()}></UU5.Bricks.Card>
       </UU5.Bricks.Column>
     );
     //@@viewOff:render
