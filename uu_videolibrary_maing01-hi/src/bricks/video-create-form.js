@@ -39,6 +39,7 @@ export const VideoCreateForm = createVisualComponent({
 
   //@@viewOn:defaultProps
   defaultProps: {
+
     onSubmit: () => {},
     onCancel: () => {},
   },
@@ -48,7 +49,8 @@ export const VideoCreateForm = createVisualComponent({
     //@@viewOn:hooks
     const { identity } = useSession();
 
-    const categoryListResult = useDataList({
+
+    const categoryResult = useDataList({
       handlerMap: {
         load: Calls.listCategory,
       },
@@ -56,20 +58,21 @@ export const VideoCreateForm = createVisualComponent({
     });
 
     const categoryMap = {};
-    if (categoryListResult.data) {
-      categoryListResult.data.forEach(
+    if (categoryResult.data) {
+      categoryResult.data.forEach(
         (category) => (categoryMap[category.data.categoryId] = category.data.categoryName)
       );
     }
-    console.log(categoryListResult);
+    let myDaata = Object.keys(categoryMap).map(key => ({ categoryId: key, categoryName: categoryMap[key] }));
 
-     
-const myDaata = Object.keys(categoryMap).map(key => ({ categoryId: key, categoryName: categoryMap[key] }));
+
+
+
+
     //@@viewOff:hooks
-    //  setCategories(myDaata);
-    if (myDaata != null) {
-     
-    }
+
+
+  
 
     const titleCg = Form.titleCgi || {};
     const descCg = Form.descriptionCgi || {};
