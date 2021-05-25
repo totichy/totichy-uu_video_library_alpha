@@ -59,6 +59,7 @@ export const Home = createVisualComponent({
     let errorCreated = useLsi(createError);
     let serverErrorData = useLsi(errorServerData);
 
+    let VideoHeader = VideoListHeader;
     const categoryListResult = useDataList({
       handlerMap: {
         load: Calls.listCategory,
@@ -157,13 +158,13 @@ export const Home = createVisualComponent({
     function renderError(errorData) {
       return <UU5.Bricks.Error content={serverErrorData} />;
     }
-    let VideoHeader = "";
+    
 
-    if (categorySelection(window.location.search) === null) {
-      VideoHeader = VideoListHeader;
-    } else {
+
+      if (dada != null) {
       VideoHeader = SelectedVideoListHeader + ": " + dada;
     }
+
 
     function renderReady(videos) {
       videos.sort((a, b) => (a.code < b.code ? 1 : -1));
@@ -199,6 +200,7 @@ export const Home = createVisualComponent({
               </UU5.Bricks.Container>
             </div>
           </UU5.Bricks.Section>
+         
         </>
       );
     }

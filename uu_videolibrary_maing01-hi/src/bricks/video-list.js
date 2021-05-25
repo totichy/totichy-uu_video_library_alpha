@@ -52,7 +52,6 @@ export const VideoList = createVisualComponent({
     if (videos.length === 0) {
       return (
         <>
-          <UU5.Bricks.Header level={3} content={VideoHeader} underline={true} />
           <UU5.Common.Error content={noVideoCgi} />
         </>
       );
