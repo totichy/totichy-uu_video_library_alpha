@@ -12,8 +12,8 @@ export const VideoLsi = {
     en: "All Videos",
   },
   SelectedVideos: {
-    cs: "Vybraná videa",
-    en: "Selected Videos",
+    cs: "Vybraná videa kategorie",
+    en: "Selected category videos",
   },
   delVideo: {
     cs: "Video s názvem ",

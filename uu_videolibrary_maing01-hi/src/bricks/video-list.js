@@ -15,48 +15,10 @@ const STATICS = {
   //@@viewOff:statics
 };
 
-
-
-function categorySelection(queryString)  {
- let urlParams = new URLSearchParams(queryString);
-return urlParams.get('category');
+function categorySelection(queryString) {
+  let urlParams = new URLSearchParams(queryString);
+  return urlParams.get("category");
 }
-
-
-
-
-
-
-const FILTERS = [
-  {
-    key: "kategorie",
-    label: { cs: "Kategorie", en: "Category" },
-    //TODO - Pochopit jak to funguje, plus, Namiesto litu je tam input
-    filterFn: (item, value) => {
-      let fragments = value.split(/[\s,.-;:_]/);
-      return fragments.some((frag) => {
-        let itemValue =
-          typeof item.category === "object" ? UU5.Common.Tools.getLsiItemByLanguage(item.category) : item.category;
-        return itemValue.toLowerCase().indexOf(frag.toLowerCase()) !== -1;
-      });
-    },
-  },
-  {
-    key: "title",
-    label: { cs: "Název", en: "Title" },
-    filterFn: (item, value) => {
-      let fragments = value.split(/[\s,.-;:_]/);
-      return fragments.some((frag) => {
-        let itemValue = typeof item.title === "object" ? UU5.Common.Tools.getLsiItemByLanguage(item.title) : item.title;
-        return itemValue.toLowerCase().indexOf(frag.toLowerCase()) !== -1;
-      });
-    },
-  },
-];
-
-
-
-
 
 
 export const VideoList = createVisualComponent({
@@ -66,7 +28,7 @@ export const VideoList = createVisualComponent({
   propTypes: {
     videos: UU5.PropTypes.array,
     onDelete: UU5.PropTypes.func,
-    onRating: UU5.PropTypes.func, 
+    onRating: UU5.PropTypes.func,
   },
   //@@viewOff:propTypes
 
@@ -79,25 +41,25 @@ export const VideoList = createVisualComponent({
   //@@viewOff:defaultProps
 
   render({ videos, onDelete, onRating }) {
-
-
-
-
     const categoryListResult = useDataList({
       handlerMap: {
-          load: Calls.listCategory,
+        load: Calls.listCategory,
       },
-      initialDtoIn: {data: {}}
-  });
-  const categoryMap = {};
-  if (categoryListResult.data) {
-    categoryListResult.data.forEach(category => categoryMap[category.data.categoryId] = category.data )
-  }
-let dada = categoryMap[categorySelection(window.location.search)];
-console.log(dada);
+      initialDtoIn: { data: {} },
+    });
+
+    const categoryMap = {};
+    if (categoryListResult.data) {
+      categoryListResult.data.forEach((category) => (categoryMap[category.data.categoryId] = category.data.categoryName) );
+    }
+     const dada = categoryMap[categorySelection(window.location.search)];
+
+
+
+    //console.log(dadacategoryId);
     //@@viewOn:private
     const noVideo = VideoLsi.noVideo || {};
-    
+
     const AllVideos = VideoLsi.AllVideos || {};
     const SelectedVideos = VideoLsi.SelectedVideos || {};
 
@@ -111,11 +73,11 @@ console.log(dada);
     //@@viewOff:interface
     let VideoHeader = "";
 
-    if (categorySelection(window.location.search) === null) { VideoHeader = VideoListHeader;} 
-    else {
-  
-
-      VideoHeader = SelectedVideoListHeader + ": "  } 
+    if (categorySelection(window.location.search) === null) {
+      VideoHeader = VideoListHeader;
+    } else {
+      VideoHeader = SelectedVideoListHeader + ": " + dada;
+    }
     //@@viewOn:render
     if (videos.length === 0) {
       return (
@@ -130,50 +92,34 @@ console.log(dada);
     return (
       <div>
         <UU5.Bricks.Container>
-          <UU5.Bricks.Header level={1} content={VideoHeader } underline={true} />
-{/* + " z vybrané kategorie " + getCategoryNameByUrlQuery(categorySelection(window.location.search)) */}
+          <UU5.Bricks.Header level={1} content={VideoHeader} underline={true} />
 
-         {/*  <Uu5Tiles.ControllerProvider data={videos.data} filters={FILTERS}>
-            <Uu5Tiles.FilterBar /> 
-          </Uu5Tiles.ControllerProvider> */}
-          <br />
-          
-          
-          {videos.map((video,index) => {
-          
-            if (video.data.category.find(element => element == categorySelection(window.location.search)) === categorySelection(window.location.search) ) {
-              countVideo ++;
-            return (
-
-              <UU5.Bricks.Div key={index}>
-                <Video video={video.data} onDelete={onDelete} onRating={onRating} />
-              </UU5.Bricks.Div>
-            );
-          } else if (categorySelection(window.location.search) === null) {
-            countVideo = 1;
-            return (
-              <UU5.Bricks.Div key={index}>
-                <Video video={video.data} onDelete={onDelete} onRating={onRating} />
-              </UU5.Bricks.Div>
-            );
-          } else if (countVideo === 0 && index === videos.length-1) {
-            return (
-              <div>
-              
+          {videos.map((video, index) => {
+            if (
+              video.data.category.find((element) => element == categorySelection(window.location.search)) ===
+              categorySelection(window.location.search)
+            ) {
+              countVideo++;
+              return (
+                <UU5.Bricks.Div key={index}>
+                  <Video video={video.data} onDelete={onDelete} onRating={onRating} />
+                </UU5.Bricks.Div>
+              );
+            } else if (categorySelection(window.location.search) === null) {
+              countVideo = 1;
+              return (
+                <UU5.Bricks.Div key={index}>
+                  <Video video={video.data} onDelete={onDelete} onRating={onRating} />
+                </UU5.Bricks.Div>
+              );
+            } else if (countVideo === 0 && index === videos.length - 1) {
+              return (
+                <div>
                   <UU5.Common.Error content={noVideoCgi} />
-               
-              </div>
-            );
-          } 
-
-
-          }
-          
-          )
-          
-          }
-
-
+                </div>
+              );
+            }
+          })}
         </UU5.Bricks.Container>
       </div>
     );
