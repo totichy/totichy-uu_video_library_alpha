@@ -26,9 +26,7 @@ async function RatingAbl(req, res) {
       video.ratingCount += mrating;
       video.rating += 1;
       video.averageRating = Number(newRating);
-
-
-   
+  
     try {
         let result = await dao.updateVideo(video);
 
