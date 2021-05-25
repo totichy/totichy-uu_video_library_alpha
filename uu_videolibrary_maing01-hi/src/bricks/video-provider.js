@@ -31,6 +31,7 @@ export const VideoProvider = createComponent({
         createVideo: Calls.createVideo,
         deleteVideo: Calls.deleteVideo,
         ratingVideo: Calls.ratingVideo,
+        updateVideo: Calls.updateVideo,
       },
     });
 

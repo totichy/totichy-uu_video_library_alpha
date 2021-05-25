@@ -1,6 +1,6 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
-import { createVisualComponent, useScreenSize, useSession, useState } from "uu5g04-hooks";
+import { createVisualComponent, useScreenSize, useState } from "uu5g04-hooks";
 import Config from "./config/config";
 import { nl2br } from "../helpers/string-helper";
 import VideoDetail from "./video-detail";
@@ -91,6 +91,7 @@ export const Video = createVisualComponent({
     }),
     onDelete: UU5.PropTypes.func,
     onRating: UU5.PropTypes.func,
+    onUpdate: UU5.PropTypes.func,
   },
   //@@viewOff:propTypes
 
@@ -99,13 +100,13 @@ export const Video = createVisualComponent({
     video: null,
     onDelete: () => {},
     onRating: () => {},
+    onUpdate: () => {},
   },
   //@@viewOff:defaultProps
 
-  render({ video, onDelete, onRating }) {
+  render({ video, onDelete, onRating, onUpdate }) {
     //@@viewOn:hooks
     const date = new Date(Number(video.code)).toLocaleDateString("cs-CZ");
-    const { identity } = useSession();
     const [mrating, setRating] = useState(video.averageRating);
     const handleChange = (value) => {
       setRating(Number(value));
@@ -119,6 +120,12 @@ export const Video = createVisualComponent({
     function handleDelete() {
       onDelete(video);
     }
+
+    function handleUpdate() {
+      //@@ onUpdate(video);
+      <UU5.Bricks.Modal offsetTop={100} shown={handleUpdate}>
+  </UU5.Bricks.Modal>
+  }
 
     function handleRating(i) {
       let ratingAverage = ((Number(video.ratingCount) + i) / (Number(video.rating) + 1)).toFixed(1);
@@ -222,26 +229,22 @@ export const Video = createVisualComponent({
     }
 
     function renderDelete() {
-      if (nameAuthor === identity.name) {
+      
         return (
           <UU5.Bricks.Button onClick={handleDelete} bgStyle="transparent" colorSchema="red">
             <UU5.Bricks.Icon icon="mdi-delete" />
           </UU5.Bricks.Button>
         );
-      } else {
-        return null;
-      }
+    
     }
     function renderUpdate() {
-      if (nameAuthor === identity.name) {
+      
         return (
-          <UU5.Bricks.Button bgStyle="transparent" colorSchema="blue">
+          <UU5.Bricks.Button onClick={handleUpdate} bgStyle="transparent" colorSchema="blue">
             <UU5.Bricks.Icon icon="mdi-pencil" />
           </UU5.Bricks.Button>
         );
-      } else {
-        return null;
-      }
+     
     }
 
     //@@viewOff:interface

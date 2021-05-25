@@ -33,6 +33,7 @@ export const Home = createVisualComponent({
     const createVideoRef = useRef();
     const deleteVideoRef = useRef();
     const ratingVideoRef = useRef();
+    const updateVideoRef = useRef();
     //@@viewOff:hook
 
     const delVideoText = VideoLsi.delVideo || {};
@@ -67,6 +68,23 @@ export const Home = createVisualComponent({
     async function handleCreateVideo(video) {
       try {
       await createVideoRef.current(video);
+      showSuccess(`${videoWithTitle} ${video.title} ${wasCreatedC}`);
+      } catch (e) {
+        if (e.response) {
+          // client received an error response (5xx, 4xx)
+          showError(`ERROR: ${e.response.data.message}`);
+        } else if (e.request) {
+          // client never received a response, or request never left
+          showError(errorCreated);
+        } else {
+          showError(errorCreated);
+        }
+      }
+    }    
+
+    async function handleUpdateVideo(video) {
+      try {
+      await updateVideoRef.current(video);
       showSuccess(`${videoWithTitle} ${video.title} ${wasCreatedC}`);
       } catch (e) {
         if (e.response) {
@@ -121,7 +139,7 @@ export const Home = createVisualComponent({
         <>
           <VideoCreate onCreate={handleCreateVideo} />
           <UU5.Bricks.Section>
-            <VideoList videos={videos} onDelete={handleDeleteVideo} onRating={handleRatingVideo} />
+            <VideoList videos={videos} onDelete={handleDeleteVideo} onUpdate={handleUpdateVideo} onRating={handleRatingVideo} />
           </UU5.Bricks.Section>
         </>
       );

@@ -29,6 +29,7 @@ export const VideoList = createVisualComponent({
     videos: UU5.PropTypes.array,
     onDelete: UU5.PropTypes.func,
     onRating: UU5.PropTypes.func,
+    onUpdate: UU5.PropTypes.func,
   },
   //@@viewOff:propTypes
 
@@ -37,10 +38,11 @@ export const VideoList = createVisualComponent({
     videos: [],
     onDelete: () => {},
     onRating: () => {},
+    onUpdate: () => {},
   },
   //@@viewOff:defaultProps
 
-  render({ videos, onDelete, onRating }) {
+  render({ videos, onDelete, onRating, onUpdate }) {
     const categoryListResult = useDataList({
       handlerMap: {
         load: Calls.listCategory,
@@ -102,15 +104,15 @@ export const VideoList = createVisualComponent({
               countVideo++;
               return (
                 <UU5.Bricks.Div key={index}>
-                  <Video video={video.data} onDelete={onDelete} onRating={onRating} />
+                  <Video video={video.data} onDelete={onDelete} onUpdate={onUpdate} onRating={onRating} />
                 </UU5.Bricks.Div>
               );
             } else if (categorySelection(window.location.search) === null) {
               countVideo = 1;
               return (
                 <UU5.Bricks.Div key={index}>
-                  <Video video={video.data} onDelete={onDelete} onRating={onRating} />
-                </UU5.Bricks.Div>
+                  <Video video={video.data} onDelete={onDelete} onUpdate={onUpdate} onRating={onRating} />
+                </UU5.Bricks.Div>        
               );
             } else if (countVideo === 0 && index === videos.length - 1) {
               return (
