@@ -1,6 +1,6 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
-import { createVisualComponent, useLsi, useSession, useState, useEffect } from "uu5g04-hooks";
+import { createVisualComponent, useLsi, useSession, useDataList } from "uu5g04-hooks";
 import "uu5g04-forms";
 import "uu5g04-block-layout";
 import Config from "./config/config";
@@ -47,27 +47,29 @@ export const VideoCreateForm = createVisualComponent({
   render({ onSubmit, onCancel }) {
     //@@viewOn:hooks
     const { identity } = useSession();
-    const [categories, setCategories] = useState([]);
 
+    const categoryListResult = useDataList({
+      handlerMap: {
+        load: Calls.listCategory,
+      },
+      initialDtoIn: { data: {} },
+    });
+
+    const categoryMap = {};
+    if (categoryListResult.data) {
+      categoryListResult.data.forEach(
+        (category) => (categoryMap[category.data.categoryId] = category.data.categoryName)
+      );
+    }
+    console.log(categoryListResult);
+
+     
+const myDaata = Object.keys(categoryMap).map(key => ({ categoryId: key, categoryName: categoryMap[key] }));
     //@@viewOff:hooks
-
-    useEffect(() => {
-      async function fetchData() {
-        let data = await fetch(Calls.APP_BASE_URI + "category/list");
-        if (data.status >= 200 && data.status < 300) {
-          let response;
-          try {
-            response = await data.json();
-          } catch (e) {
-            //@@ setError("Unable to parse response.");
-          }
-          setCategories(response);
-        } else {
-          //@@ setError("Unable to load data.");
-        }
-      }
-      fetchData();
-    }, []);
+    //  setCategories(myDaata);
+    if (myDaata != null) {
+     
+    }
 
     const titleCg = Form.titleCgi || {};
     const descCg = Form.descriptionCgi || {};
@@ -86,7 +88,8 @@ export const VideoCreateForm = createVisualComponent({
 
     //@@viewOn:private
     function renderCategories() {
-      return categories.map((category) => (
+      
+      return myDaata.map((category) => (
         <UU5.Forms.Select.Option value={category.categoryId} key={category.categoryId}>
           {category.categoryName}
         </UU5.Forms.Select.Option>
@@ -102,8 +105,8 @@ export const VideoCreateForm = createVisualComponent({
 
     return (
       <UU5.Bricks.Container>
-        <UU5.Bricks.Modal  size="l" offsetTop={100} shown={true}>
-        <UU5.Bricks.Header level={3} content={headerAdd} underline={true} />
+          
+        <UU5.Bricks.Header level="1" content={headerAdd} underline={true} />
         <UU5.Bricks.Card className="padding-s" colorSchema="indigo">
           <UU5.Forms.Form onSave={onSubmit} onCancel={onCancel} labelColWidth="xs-12 m-3" inputColWidth="xs-12 m-9">
             <UU5.Forms.Text inputAttrs={{ maxLength: 255 }} name="title" label={titles} required />
@@ -130,7 +133,7 @@ export const VideoCreateForm = createVisualComponent({
             <UU5.Forms.Controls />
           </UU5.Forms.Form>
         </UU5.Bricks.Card>
-        </UU5.Bricks.Modal>
+       
       </UU5.Bricks.Container>
     );
     //@@viewOff:render
