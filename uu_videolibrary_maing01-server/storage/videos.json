@@ -7,13 +7,12 @@
     "videoUrl": "https://www.youtube.com/watch?v=kC9D7iy_16U",
     "description": "We know that Quadratic Polynomials are! But what are Quadratic Equations? Watch this video to know more! We know that Quadratic Polynomials are! But what are Quadratic Equations? Watch this video to know more!",
     "category": [
-      "3",
-      "7"
+      "5ib"
     ],
     "visible": true,
-    "averageRating": 0,
-    "ratingCount": 0,
-    "rating": 5
+    "averageRating": 3,
+    "ratingCount": 42,
+    "rating": 14
   },
   {
     "code": "1620850859006",
@@ -23,28 +22,12 @@
     "videoUrl": "https://vimeo.com/540126440",
     "description": "In this lesson, you will learn to apply CSS to your component.",
     "category": [
-      "3",
-      "7"
+      "1ez", "5ib"
     ],
     "visible": true,
-    "averageRating": 5,
-    "ratingCount": 0,
-    "rating": 5
-  },
-  {
-    "code": "1620850859426",
-    "authorName": "Patrik",
-    "authorSurname": "Sekerka",
-    "title": "File system + buffer vs stream ",
-    "videoUrl": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4",
-    "description": "File system + buffer vs stream ",
-    "category": [
-      "7we"
-    ],
-    "visible": true,
-    "averageRating": 0,
-    "ratingCount": 0,
-    "rating": 0
+    "averageRating": 4.2,
+    "ratingCount": 63,
+    "rating": 15
   },
   {
     "code": "1621296930029",
@@ -57,8 +40,8 @@
       "0lg"
     ],
     "visible": true,
-    "averageRating": 0,
-    "ratingCount": 0,
-    "rating": 0
+    "averageRating": 3,
+    "ratingCount": 24,
+    "rating": 8
   }
 ]
