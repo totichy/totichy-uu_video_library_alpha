@@ -47,7 +47,7 @@ export const CategoryList = createVisualComponent({
       return (
         <div>
           <UU5.Bricks.Container>
-            <UU5.Bricks.Header level={1} content={CatetegoryListHeader} underline={true} />
+            <UU5.Bricks.Header level={3} content={CatetegoryListHeader} underline={true} />
             <UU5.Common.Error content={noCategoryCgi} />
           </UU5.Bricks.Container>
         </div>
@@ -56,7 +56,7 @@ export const CategoryList = createVisualComponent({
     return (
       <div>
         <UU5.Bricks.Container>
-          <UU5.Bricks.Header level={1} content={CatetegoryListHeader} underline={true} />
+          <UU5.Bricks.Header level={3} content={CatetegoryListHeader} underline={true} />
           {categories.map((category,index) => {
             return (
               <UU5.Bricks.Div key={index}>

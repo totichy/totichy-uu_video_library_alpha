@@ -88,7 +88,7 @@ export const VideoList = createVisualComponent({
       return (
         <div>
           <UU5.Bricks.Container>
-            <UU5.Bricks.Header level={1} content={VideoHeader} underline={true} />
+            <UU5.Bricks.Header level={3} content={VideoHeader} underline={true} />
             <UU5.Common.Error content={noVideoCgi} />
           </UU5.Bricks.Container>
         </div>
@@ -97,7 +97,7 @@ export const VideoList = createVisualComponent({
     return (
       <div>
         <UU5.Bricks.Container>
-          <UU5.Bricks.Header level={1} content={VideoHeader} underline={true} />
+          <UU5.Bricks.Header level={3} content={VideoHeader} underline={true} />
 
           {videos.map((video, index) => {
             if (

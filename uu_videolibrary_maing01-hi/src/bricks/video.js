@@ -91,6 +91,7 @@ export const Video = createVisualComponent({
     }),
     onDelete: UU5.PropTypes.func,
     onRating: UU5.PropTypes.func,
+    onUpdate: UU5.PropTypes.func,
   },
   //@@viewOff:propTypes
 
@@ -99,10 +100,11 @@ export const Video = createVisualComponent({
     video: null,
     onDelete: () => {},
     onRating: () => {},
+    onUpdate: () => {},
   },
   //@@viewOff:defaultProps
 
-  render({ video, onDelete, onRating }) {
+  render({ video, onDelete, onRating, onUpdate }) {
     //@@viewOn:hooks
     const date = new Date(Number(video.code)).toLocaleDateString("cs-CZ");
     const [mrating, setRating] = useState(video.averageRating);
@@ -120,13 +122,39 @@ export const Video = createVisualComponent({
     }
 
     function handleUpdate() {
-    
-      UU5.Environment.getPage().getAlertBus().addAlert({
-        content: "Není doděláno",
-        colorSchema: "red",
-        closeTimer: 3000
-          })
+   //@@ onUpdate(video);
+
     }
+
+    function handleSave({ values }) {
+      if (
+        !values.title ||
+        !values.category[0] ||
+        !values.videoUrl ||
+        !values.description ||
+        !values.authorName ||
+        !values.authorSurname
+      ) {
+        return null;
+      }
+       video = {
+        code: values.code,
+        authorName: values.authorName,
+        authorSurname: values.authorSurname,
+        title: values.title,
+        videoUrl: values.videoUrl,
+        description: values.description,
+        category: values.category,
+        visible: true,
+        averageRating: values.averageRating,
+        ratingCount: values.ratingCount,
+        rating: values.rating,
+      };
+
+      onUpdate(video);
+
+    }
+
 
     function handleRating(i) {
       let ratingAverage = ((Number(video.ratingCount) + i) / (Number(video.rating) + 1)).toFixed(1);
