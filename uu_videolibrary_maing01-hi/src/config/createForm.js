@@ -3,6 +3,10 @@ export const Form = {
     cs: "Přidat video",
     en: "Add Video",
   },
+  updateVideo: {
+    cs: "Aktualizovat video",
+    en: "Update Video",
+  },
   addCategory: {
     cs: "Přidat kategorii",
     en: "Add Category",

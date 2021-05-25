@@ -161,6 +161,7 @@ export const Home = createVisualComponent({
             createVideoRef.current = handlerMap.createVideo;
             deleteVideoRef.current = handlerMap.deleteVideo;
             ratingVideoRef.current = handlerMap.ratingVideo;
+            updateVideoRef.current = handlerMap.updateVideo;
 
             switch (state) {
                 case "pending":
