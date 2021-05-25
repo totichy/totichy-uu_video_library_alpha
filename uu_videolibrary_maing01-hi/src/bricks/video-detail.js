@@ -4,6 +4,7 @@ import { createVisualComponent, useScreenSize, useLsi } from "uu5g04-hooks";
 import Config from "./config/config";
 import { nl2br } from "../helpers/string-helper";
 import VideoLsi from "../config/video";
+import Form from "../config/createForm";
 //@@viewOff:imports
 
 const CLASS_NAMES = {
@@ -92,7 +93,20 @@ export const VideoDetail = createVisualComponent({
     //@@viewOff:hooks
 
     //@@viewOn:private
-
+    const titleCg = Form.titleCgi || {};
+    const descCg = Form.descriptionCgi || {};
+    const urlCg = Form.urlCgi || {};
+    const autorNameCg = Form.autorNameCgi || {};
+    const autorSurnameCg = Form.autorLastNameCgi || {};
+    const addVideoCg = Form.addVideo || {};
+    const categoryCg = Form.category || {};
+    let titles = useLsi(titleCg);
+    let description = useLsi(descCg);
+    let videoUrl = useLsi(urlCg);
+    let autorName = useLsi(autorNameCg);
+    let autorSurname = useLsi(autorSurnameCg);
+    let headerAdd = useLsi(addVideoCg);
+    let categoriesCg = useLsi(categoryCg);
     //@@viewOff:private
 
     //@@viewOn: hooks
@@ -101,27 +115,22 @@ export const VideoDetail = createVisualComponent({
     //@@viewOn:interface
 
     let nameAuthor = video.authorName + " " + video.authorSurname;
-    
-      function renderRating() {
-        if (screenSize === "xs") {
-          return null;
-        }
-       
-        let ratingSize = screenSize === "s" ? null : "s";
-        return (
-          <>
-          <UU5.Bricks.Section>
-            <UU5.Bricks.Rating
-              count={5}
-              value={video.averageRating}
-              size={"m"}
-              colorSchema="orange"
-            /> <UU5.Bricks.Lsi lsi={VideoLsi.vote} /> {video.rating}
-          </UU5.Bricks.Section> 
-           
-          </>
-        );
+
+    function renderRating() {
+      if (screenSize === "xs") {
+        return null;
       }
+
+      let ratingSize = screenSize === "s" ? null : "s";
+      return (
+        <>
+          <UU5.Bricks.Section>
+            <UU5.Bricks.Rating count={5} value={video.averageRating} size={"m"} colorSchema="orange" />{" "}
+            <UU5.Bricks.Lsi lsi={VideoLsi.vote} /> {video.rating}
+          </UU5.Bricks.Section>
+        </>
+      );
+    }
 
     function viodeShow() {
       var videoId = "";
@@ -137,13 +146,13 @@ export const VideoDetail = createVisualComponent({
           <UU5.Bricks.Div className={CLASS_NAMES.vimeo()}>
             <iframe
               className={CLASS_NAMES.vimeoframe()}
-            src={videoId}
-            title="YouTube video player"
-            width="100%"
-            style={{ border: 0 }}
-            height="100%"
-            allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; picture-in-picture"
-          ></iframe>
+              src={videoId}
+              title="YouTube video player"
+              width="100%"
+              style={{ border: 0 }}
+              height="100%"
+              allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+            ></iframe>
           </UU5.Bricks.Div>
         );
         //@@return  <UU5.Bricks.Iframe src={videoId} height={168} allow="fullscreen" allowfullscreen />;
@@ -180,8 +189,17 @@ export const VideoDetail = createVisualComponent({
       <UU5.Bricks.Div>
         <UU5.Bricks.Div className={CLASS_NAMES.content()}>
           <UU5.Bricks.Div>{viodeShow()}</UU5.Bricks.Div>
-          <UU5.Bricks.Div className={CLASS_NAMES.textContent()}>{nl2br(video.description)}</UU5.Bricks.Div>
-          <UU5.Bricks.Div>{nameAuthor + " | " + date}</UU5.Bricks.Div>
+          <UU5.Bricks.Div className={CLASS_NAMES.content()}>
+            <strong>{videoUrl}</strong>:{" "}
+            <UU5.Bricks.Link href={video.videoUrl} target="_blank">
+              {video.videoUrl}
+            </UU5.Bricks.Link>
+          </UU5.Bricks.Div>
+          <UU5.Bricks.Div className={CLASS_NAMES.content()}>
+            <strong>{description}</strong>: <br />
+            {nl2br(video.description)}
+          </UU5.Bricks.Div>
+          <UU5.Bricks.Div className={CLASS_NAMES.content()}>{nameAuthor + " | " + date}</UU5.Bricks.Div>
         </UU5.Bricks.Div>
         <UU5.Bricks.Div className={CLASS_NAMES.footer()}>{renderRating()}</UU5.Bricks.Div>
       </UU5.Bricks.Div>

@@ -1,6 +1,6 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
-import { createVisualComponent, useLsi, useSession, useState,useDataList, useEffect } from "uu5g04-hooks";
+import { createVisualComponent, useLsi, useSession, useState, useEffect } from "uu5g04-hooks";
 import "uu5g04-forms";
 import "uu5g04-block-layout";
 import Config from "./config/config";
