@@ -39,7 +39,6 @@ export const VideoCreateForm = createVisualComponent({
 
   //@@viewOn:defaultProps
   defaultProps: {
-
     onSubmit: () => {},
     onCancel: () => {},
   },
@@ -48,7 +47,6 @@ export const VideoCreateForm = createVisualComponent({
   render({ onSubmit, onCancel }) {
     //@@viewOn:hooks
     const { identity } = useSession();
-
 
     const categoryResult = useDataList({
       handlerMap: {
@@ -59,20 +57,11 @@ export const VideoCreateForm = createVisualComponent({
 
     const categoryMap = {};
     if (categoryResult.data) {
-      categoryResult.data.forEach(
-        (category) => (categoryMap[category.data.categoryId] = category.data.categoryName)
-      );
+      categoryResult.data.forEach((category) => (categoryMap[category.data.categoryId] = category.data.categoryName));
     }
-    let myDaata = Object.keys(categoryMap).map(key => ({ categoryId: key, categoryName: categoryMap[key] }));
-
-
-
-
+    let myDaata = Object.keys(categoryMap).map((key) => ({ categoryId: key, categoryName: categoryMap[key] }));
 
     //@@viewOff:hooks
-
-
-  
 
     const titleCg = Form.titleCgi || {};
     const descCg = Form.descriptionCgi || {};
@@ -91,7 +80,6 @@ export const VideoCreateForm = createVisualComponent({
 
     //@@viewOn:private
     function renderCategories() {
-      
       return myDaata.map((category) => (
         <UU5.Forms.Select.Option value={category.categoryId} key={category.categoryId}>
           {category.categoryName}
@@ -108,7 +96,6 @@ export const VideoCreateForm = createVisualComponent({
 
     return (
       <UU5.Bricks.Container>
-          
         <UU5.Bricks.Header level="1" content={headerAdd} underline={true} />
         <UU5.Bricks.Card className="padding-s" colorSchema="indigo">
           <UU5.Forms.Form onSave={onSubmit} onCancel={onCancel} labelColWidth="xs-12 m-3" inputColWidth="xs-12 m-9">
@@ -136,7 +123,6 @@ export const VideoCreateForm = createVisualComponent({
             <UU5.Forms.Controls />
           </UU5.Forms.Form>
         </UU5.Bricks.Card>
-       
       </UU5.Bricks.Container>
     );
     //@@viewOff:render

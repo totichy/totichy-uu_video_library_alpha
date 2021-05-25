@@ -18,7 +18,6 @@ const STATICS = {
   //@@viewOff:statics
 };
 
-
 function categorySelection(queryString) {
   let urlParams = new URLSearchParams(queryString);
   return urlParams.get("category");
@@ -31,7 +30,7 @@ export const Home = createVisualComponent({
   //@@viewOn:propTypes
 
   //@@viewOff:propTypes
- 
+
   //@@viewOn:defaultProps
 
   //@@viewOff:defaultProps
@@ -74,7 +73,7 @@ export const Home = createVisualComponent({
         (category) => (categoryMap[category.data.categoryId] = category.data.categoryName)
       );
     }
-   
+
     const dada = categoryMap[categorySelection(window.location.search)];
 
     //@@viewOn:private
@@ -93,7 +92,7 @@ export const Home = createVisualComponent({
         closeTimer: 3000,
       });
     }
-    
+
     async function handleCreateVideo(video) {
       try {
         await createVideoRef.current(video);
@@ -160,13 +159,10 @@ export const Home = createVisualComponent({
     function renderError(errorData) {
       return <UU5.Bricks.Error content={serverErrorData} />;
     }
-    
 
-
-      if (dada != null) {
+    if (dada != null) {
       VideoHeader = SelectedVideoListHeader + ": " + dada;
     }
-
 
     function renderReady(videos) {
       videos.sort((a, b) => (a.code < b.code ? 1 : -1));
@@ -181,7 +177,6 @@ export const Home = createVisualComponent({
             categorySelection(window.location.search)
           );
         });
-        console.log(videox);
       }
       return (
         <>
@@ -202,7 +197,6 @@ export const Home = createVisualComponent({
               </UU5.Bricks.Container>
             </div>
           </UU5.Bricks.Section>
-         
         </>
       );
     }

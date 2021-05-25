@@ -42,6 +42,12 @@ const CLASS_NAMES = {
   width: 100%;
   height: 100%;
   `,
+  novideo: () => Config.Css.css`
+  margin-bottom: 10px;
+  border:0;
+  width: 100%;
+  height: 100%;
+  `,
   video: () => Config.Css.css`
   width: 100%;
   margin 0px;
@@ -122,8 +128,7 @@ export const Video = createVisualComponent({
     }
 
     function handleUpdate() {
-   //@@ onUpdate(video);
-
+      //@@ onUpdate(video);
     }
 
     function handleSave({ values }) {
@@ -137,7 +142,7 @@ export const Video = createVisualComponent({
       ) {
         return null;
       }
-       video = {
+      video = {
         code: values.code,
         authorName: values.authorName,
         authorSurname: values.authorSurname,
@@ -152,9 +157,7 @@ export const Video = createVisualComponent({
       };
 
       onUpdate(video);
-
     }
-
 
     function handleRating(i) {
       let ratingAverage = ((Number(video.ratingCount) + i) / (Number(video.rating) + 1)).toFixed(1);
@@ -169,7 +172,7 @@ export const Video = createVisualComponent({
     //@@viewOn:interface
     function renderHeader() {
       return (
-        <UU5.Bricks.Div level={6} className={CLASS_NAMES.header()} >
+        <UU5.Bricks.Div level={6} className={CLASS_NAMES.header()}>
           <UU5.Bricks.LinkModal
             children={video.title}
             hidden={false}
@@ -223,13 +226,13 @@ export const Video = createVisualComponent({
           <UU5.Bricks.Div className={CLASS_NAMES.vimeo()}>
             <iframe
               className={CLASS_NAMES.vimeoframe()}
-            src={videoId}
-            title="YouTube video player"
-            width="100%"
-            style={{ border: 0 }}
-            height="100%"
-            allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; picture-in-picture"
-          ></iframe>
+              src={videoId}
+              title="YouTube video player"
+              width="100%"
+              style={{ border: 0 }}
+              height="100%"
+              allow="accelerometer; fullscreen; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+            ></iframe>
           </UU5.Bricks.Div>
         );
       } else {
@@ -250,30 +253,37 @@ export const Video = createVisualComponent({
           </UU5.Bricks.Div>
         );
       }
-      return (
-        <UU5.Bricks.Div className={CLASS_NAMES.video()}>
-          <UU5.Bricks.Video src={video.videoUrl} poster={"/assets/logo.png"} autoPlay={false} />
-        </UU5.Bricks.Div>
-      );
+
+      if (video.videoUrl.includes(".mp4") || video.videoUrl.includes(".ogg")) {
+        return (
+          <UU5.Bricks.Div className={CLASS_NAMES.vimeo()}>
+            <UU5.Bricks.Video src={video.videoUrl} poster={"/assets/logo.png"} autoPlay={false} />
+          </UU5.Bricks.Div>
+        );
+      } else {
+        return (
+          <UU5.Bricks.Div className={CLASS_NAMES.video()}>
+            <UU5.Bricks.Link href={video.videoUrl} target="_blank">
+              <UU5.Bricks.Image src={"/assets/novideo.png"} className={CLASS_NAMES.novideo()} />
+            </UU5.Bricks.Link>
+          </UU5.Bricks.Div>
+        );
+      }
     }
 
     function renderDelete() {
-      
-        return (
-          <UU5.Bricks.Button onClick={handleDelete} bgStyle="transparent" colorSchema="red">
-            <UU5.Bricks.Icon icon="mdi-delete" />
-          </UU5.Bricks.Button>
-        );
-    
+      return (
+        <UU5.Bricks.Button onClick={handleDelete} bgStyle="transparent" colorSchema="red">
+          <UU5.Bricks.Icon icon="mdi-delete" />
+        </UU5.Bricks.Button>
+      );
     }
     function renderUpdate() {
-      
-        return (
-          <UU5.Bricks.Button onClick={handleUpdate} bgStyle="transparent" colorSchema="blue">
-            <UU5.Bricks.Icon icon="mdi-pencil" />
-          </UU5.Bricks.Button>
-        );
-     
+      return (
+        <UU5.Bricks.Button onClick={handleUpdate} bgStyle="transparent" colorSchema="blue">
+          <UU5.Bricks.Icon icon="mdi-pencil" />
+        </UU5.Bricks.Button>
+      );
     }
 
     //@@viewOff:interface
@@ -288,7 +298,7 @@ export const Video = createVisualComponent({
 
     return (
       <UU5.Bricks.Column colWidth="xs-12 m-6 l-4">
-        <UU5.Bricks.Card className={CLASS_NAMES.main()} >
+        <UU5.Bricks.Card className={CLASS_NAMES.main()}>
           <UU5.Bricks.Div>{viodeShow()}</UU5.Bricks.Div>
           <UU5.Bricks.Div className={CLASS_NAMES.content()}>
             {renderHeader()}
