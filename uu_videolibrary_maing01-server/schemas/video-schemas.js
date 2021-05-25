@@ -8,7 +8,7 @@ const createVideoSchema = {
     authorSurname: { type: "string", maxLength: 30 },
     title: { type: "string", minLength: 3, maxLength: 100 },
     videoUrl: { type: "string", minLength: 8, maxLength: 250 },
-    description: { type: "string", minLength: 10, maxLength: 500 },
+    description: { type: "string", minLength: 3, maxLength: 500 },
     category: { type: "array", uniqueItems: true },
     visible: { type: "boolean" },
     averageRating: { type: "integer" },
