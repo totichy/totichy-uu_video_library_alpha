@@ -42,7 +42,10 @@ export const VideoList = createVisualComponent({
   },
   //@@viewOff:defaultProps
 
+  
+
   render({ videos, onDelete, onRating, onUpdate }) {
+
     const categoryListResult = useDataList({
       handlerMap: {
         load: Calls.listCategory,

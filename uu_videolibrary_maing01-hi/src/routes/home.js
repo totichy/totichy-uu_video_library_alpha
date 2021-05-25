@@ -135,6 +135,7 @@ export const Home = createVisualComponent({
       }
 
     function renderReady(videos) {
+       videos.sort((a, b) => (a.code < b.code) ? 1 : -1);
       return (
         <>
           <VideoCreate onCreate={handleCreateVideo} />
