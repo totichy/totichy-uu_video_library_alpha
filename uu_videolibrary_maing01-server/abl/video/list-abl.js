@@ -1,3 +1,5 @@
+"use strict";
+
 const path = require("path");
 const LibraryDao = require("../../dao/video-library-dao");
 let dao = new LibraryDao(

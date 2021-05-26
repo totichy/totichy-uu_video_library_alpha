@@ -1,3 +1,5 @@
+"use strict";
+
 const express = require("express");
 const router = express.Router();
 
@@ -32,8 +34,10 @@ router.get("/list", async (req, res) => {
   const { body } = req;
   await ListAbl(body, res);
 });
+
 router.post("/rating", async (req, res) => {
   const { body } = req;
   await RatingAbl(body, res);
 });
+
 module.exports = router;

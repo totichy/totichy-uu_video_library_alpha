@@ -3,7 +3,7 @@ const CategoryDao = require("../../dao/category-dao");
 let dao = new CategoryDao(
   path.join(__dirname, "..", "..", "storage", "categories.json")
 );
-// TODO ošetřit aby nešla založit katogorie stejného jména
+
 // load validation schema
 const Ajv = require("ajv").default;
 const { createCategorySchema } = require("../../schemas/category-schemas");
@@ -12,7 +12,7 @@ const { createCategorySchema } = require("../../schemas/category-schemas");
 async function CreateAbl(req, res) {
   const ajv = new Ajv();
   const valid = ajv.validate(createCategorySchema, req);
-  // validation
+
   if (!valid) {
     return res.status(400).json({ error: ajv.errors });
   }

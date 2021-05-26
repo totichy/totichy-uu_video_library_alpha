@@ -1,3 +1,5 @@
+"use strict";
+
 const path = require("path");
 const CategoryDao = require("../../dao/category-dao");
 let dao = new CategoryDao(

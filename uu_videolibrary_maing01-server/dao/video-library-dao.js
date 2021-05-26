@@ -28,23 +28,40 @@ class LibraryDao {
       throw e;
     }
 
+    if (this._isDuplicateUrl(videos, video.videoUrl)) {
+      const e = new Error(`Video with Url '${video.videoUrl}' already exists.`);
+      e.code = "DUPLICATE_URL";
+      throw e;
+    }
+
     videos.push(video);
 
     try {
       await wf(this._getStorageLocation(), JSON.stringify(videos, null, 2));
-      return { status: "OK", data: video };
+      return video;
     } catch (e) {
-      return { status: "ERROR", error: e };
+      e = new Error(
+        `Failed to save video with code '${video.code}' to local storage.`
+      );
+      e.code = "FAILED_TO_SAVE_VIDEO";
+      throw e;
     }
   }
 
   // get video - accepts only video.code parameter
   async getVideo(code) {
     let videos = await this._loadAllVideos();
+    let result;
 
-    const result = videos.find((b) => {
-      return b.code === code;
-    });
+    if (code) {
+      result = videos.find((b) => {
+        return b.code === code;
+      });
+    } else {
+      const e = new Error(`Video with code '${code}' does not exist.`);
+      e.code = "FAILED_TO_LOAD_VIDEO";
+      throw e;
+    }
 
     return result;
   }
@@ -67,9 +84,10 @@ class LibraryDao {
     }
     return videos;
   }
+
   // update video - accepts object as parameter
   async updateVideo(video) {
-    let videos = await this._loadAllVideos();
+    const videos = await this._loadAllVideos();
 
     let updatedVideo = videos.find((v) => {
       return v.code === video.code;
@@ -86,12 +104,12 @@ class LibraryDao {
         const e = new Error(
           `Failed to update video with code ${video.code} in local storage.`
         );
-        e.code = "VIDEO";
+        e.code = "FAILED_TO_GET_VIDEO";
         throw e;
       }
     } else {
-      new Error(`Video with code ${video.code} does not exist.`);
-      e.code = "VIDEO";
+      const e = new Error(`Video with code ${video.code} does not exist.`);
+      e.code = "FAILED_TO_GET_VIDEO";
       throw e;
     }
   }
@@ -107,15 +125,17 @@ class LibraryDao {
 
     try {
       await wf(this._getStorageLocation(), JSON.stringify(videos, null, 2));
+
       return undefined;
     } catch (error) {
       const e = new Error(
-        `Failed to delete video with id '${video}' in local storage.`
+        `Failed to delete video with id '${video.code}' in local storage.`
       );
-      e.code = "VIDEO";
+      e.code = "DELETE_FAILED";
       throw e;
     }
   }
+
   // video list - accepts only video.name parameter
   async listVideos(name) {
     const videos = await this._loadAllVideos();
@@ -124,7 +144,7 @@ class LibraryDao {
     for (let code in videos) {
       if (
         !name ||
-        videos[code].authorName.toLowerCase().includes(name.toLowerCase())
+        videos[code].title.toLowerCase().includes(name.toLowerCase())
       ) {
         videoList.push(videos[code]);
       }
@@ -135,6 +155,13 @@ class LibraryDao {
   _isDuplicate(videos, code) {
     const result = videos.find((b) => {
       return b.code === code;
+    });
+    return result ? true : false;
+  }
+
+  _isDuplicateUrl(videos, Url) {
+    const result = videos.find((b) => {
+      return b.videoUrl === Url;
     });
     return result ? true : false;
   }

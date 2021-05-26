@@ -1,3 +1,5 @@
+"use strict";
+
 const path = require("path");
 const CategoryDao = require("../../dao/category-dao");
 let dao = new CategoryDao(
@@ -19,7 +21,9 @@ async function GetAbl(req, res) {
   if (!category) {
     return res
       .status(400)
-      .json({ error_message: `Category with code '${categoryId}' doesn't exist.` });
+      .json({
+        error_message: `Category with code '${categoryId}' doesn't exist.`,
+      });
   }
   res.json(category);
 }

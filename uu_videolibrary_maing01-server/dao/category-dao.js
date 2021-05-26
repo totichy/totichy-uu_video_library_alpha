@@ -22,11 +22,19 @@ class CategoryDao {
   async addCategory(category) {
     const categories = await this._loadAllCategories();
 
-    if (this._isDuplicate(categories, category.categoryName)) {
+    if (this._isDuplicateId(categories, category.categoryId)) {
+      const e = new Error(
+        `Category with Id '${category.categoryId}' already exists.`
+      );
+      e.code = "DUPLICATE_CODE";
+      throw e;
+    }
+
+    if (this._isDuplicateName(categories, category.categoryName)) {
       const e = new Error(
         `Category with name '${category.categoryName}' already exists.`
       );
-      e.code = "DUPLICATE_CODE";
+      e.code = "DUPLICATE_CATEGORY";
       throw e;
     }
 
@@ -34,25 +42,38 @@ class CategoryDao {
 
     try {
       await wf(this._getStorageLocation(), JSON.stringify(categories, null, 2));
-      return { status: "OK", data: category };
+      return category;
     } catch (e) {
-      return { status: "ERROR", error: e };
+      e = new Error(
+        `Failed to save category with id '${category.id}' to local storage.`
+      );
+      e.code = "FAILED_TO_SAVE_CATEGORY";
+      throw e;
     }
   }
 
   // get category - accepts only category.code parameter
-  async getCategory(code) {
+  async getCategory(id) {
     let categories = await this._loadAllCategories();
 
-    const result = categories.find((b) => {
-      return b.categoryId === code;
-    });
+    let result;
+
+    if (id) {
+      result = categories.find((b) => {
+        return b.categoryId === id;
+      });
+    } else {
+      const e = new Error(`Category with id '${id}' does not exist.`);
+      e.code = "FAILED_TO_LOAD_CATEGORY";
+      throw e;
+    }
 
     return result;
   }
 
   async _loadAllCategories() {
     let categories;
+
     try {
       categories = JSON.parse(await rf(this._getStorageLocation()));
     } catch (e) {
@@ -68,6 +89,7 @@ class CategoryDao {
     }
     return categories;
   }
+
   // update category - accepts object as parameter
   async updateCategory(category) {
     let categories = await this._loadAllCategories();
@@ -88,34 +110,36 @@ class CategoryDao {
         return category;
       } catch (error) {
         const e = new Error(
-          `Failed to update category with code ${category.code} in local storage.`
+          `Failed to update category with code ${category.Id} in local storage.`
         );
-        e.code = "VIDEO";
+        e.code = "FAILED_TO_GET_CATEGORY";
         throw e;
       }
     } else {
-      new Error(`Category with code ${category.code} does not exist.`);
-      e.code = "VIDEO";
+      new Error(`Category with id ${category.categoryId} does not exist.`);
+      e.code = "FAILED_TO_GET_CATEGORY";
       throw e;
     }
   }
   // delete category - accepts only category.code parameter
-  async deleteCategory(categoryCode) {
+  async deleteCategory(id) {
     const categories = await this._loadAllCategories();
+
     categories.forEach((category, i) => {
-      if (category.categoryId === categoryCode) {
+      if (category.categoryId === id) {
         categories.splice(i, 1);
       }
     });
 
     try {
       await wf(this._getStorageLocation(), JSON.stringify(categories, null, 2));
+
       return undefined;
     } catch (error) {
       const e = new Error(
-        `Failed to delete category with id '${category}' in local storage.`
+        `Failed to delete category with id '${id}' in local storage.`
       );
-      e.code = "VIDEO";
+      e.code = "DELETE_FAILED";
       throw e;
     }
   }
@@ -135,9 +159,16 @@ class CategoryDao {
     return categoryList;
   }
 
-  _isDuplicate(categories, code) {
+  _isDuplicateId(categories, id) {
     const result = categories.find((b) => {
-      return b.categoryName === code;
+      return b.categoryId === id;
+    });
+    return result ? true : false;
+  }
+
+  _isDuplicateName(categories, name) {
+    const result = categories.find((b) => {
+      return b.categoryName === name;
     });
     return result ? true : false;
   }

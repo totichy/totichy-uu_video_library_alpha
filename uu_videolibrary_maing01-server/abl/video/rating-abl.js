@@ -8,27 +8,29 @@ let dao = new LibraryDao(
 const Ajv = require("ajv").default;
 const { ratingVideoSchema } = require("../../schemas/video-schemas");
 
-
 // Rating video - accepts all parameters
 async function RatingAbl(req, res) {
   const ajv = new Ajv();
   const valid = ajv.validate(ratingVideoSchema, req);
-  
+
   if (!valid) {
     return res.status(400).json({ error: ajv.errors });
   }
   let { code, mrating } = req;
 
   if (code) {
-     
     let video = await dao.getVideo(code);
-    let newRating = ((Number(video.ratingCount) + mrating) / (Number(video.rating) + 1)).toFixed(1); 
-      video.ratingCount += mrating;
-      video.rating += 1;
-      video.averageRating = Number(newRating);
-  
+    let newRating = (
+      (Number(video.ratingCount) + mrating) /
+      (Number(video.rating) + 1)
+    ).toFixed(1);
+
+    video.ratingCount += mrating;
+    video.rating += 1;
+    video.averageRating = Number(newRating);
+
     try {
-        let result = await dao.updateVideo(video);
+      let result = await dao.updateVideo(video);
 
       res.status(200).json(result);
     } catch (e) {
@@ -36,7 +38,7 @@ async function RatingAbl(req, res) {
         res.status(400).json({ error_message: e });
       } else if (e.code === "FAILED_TO_UPDATE_VIDEO") {
         res.status(401).json({ error_message: e });
-      } 
+      }
     }
   } else {
     res.status(400).json({

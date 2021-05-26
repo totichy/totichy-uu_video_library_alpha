@@ -22,7 +22,8 @@
     "videoUrl": "https://vimeo.com/540126440",
     "description": "In this lesson, you will learn to apply CSS to your component.",
     "category": [
-      "1ez", "5ib"
+      "1ez",
+      "5ib"
     ],
     "visible": true,
     "averageRating": 4.2,
@@ -43,5 +44,20 @@
     "averageRating": 3,
     "ratingCount": 24,
     "rating": 8
+  },
+  {
+    "code": "1620800859427",
+    "authorName": "Petr",
+    "authorSurname": "Novák",
+    "title": "Quadratic equations",
+    "videoUrl": "https://www.youtube.com/watch?v=kC9D7iy_16U",
+    "description": "We know that Quadratic Polynomials are! But what are Quadratic Equations? Watch this video to know more! We know that Quadratic Polynomials are! But what are Quadratic Equations? Watch this video to know more!",
+    "category": [
+      "5ib"
+    ],
+    "visible": true,
+    "averageRating": 3,
+    "ratingCount": 42,
+    "rating": 14
   }
 ]

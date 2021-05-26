@@ -1,3 +1,5 @@
+"use strict";
+
 const path = require("path");
 const LibraryDao = require("../../dao/video-library-dao");
 let dao = new LibraryDao(
@@ -6,10 +8,34 @@ let dao = new LibraryDao(
 
 // update video - accepts all parameters
 async function UpdateAbl(req, res) {
-  let { code, authorName, authorSurname, title, videoUrl, description, category, visible, averageRating, ratingCount, rating  } = req;
+  let {
+    code,
+    authorName,
+    authorSurname,
+    title,
+    videoUrl,
+    description,
+    category,
+    visible,
+    averageRating,
+    ratingCount,
+    rating,
+  } = req;
 
   if (code) {
-    const video = { code, authorName, authorSurname, title, videoUrl, description, category, visible, averageRating, ratingCount, rating };
+    const video = {
+      code,
+      authorName,
+      authorSurname,
+      title,
+      videoUrl,
+      description,
+      category,
+      visible,
+      averageRating,
+      ratingCount,
+      rating,
+    };
     try {
       let result = await dao.updateVideo(video);
       res.status(200).json(result);
