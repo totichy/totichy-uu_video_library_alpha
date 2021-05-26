@@ -4,6 +4,7 @@ import { createVisualComponent, useState, useLsi } from "uu5g04-hooks";
 import Config from "./config/config";
 import CategoryCreateForm from "./category-create-form.js";
 import Form from "../config/createForm.js";
+import Errors from "../config/errors";
 //@@viewOff:imports
 
 const STATICS = {
@@ -44,6 +45,9 @@ export const CategoryCreate = createVisualComponent({
     const addBtn = Form.addButtonCatCgi || {};
     let addButton = useLsi(addBtn);
 
+    const shortNameCat = Errors.shortName || {};
+    let errorName =  useLsi(shortNameCat);
+
     //@@viewOn:hooks
     const [mode, setMode] = useState(Mode.BUTTON);
     //@@viewOff:hooks
@@ -53,8 +57,17 @@ export const CategoryCreate = createVisualComponent({
       setMode(Mode.FORM);
     }
     function handleSave({ values }) {
+
       if (!values.categoryName) {
         return null;
+      }
+      if (values.categoryName.length < 2) {
+
+        return  UU5.Environment.getPage().getAlertBus().addAlert({
+          content: errorName,
+          colorSchema: "red",
+          closeTimer: 3000,
+        });
       }
 
       function generateString(length) {
