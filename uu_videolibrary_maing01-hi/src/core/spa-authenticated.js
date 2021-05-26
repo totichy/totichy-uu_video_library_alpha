@@ -75,7 +75,7 @@ export const SpaAuthenticated = createVisualComponent({
           <Plus4U5.App.MenuConsumer>
             {({ setActiveItemId }) => {
               let handleRouteChanged = ({ useCase, parameters }) => setActiveItemId(useCase || DEFAULT_USE_CASE);
-              return <UU5.Common.Router routes={ROUTES} controlled={false} onRouteChanged={handleRouteChanged} />;
+              return <UU5.Common.Router routes={ROUTES} notFoundRoute="error" controlled={false} onRouteChanged={handleRouteChanged} />;
             }}
           </Plus4U5.App.MenuConsumer>
         </Plus4U5.App.Page >

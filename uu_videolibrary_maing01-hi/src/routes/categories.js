@@ -49,27 +49,25 @@ export const Categories = createVisualComponent({
     //@@viewOn:private
     function showError(content) {
       UU5.Environment.getPage().getAlertBus().addAlert({
-    content,
-    colorSchema: "red",
-    closeTimer: 3000
-      })
+        content,
+        colorSchema: "red",
+        closeTimer: 3000,
+      });
     }
 
     function showSuccess(content) {
       UU5.Environment.getPage().getAlertBus().addAlert({
-    content,
-    colorSchema: "green",
-    closeTimer: 3000
-      })
+        content,
+        colorSchema: "green",
+        closeTimer: 3000,
+      });
     }
-
 
     async function handleCreateCategory(category) {
       try {
-      await createCategoryRef.current(category);
-      showSuccess(`${categoryWithTitle} ${category.categoryName} ${wasCreatedC}`);
+        await createCategoryRef.current(category);
+        showSuccess(`${categoryWithTitle} ${category.categoryName} ${wasCreatedC}`);
       } catch (e) {
-
         if (e.response) {
           // client received an error response (5xx, 4xx)
           showError(`ERROR: ${e.response.data.error_message}`);
@@ -79,14 +77,13 @@ export const Categories = createVisualComponent({
         } else {
           showError(errorCreated);
         }
-
       }
-    }   
+    }
 
     async function handleDeleteCategory(category) {
       try {
-      await deleteCategoryRef.current({categoryId : category.categoryId});
-      showSuccess(`${categoryWithTitle} ${category.categoryName} ${wasDeletedC}`);
+        await deleteCategoryRef.current({ categoryId: category.categoryId });
+        showSuccess(`${categoryWithTitle} ${category.categoryName} ${wasDeletedC}`);
       } catch (e) {
         if (e.response) {
           // client received an error response (5xx, 4xx)
@@ -97,16 +94,14 @@ export const Categories = createVisualComponent({
         } else {
           showError(`Deletion of ${category.categoryName} is failed.`);
         }
-     
       }
-    }   
+    }
     //@@viewOff:private
 
     //@@viewOn:interface
     function renderLoad() {
       return <UU5.Bricks.Loading />;
     }
-
 
     function renderError(errorData) {
       switch (errorData.operation) {
@@ -118,7 +113,6 @@ export const Categories = createVisualComponent({
     }
 
     function renderReady(categories) {
-
       return (
         <>
           <CategoryCreate onCreate={handleCreateCategory} />
@@ -135,26 +129,24 @@ export const Categories = createVisualComponent({
     return (
       <div>
         <CategoryProvider>
-        {({ state, data, newData, pendingData, errorData, handlerMap }) => {
+          {({ state, data, newData, pendingData, errorData, handlerMap }) => {
+            createCategoryRef.current = handlerMap.createCategory;
+            deleteCategoryRef.current = handlerMap.deleteCategory;
 
-createCategoryRef.current = handlerMap.createCategory;
-deleteCategoryRef.current = handlerMap.deleteCategory;
-
-switch (state) {
-    case "pending":
-    case "pendingNoData":
-      return renderLoad();
-    case "error":
-    case "errorNoData":
-      return renderError(errorData);
-    case "itemPending":
-    case "ready":
-    case "readyNoData":
-    default:
-      return renderReady(data);  
-}
-
-}}
+            switch (state) {
+              case "pending":
+              case "pendingNoData":
+                return renderLoad();
+              case "error":
+              case "errorNoData":
+                return renderError(errorData);
+              case "itemPending":
+              case "ready":
+              case "readyNoData":
+              default:
+                return renderReady(data);
+            }
+          }}
         </CategoryProvider>
       </div>
     );

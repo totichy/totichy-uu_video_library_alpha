@@ -6,8 +6,8 @@ import UU5 from "uu5g04";
 import Uu5Tiles from "uu5tilesg02";
 import Config from "./config/config.js";
 import VideoList from "../bricks/video-list.js";
-import VideoProvider from "../bricks/video-provider.js";
-import VideoCreate from "../bricks/video-create.js";
+import VideoProvider from "../bricks/video-provider";
+import VideoCreate from "../bricks/video-create";
 import VideoLsi from "../config/video";
 import Calls from "../calls";
 //@@viewOff:imports
@@ -18,10 +18,6 @@ const STATICS = {
   //@@viewOff:statics
 };
 
-function categorySelection(queryString) {
-  let urlParams = new URLSearchParams(queryString);
-  return urlParams.get("category");
-}
 
 export const Home = createVisualComponent({
   ...STATICS,
@@ -58,8 +54,14 @@ export const Home = createVisualComponent({
     let wasCreatedC = useLsi(wasCreated);
     let errorCreated = useLsi(createError);
     let serverErrorData = useLsi(errorServerData);
-
     let VideoHeader = VideoListHeader;
+    
+
+    function categorySelection(queryString) {
+      let urlParams = new URLSearchParams(queryString);
+      return urlParams.get("category");
+    }
+
     const categoryListResult = useDataList({
       handlerMap: {
         load: Calls.listCategory,
@@ -73,8 +75,10 @@ export const Home = createVisualComponent({
         (category) => (categoryMap[category.data.categoryId] = category.data.categoryName)
       );
     }
+
     const dada = categoryMap[categorySelection(window.location.search)];
 
+  
     //@@viewOn:private
     function showError(content) {
       UU5.Environment.getPage().getAlertBus().addAlert({
@@ -158,17 +162,14 @@ export const Home = createVisualComponent({
     function renderError(errorData) {
       return <UU5.Bricks.Error content={serverErrorData} />;
     }
-    
 
-
-      if (dada != null) {
+    if (dada != null) {
       VideoHeader = SelectedVideoListHeader + ": " + dada;
     }
 
-
     function renderReady(videos) {
-      videos.sort((a, b) => (a.code < b.code ? 1 : -1));
-      console.log(videos);
+    
+
       var videox;
       if (categorySelection(window.location.search) === null) {
         videox = videos;
@@ -179,7 +180,6 @@ export const Home = createVisualComponent({
             categorySelection(window.location.search)
           );
         });
-        console.log(videox);
       }
       return (
         <>
@@ -200,7 +200,6 @@ export const Home = createVisualComponent({
               </UU5.Bricks.Container>
             </div>
           </UU5.Bricks.Section>
-         
         </>
       );
     }
@@ -231,6 +230,7 @@ export const Home = createVisualComponent({
               case "ready":
               case "readyNoData":
               default:
+                data.sort((a, b) => (a.data.code < b.data.code ? 1 : -1));
                 return renderReady(data);
             }
           }}

@@ -96,7 +96,11 @@ export const VideoCreate = createComponent({
       );
     }
     function renderForm() {
-      return <VideoCreateForm onSubmit={handleSave} onCancel={handleCancel} />;
+      return (
+        <UU5.Bricks.Modal size="l" offsetTop={100} shown={true}>
+          <VideoCreateForm onSubmit={handleSave} onCancel={handleCancel} />
+        </UU5.Bricks.Modal>
+      );
     }
 
     if (mode === Mode.BUTTON) {

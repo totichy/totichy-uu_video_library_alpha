@@ -28,6 +28,12 @@ const CLASS_NAMES = {
   padding: 57% 0 0 0;
   position:relative;
   `,
+  novideo: () => Config.Css.css`
+  margin-bottom: 5px;
+  border:0;
+  width: 100%;
+  height: 100%;
+  `,
   vimeoframe: () => Config.Css.css`
   position: absolute;
   border:0;
@@ -174,11 +180,23 @@ export const VideoDetail = createVisualComponent({
           </UU5.Bricks.Div>
         );
       }
-      return (
-        <UU5.Bricks.Div className={CLASS_NAMES.video()}>
-          <UU5.Bricks.Video src={video.videoUrl} height="30em" poster={"/assets/logo.png"} autoPlay={false} />
-        </UU5.Bricks.Div>
-      );
+
+      if (video.videoUrl.includes(".mp4") || video.videoUrl.includes(".ogg")) {
+        return (
+          <UU5.Bricks.Div className={CLASS_NAMES.video()}>
+            <UU5.Bricks.Video src={video.videoUrl} height="30em" poster={"/assets/logo.png"} autoPlay={false} />
+          </UU5.Bricks.Div>
+        );
+      } else {
+        return (
+          <UU5.Bricks.Div className={CLASS_NAMES.video()}>
+            {" "}
+            <UU5.Bricks.Link href={video.videoUrl} target="_blank">
+              <UU5.Bricks.Image src={"/assets/novideo.png"} className={CLASS_NAMES.novideo()} />
+            </UU5.Bricks.Link>
+          </UU5.Bricks.Div>
+        );
+      }
     }
 
     //@@viewOn:render
