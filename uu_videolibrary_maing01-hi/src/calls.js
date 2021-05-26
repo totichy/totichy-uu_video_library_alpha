@@ -31,7 +31,6 @@ let Calls = {
   },
   ratingVideo(dtoIn) {
     let commandUri = Calls.getCommandUri("video/rating");
-    console.log(dtoIn)
     return Calls.call("post", commandUri, dtoIn);
   },
   listCategory() {
