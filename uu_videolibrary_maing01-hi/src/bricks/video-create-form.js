@@ -1,5 +1,6 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
+import { Session } from 'uu_appg01_oidc';
 import { createVisualComponent, useLsi, useSession, useDataList } from "uu5g04-hooks";
 import "uu5g04-forms";
 import "uu5g04-block-layout";
