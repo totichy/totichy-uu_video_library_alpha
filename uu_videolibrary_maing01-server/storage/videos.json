@@ -1,5 +1,21 @@
 [
   {
+    "code": "1620850859006",
+    "authorName": "P",
+    "authorSurname": "Novák",
+    "title": "UU5 - Cascading Styles",
+    "videoUrl": "https://vimeo.com/540126440",
+    "description": "In this lesson, you will learn to apply CSS to your component.",
+    "category": [
+      "o1n",
+      "0lg"
+    ],
+    "visible": true,
+    "averageRating": 4.3,
+    "ratingCount": 68,
+    "rating": 16
+  },
+  {
     "code": "1621296930029",
     "authorName": "Patrik",
     "authorSurname": "Sekerka",
@@ -7,7 +23,7 @@
     "videoUrl": "https://vimeo.com/540126577",
     "description": "In this lesson, you will learn to adjust rendered content for different types of devices such as mobiles, tablets or laptops.",
     "category": [
-      "0lg"
+      "o1n"
     ],
     "visible": true,
     "averageRating": 3,
@@ -15,14 +31,14 @@
     "rating": 8
   },
   {
-    "code": "125",
+    "code": "1620800859427",
     "authorName": "Petr",
     "authorSurname": "Novák",
     "title": "Quadratic equations",
-    "videoUrl": "https://www.youtube.com/watch?v=kC9D7iy_16asU",
+    "videoUrl": "https://www.youtube.com/watch?v=kC9D7iy_16U",
     "description": "We know that Quadratic Polynomials are! But what are Quadratic Equations? Watch this video to know more! We know that Quadratic Polynomials are! But what are Quadratic Equations? Watch this video to know more!",
     "category": [
-      "5ib"
+      "o1n"
     ],
     "visible": true,
     "averageRating": 3,
@@ -30,18 +46,18 @@
     "rating": 14
   },
   {
-    "code": "128",
-    "authorName": "Petr",
-    "authorSurname": "Novák",
-    "title": "Quadratic equations",
-    "videoUrl": "https://www.youtube.com/watch?v=kC9D7iy_16asUg",
-    "description": "We know that Quadratic Polynomials are! But what are Quadratic Equations? Watch this video to know more! We know that Quadratic Polynomials are! But what are Quadratic Equations? Watch this video to know more!",
+    "code": "1622055427049",
+    "authorName": "Patrik",
+    "authorSurname": "Sekerka",
+    "title": "Neurčitý integrál funkce 1/x",
+    "videoUrl": "https://cs.khanacademy.org/math/integralni-pocet/xbf9b4d9711003f1c:vypocty-intergralu/xbf9b4d9711003f1c:neurcite-integraly-elementarnich-funkci/v/antiderivative-of-x-1",
+    "description": "Z diferenciálního počtu si pamatujeme, že derivace ln(x) je 1/x. Integrace jde opačným směrem: integrál (nebo primitivní funkce) funkce 1/x by měla být funkce, jejíž derivace je 1/x. A to jsme právě viděli, že to je ln(x). Zádrhelem je, že pokud je x záporné, tak ln(x) není definováno! Řešení je prosté: primitivní funkce 1/x je ln(|x|). Tvůrce: Sal Khan.",
     "category": [
-      "5ib"
+      "0lg"
     ],
     "visible": true,
-    "averageRating": 3,
-    "ratingCount": 42,
-    "rating": 14
+    "averageRating": 0,
+    "ratingCount": 0,
+    "rating": 0
   }
 ]
