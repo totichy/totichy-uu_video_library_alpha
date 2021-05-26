@@ -15,14 +15,23 @@ let libraryDao = new LibraryDao(
 async function DeleteAbl(req, res) {
   let { categoryId } = req;
 
+  //let categoryList = await CategoryDao.categoryList();
   let videoList = await libraryDao.listVideos();
   let result = [];
+  let categoryCheck = await dao.getCategory(categoryId);
 
   for (let i = 0; i < videoList.length; i++) {
     if (videoList[i].category.includes(categoryId)) {
       result.push(videoList[i]);
     }
   }
+  //Mirons
+  if (!categoryCheck) {
+    return res.status(400).json({
+      error_message: `Category with Id ${categoryId} does NOT exist!`
+    })
+  };
+  //end of Mirons
 
   if (result.length > 0) {
     res.status(400).json({
