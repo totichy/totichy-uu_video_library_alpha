@@ -15,22 +15,6 @@
     "rating": 14
   },
   {
-    "code": "1620850859006",
-    "authorName": "P",
-    "authorSurname": "Novák",
-    "title": "UU5 - Cascading Styles",
-    "videoUrl": "https://vimeo.com/540126440",
-    "description": "In this lesson, you will learn to apply CSS to your component.",
-    "category": [
-      "1ez",
-      "5ib"
-    ],
-    "visible": true,
-    "averageRating": 4.2,
-    "ratingCount": 63,
-    "rating": 15
-  },
-  {
     "code": "1621296930029",
     "authorName": "Patrik",
     "authorSurname": "Sekerka",
