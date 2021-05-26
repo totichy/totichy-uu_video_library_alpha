@@ -8,7 +8,7 @@ let dao = new CategoryDao(
 
 // get category - accepts only category.code parameter
 async function GetAbl(req, res) {
-  categoryId = req.categoryId;
+  let { categoryId } = req;
 
   if (!categoryId) {
     return res
@@ -19,11 +19,9 @@ async function GetAbl(req, res) {
   const category = await dao.getCategory(categoryId);
 
   if (!category) {
-    return res
-      .status(400)
-      .json({
-        error_message: `Category with code '${categoryId}' doesn't exist.`,
-      });
+    return res.status(400).json({
+      error_message: `Category with code '${categoryId}' doesn't exist.`,
+    });
   }
   res.json(category);
 }

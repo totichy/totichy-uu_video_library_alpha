@@ -24,18 +24,6 @@ async function CreateAbl(req, res) {
     return res.status(400).json({ error: ajv.errors });
   }
 
-  // for (let i = 0; i < category.length; i++) {
-  //   try {
-  //     await categoryDao.getCategory(category[i]);
-  //   } catch (e) {
-  //     if (e.code === "FAILED_TO_GET_CATEGORY") {
-  //       res.status(400).json({ error: e });
-  //     } else {
-  //       res.status(500).json({ error: e });
-  //     }
-  //   }
-  // }
-
   const video = {
     code: req.code,
     authorName: req.authorName,

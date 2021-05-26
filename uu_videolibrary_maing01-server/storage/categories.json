@@ -1,14 +1,6 @@
 [
   {
-    "categoryId": "5ib",
-    "categoryName": "Undefined"
-  },
-  {
     "categoryId": "0lg",
     "categoryName": "Test"
-  },
-  {
-    "categoryId": "1ez",
-    "categoryName": "Mongo"
   }
 ]
