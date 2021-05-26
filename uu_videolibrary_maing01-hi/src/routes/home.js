@@ -103,7 +103,7 @@ export const Home = createVisualComponent({
       } catch (e) {
         if (e.response) {
           // client received an error response (5xx, 4xx)
-          showError(`ERROR: ${e.response.data.message}`);
+          showError(`ERROR: ${e.response.data.error[0].message}`);
         } else if (e.request) {
           // client never received a response, or request never left
           showError(errorCreated);

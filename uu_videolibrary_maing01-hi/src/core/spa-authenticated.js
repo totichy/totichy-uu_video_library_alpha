@@ -10,6 +10,7 @@ import Left from "./left";
 //@@import Bottom from "./bottom";
 import Home from "../routes/home";
 import Categories from "../routes/categories";
+import NotFoundRoute from "../routes/not-found";
 //@@viewOff:imports
 
 const STATICS = {
@@ -26,6 +27,7 @@ const DEFAULT_USE_CASE = "home";
 const ROUTES = {
   "": DEFAULT_USE_CASE,
   home: { component: <Home /> },
+  notFound: { component: <NotFoundRoute /> },
   about: { component: <About /> },
   categories: { component: <Categories /> },
   "sys/uuAppWorkspace/initUve": { component: <InitAppWorkspace /> },
@@ -75,7 +77,7 @@ export const SpaAuthenticated = createVisualComponent({
           <Plus4U5.App.MenuConsumer>
             {({ setActiveItemId }) => {
               let handleRouteChanged = ({ useCase, parameters }) => setActiveItemId(useCase || DEFAULT_USE_CASE);
-              return <UU5.Common.Router routes={ROUTES} notFoundRoute="error" controlled={false} onRouteChanged={handleRouteChanged} />;
+              return <UU5.Common.Router routes={ROUTES} notFoundRoute="notFound" controlled={false} onRouteChanged={handleRouteChanged} />;
             }}
           </Plus4U5.App.MenuConsumer>
         </Plus4U5.App.Page >

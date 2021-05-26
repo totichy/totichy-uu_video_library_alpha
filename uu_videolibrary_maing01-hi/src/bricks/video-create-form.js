@@ -87,6 +87,37 @@ export const VideoCreateForm = createVisualComponent({
       ));
     }
 
+    function renderAuthorName() {
+      let authorN = "";
+      if (identity) {
+        authorN = identity.name.split(" ")[0];
+      } 
+      return (
+      <UU5.Forms.Text 
+      inputAttrs={{ maxLength: 255 }} 
+      name="authorName" 
+      label={autorName} 
+      value={authorN} 
+      required 
+      />
+      );
+    }
+
+    function renderAuthorSurname() {
+      let authorS = "";
+      if (identity) {
+        authorS = identity.name.split(" ")[1];
+      } 
+      return (
+      <UU5.Forms.Text 
+      inputAttrs={{ maxLength: 255 }} 
+      name="authorSurname" 
+      label={autorSurname} 
+      value={authorS} 
+      required 
+      />
+      );
+    }
     //@@viewOff:private
 
     //@@viewOn:interface
@@ -104,22 +135,9 @@ export const VideoCreateForm = createVisualComponent({
             <UU5.Forms.Select label={categoriesCg} name="category" multiple required>
               {renderCategories()}
             </UU5.Forms.Select>
-            <UU5.Forms.Text
-              inputAttrs={{ maxLength: 255 }}
-              name="authorName"
-              label={autorName}
-              value={identity.name.split(" ")[0]}
-              required
-            />
-            <UU5.Forms.Text
-              inputAttrs={{ maxLength: 255 }}
-              name="authorSurname"
-              label={autorSurname}
-              value={identity.name.split(" ")[1]}
-              required
-            />
+              {renderAuthorName()}
+              {renderAuthorSurname()}
             <UU5.Forms.TextArea inputAttrs={{ maxLength: 400 }} name="description" label={description} required />
-
             <UU5.Forms.Controls />
           </UU5.Forms.Form>
         </UU5.Bricks.Card>
