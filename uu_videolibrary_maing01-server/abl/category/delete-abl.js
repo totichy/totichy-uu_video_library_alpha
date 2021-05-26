@@ -18,20 +18,20 @@ async function DeleteAbl(req, res) {
   //let categoryList = await CategoryDao.categoryList();
   let videoList = await libraryDao.listVideos();
   let result = [];
-  let categoryCheck = await dao.getCategory(categoryId);
+  let categoryCheck = await dao.getCategory(categoryId); //Checks all categories by categoryID
 
   for (let i = 0; i < videoList.length; i++) {
     if (videoList[i].category.includes(categoryId)) {
       result.push(videoList[i]);
     }
   }
-  //Mirons
-  if (!categoryCheck) {
+  
+  if (!categoryCheck) { //if falsy throw error. This means that the categoryCheck returned empty === no category with req ID exists
     return res.status(400).json({
       error_message: `Category with Id ${categoryId} does NOT exist!`
     })
   };
-  //end of Mirons
+  
 
   if (result.length > 0) {
     res.status(400).json({
