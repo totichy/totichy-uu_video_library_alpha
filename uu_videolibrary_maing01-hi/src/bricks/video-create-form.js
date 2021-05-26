@@ -96,7 +96,7 @@ export const VideoCreateForm = createVisualComponent({
 
     return (
       <UU5.Bricks.Container>
-        <UU5.Bricks.Header level="1" content={headerAdd} underline={true} />
+        <UU5.Bricks.Header level={5} content={headerAdd} underline={true} />
         <UU5.Bricks.Card className="padding-s" colorSchema="indigo">
           <UU5.Forms.Form onSave={onSubmit} onCancel={onCancel} labelColWidth="xs-12 m-3" inputColWidth="xs-12 m-9">
             <UU5.Forms.Text inputAttrs={{ maxLength: 255 }} name="title" label={titles} required />
