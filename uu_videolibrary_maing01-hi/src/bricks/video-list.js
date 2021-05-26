@@ -36,13 +36,11 @@ export const VideoList = createVisualComponent({
   //@@viewOff:defaultProps
 
   render({ videos, onDelete, onRating, onUpdate }) {
-    //console.log(dadacategoryId);
     //@@viewOn:private
     const noVideo = VideoLsi.noVideo || {};
 
     let noVideoCgi = useLsi(noVideo);
 
-    let countVideo = 0;
     //@@viewOff:private
 
     //@@viewOn:interface
