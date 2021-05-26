@@ -8,20 +8,20 @@ let dao = new LibraryDao(
 
 // get video - accepts only video.code parameter
 async function GetAbl(req, res) {
-  const videoCode = req.code;
+  const { code } = req;
 
-  if (!videoCode) {
+  if (!code) {
     return res
       .status(400)
       .json({ error_message: "Invalid input: code parameter is missing." });
   }
 
-  const video = await dao.getVideo(videoCode);
+  const video = await dao.getVideo(code);
 
   if (!video) {
     return res
       .status(400)
-      .json({ error_message: `Video with code '${videoCode}' doesn't exist.` });
+      .json({ error_message: `Video with code '${code}' doesn't exist.` });
   }
 
   res.json(video);

@@ -8,7 +8,7 @@ let dao = new LibraryDao(
 
 // video list - accepts only video.name parameter
 async function ListAbl(req, res) {
-  let { authorName: title } = req;
+  let { title } = req;
 
   if (!title || (title && typeof title === "string" && title.length < 30)) {
     try {
