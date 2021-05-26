@@ -85,6 +85,8 @@ export const Home = createVisualComponent({
         content,
         colorSchema: "red",
         closeTimer: 3000,
+        header: "Error",
+        block: true,
       });
     }
 
@@ -93,11 +95,15 @@ export const Home = createVisualComponent({
         content,
         colorSchema: "green",
         closeTimer: 3000,
+        header: "Done",
+        block: true,
       });
     }
 
     async function handleCreateVideo(video) {
       try {
+
+        
         await createVideoRef.current(video);
         showSuccess(`${videoWithTitle} ${video.title} ${wasCreatedC}`);
       } catch (e) {

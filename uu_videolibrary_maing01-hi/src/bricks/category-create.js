@@ -67,6 +67,8 @@ export const CategoryCreate = createVisualComponent({
           content: errorName,
           colorSchema: "red",
           closeTimer: 3000,
+          header: "Error",
+          block: true,
         });
       }
 

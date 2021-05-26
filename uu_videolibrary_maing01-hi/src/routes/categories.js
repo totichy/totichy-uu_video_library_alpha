@@ -52,6 +52,8 @@ export const Categories = createVisualComponent({
         content,
         colorSchema: "red",
         closeTimer: 3000,
+        header: "Error",
+        block: true,
       });
     }
 
@@ -60,6 +62,8 @@ export const Categories = createVisualComponent({
         content,
         colorSchema: "green",
         closeTimer: 3000,
+        header: "Done",
+        block: true,
       });
     }
 

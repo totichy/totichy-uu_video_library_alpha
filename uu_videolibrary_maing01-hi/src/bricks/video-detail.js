@@ -99,20 +99,12 @@ export const VideoDetail = createVisualComponent({
     //@@viewOff:hooks
 
     //@@viewOn:private
-    const titleCg = Form.titleCgi || {};
     const descCg = Form.descriptionCgi || {};
     const urlCg = Form.urlCgi || {};
-    const autorNameCg = Form.autorNameCgi || {};
-    const autorSurnameCg = Form.autorLastNameCgi || {};
-    const addVideoCg = Form.addVideo || {};
-    const categoryCg = Form.category || {};
-    let titles = useLsi(titleCg);
+
     let description = useLsi(descCg);
     let videoUrl = useLsi(urlCg);
-    let autorName = useLsi(autorNameCg);
-    let autorSurname = useLsi(autorSurnameCg);
-    let headerAdd = useLsi(addVideoCg);
-    let categoriesCg = useLsi(categoryCg);
+
     //@@viewOff:private
 
     //@@viewOn: hooks
@@ -127,11 +119,11 @@ export const VideoDetail = createVisualComponent({
         return null;
       }
 
-      let ratingSize = screenSize === "s" ? null : "s";
+      let ratingSize = screenSize === "s" ? null : "m";
       return (
         <>
           <UU5.Bricks.Section>
-            <UU5.Bricks.Rating count={5} value={video.averageRating} size={"m"} colorSchema="orange" />{" "}
+            <UU5.Bricks.Rating count={5} value={video.averageRating} size={ratingSize} colorSchema="orange" />{" "}
             <UU5.Bricks.Lsi lsi={VideoLsi.vote} /> {video.rating}
           </UU5.Bricks.Section>
         </>

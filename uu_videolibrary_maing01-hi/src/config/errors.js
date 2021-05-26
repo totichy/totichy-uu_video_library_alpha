@@ -7,5 +7,17 @@ export const ErrorsLsi = {
     cs: "Název kategorie musí mít vice než 1 znak.",
     en: "Category name must be longer than 1 character.",
   },
+  validURL: {
+    cs: "Prosím zadejte validní URL adresu videa s https://.",
+    en: "<p>Please enter a valid video URL whith https://.",
+  },
+  validTitle: {
+    cs: "Prosím Název nesmí být kratší než 3 znaky a delší než 100 znaků.",
+    en: "Please Name cannot be shorter than 3 characters and longer than 100 characters.",
+  },
+  validDescription: {
+    cs: "Prosím popis nesmí být kratší než 3 znaky a delší než 500 znaků.",
+    en: "Please Description cannot be shorter than 3 characters and longer than 500 characters.",
+  },
 };
 export default ErrorsLsi;
