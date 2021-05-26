@@ -19,5 +19,13 @@ export const ErrorsLsi = {
     cs: "Prosím popis nesmí být kratší než 3 znaky a delší než 500 znaků.",
     en: "Please Description cannot be shorter than 3 characters and longer than 500 characters.",
   },
+  titleError: {
+    cs: "Chyba",
+    en: "Error",
+  },
+  titleDone: {
+    cs: "Hotovo",
+    en: "Done",
+  },
 };
 export default ErrorsLsi;

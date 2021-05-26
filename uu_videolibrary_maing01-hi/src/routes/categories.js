@@ -8,6 +8,7 @@ import CategoryList from "../bricks/category-list.js";
 import CategoryProvider from "../bricks/category-provider.js";
 import CategoryCreate from "../bricks/category-create.js";
 import CategoryLsi from "../config/category";
+import Errors from "../config/errors";
 //@@viewOff:imports
 
 const STATICS = {
@@ -44,6 +45,11 @@ export const Categories = createVisualComponent({
     let wasCreatedC = useLsi(wasCreated);
     let errorCreated = useLsi(createError);
     let serverErrorData = useLsi(errorServerData);
+
+    const errorTtl = Errors.titleError || {};
+    let headerError =  useLsi(errorTtl);
+    const errorDn = Errors.titleDone || {};
+    let headerDone =  useLsi(errorDn);
     //@@viewOff:hook
 
     //@@viewOn:private
@@ -52,7 +58,7 @@ export const Categories = createVisualComponent({
         content,
         colorSchema: "red",
         closeTimer: 3000,
-        header: "Error",
+        header: headerError,
         block: true,
       });
     }
@@ -62,7 +68,7 @@ export const Categories = createVisualComponent({
         content,
         colorSchema: "green",
         closeTimer: 3000,
-        header: "Done",
+        header: headerDone,
         block: true,
       });
     }

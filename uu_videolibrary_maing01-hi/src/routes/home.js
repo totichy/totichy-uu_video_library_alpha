@@ -10,6 +10,7 @@ import VideoProvider from "../bricks/video-provider";
 import VideoCreate from "../bricks/video-create";
 import VideoLsi from "../config/video";
 import Calls from "../calls";
+import Errors from "../config/errors";
 //@@viewOff:imports
 
 const STATICS = {
@@ -56,6 +57,10 @@ export const Home = createVisualComponent({
     let serverErrorData = useLsi(errorServerData);
     let VideoHeader = VideoListHeader;
     
+    const errorTtl = Errors.titleError || {};
+    let headerError =  useLsi(errorTtl);
+    const errorDn = Errors.titleDone || {};
+    let headerDone =  useLsi(errorDn);
 
     function categorySelection(queryString) {
       let urlParams = new URLSearchParams(queryString);
@@ -85,7 +90,7 @@ export const Home = createVisualComponent({
         content,
         colorSchema: "red",
         closeTimer: 3000,
-        header: "Error",
+        header: headerError,
         block: true,
       });
     }
@@ -95,7 +100,7 @@ export const Home = createVisualComponent({
         content,
         colorSchema: "green",
         closeTimer: 3000,
-        header: "Done",
+        header: headerDone,
         block: true,
       });
     }

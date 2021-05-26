@@ -5,7 +5,7 @@ import validator from 'validator'
 import Config from "./config/config";
 import VideoCreateForm from "./video-create-form";
 import Form from "../config/createForm";
-import Errors from "../config/errors"
+import Errors from "../config/errors";
 //@@viewOff:imports
 
 const STATICS = {
@@ -52,6 +52,9 @@ export const VideoCreate = createComponent({
     const descValid = Errors.validTitle || {};
     let validDescription =  useLsi(descValid);
 
+    const errorTtl = Errors.titleError || {};
+    let headerError =  useLsi(errorTtl);
+
     //@@viewOn:hooks
     const [mode, setMode] = useState(Mode.BUTTON);
     //@@viewOff:hooks
@@ -79,7 +82,7 @@ if (!validator.isURL(values.videoUrl)) {
     content: validURL,
     colorSchema: "red",
     closeTimer: 3000,
-    header: "Error",
+    header: headerError,
     block: true,
     stacked: true,
   });
@@ -91,7 +94,7 @@ if (values.title.length < 3 || values.title.length > 100) {
     content: validTitle,
     colorSchema: "red",
     closeTimer: 3000,
-    header: "Error",
+    header: headerError,
     block: true,
     stacked: true,
   });
@@ -102,7 +105,7 @@ if (values.description.length < 3 || values.description.length > 500) {
     content: validDescription,
     colorSchema: "red",
     closeTimer: 3000,
-    header: "Error",
+    header: headerError,
     block: true,
     stacked: true,
   });

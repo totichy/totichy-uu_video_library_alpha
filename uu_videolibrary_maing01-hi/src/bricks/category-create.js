@@ -48,6 +48,9 @@ export const CategoryCreate = createVisualComponent({
     const shortNameCat = Errors.shortName || {};
     let errorName =  useLsi(shortNameCat);
 
+    const errorTtl = Errors.titleError || {};
+    let headerError =  useLsi(errorTtl);
+
     //@@viewOn:hooks
     const [mode, setMode] = useState(Mode.BUTTON);
     //@@viewOff:hooks
@@ -67,7 +70,7 @@ export const CategoryCreate = createVisualComponent({
           content: errorName,
           colorSchema: "red",
           closeTimer: 3000,
-          header: "Error",
+          header: headerError,
           block: true,
         });
       }
