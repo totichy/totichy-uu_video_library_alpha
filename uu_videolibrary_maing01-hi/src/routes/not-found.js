@@ -34,7 +34,7 @@ export const NotFoundRoute = createVisualComponent({
       <UU5.Bricks.Div>
         <UU5.Common.Error>
           <UU5.Bricks.Lsi>
-            <UU5.Bricks.Lsi.Item language="cs">CYHBA 404 STRÁNKA NENALEZENA</UU5.Bricks.Lsi.Item>
+            <UU5.Bricks.Lsi.Item language="cs">CHYBA 404 STRÁNKA NENALEZENA</UU5.Bricks.Lsi.Item>
             <UU5.Bricks.Lsi.Item language="en">ERROR 404 NOT FOUND PAGE</UU5.Bricks.Lsi.Item>
           </UU5.Bricks.Lsi>
         </UU5.Common.Error>
