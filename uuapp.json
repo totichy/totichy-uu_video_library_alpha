@@ -178,21 +178,6 @@
         "imageUri": "",
         "uuEccReady": false,
         "template": "<UuVideolibrary.Bricks.VideoDetail />"
-      },
-      {
-        "code": "UuVideolibrary.Bricks.VideoUpdateForm",
-        "name": "VideoUpdateForm",
-        "tagList": [
-          "UuVideolibrary",
-          "Bricks",
-          "VideoUpdateForm"
-        ],
-        "docCode": "UuVideolibraryBricksVideoUpdateForm",
-        "desc": "",
-        "icon": "",
-        "imageUri": "",
-        "uuEccReady": false,
-        "template": "<UuVideolibrary.Bricks.VideoUpdateForm />"
       }
     ]
   },
