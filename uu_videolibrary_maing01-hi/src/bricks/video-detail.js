@@ -173,12 +173,20 @@ export const VideoDetail = createVisualComponent({
         );
       }
 
-      if (video.videoUrl.includes(".mp4") || video.videoUrl.includes(".ogg")) {
+      if (video.videoUrl.includes(".mp4") || video.videoUrl.includes(".ogg")|| video.videoUrl.includes(".mp3")) {
+        if (video.videoUrl.includes(".mp3") ) {
+          return (
+            <UU5.Bricks.Div className={CLASS_NAMES.vimeo()}>
+              <UU5.Bricks.Audio src={video.videoUrl} poster={"/assets/logo.png"} className={CLASS_NAMES.vimeoframe()} autoPlay={false} />
+            </UU5.Bricks.Div>
+          );
+        } else {
         return (
-          <UU5.Bricks.Div className={CLASS_NAMES.video()}>
-            <UU5.Bricks.Video src={video.videoUrl} height="30em" poster={"/assets/logo.png"} autoPlay={false} />
+          <UU5.Bricks.Div className={CLASS_NAMES.vimeo()}>
+            <UU5.Bricks.Video src={video.videoUrl} className={CLASS_NAMES.vimeoframe()} poster={"/assets/logo.png"} autoPlay={false} />
           </UU5.Bricks.Div>
         );
+        }
       } else {
         return (
           <UU5.Bricks.Div className={CLASS_NAMES.video()}>

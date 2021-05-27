@@ -30,7 +30,7 @@ const CLASS_NAMES = {
   border-radius: 4px;
 `,
   vimeo: () => Config.Css.css`
-  margin:0 0 12px 0;
+  margin:0 0 10px 0;
   padding: 57% 0 0 0;
   position:relative;
   `,
@@ -41,9 +41,11 @@ const CLASS_NAMES = {
   left:0;
   width: 100%;
   height: 100%;
+  padding:0;
+  margin:0;
   `,
   novideo: () => Config.Css.css`
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   border:0;
   width: 100%;
   height: 100%;
@@ -122,42 +124,11 @@ export const Video = createVisualComponent({
     //@@viewOff:hooks
 
     //@@viewOn:private
-
+ 
     function handleDelete() {
       onDelete(video);
     }
 
-    function handleUpdate() {
-      //@@ onUpdate(video);
-    }
-
-    function handleSave({ values }) {
-      if (
-        !values.title ||
-        !values.category[0] ||
-        !values.videoUrl ||
-        !values.description ||
-        !values.authorName ||
-        !values.authorSurname
-      ) {
-        return null;
-      }
-      video = {
-        code: values.code,
-        authorName: values.authorName,
-        authorSurname: values.authorSurname,
-        title: values.title,
-        videoUrl: values.videoUrl,
-        description: values.description,
-        category: values.category,
-        visible: true,
-        averageRating: values.averageRating,
-        ratingCount: values.ratingCount,
-        rating: values.rating,
-      };
-
-      onUpdate(video);
-    }
 
     function handleRating(i) {
       let ratingAverage = ((Number(video.ratingCount) + i) / (Number(video.rating) + 1)).toFixed(1);
@@ -184,6 +155,13 @@ export const Video = createVisualComponent({
       );
     }
 
+    function renderUpdate() {
+      return (
+        <UU5.Bricks.Button onClick={onUpdate} bgStyle="transparent" colorSchema="blue">
+          <UU5.Bricks.Icon icon="mdi-pencil" />
+        </UU5.Bricks.Button>
+      );
+    }
     function renderRating() {
       if (screenSize === "xs") {
         return null;
@@ -254,17 +232,24 @@ export const Video = createVisualComponent({
         );
       }
 
-      if (video.videoUrl.includes(".mp4") || video.videoUrl.includes(".ogg")) {
-        return (
+      if (video.videoUrl.includes(".mp4") || video.videoUrl.includes(".ogg") || video.videoUrl.includes(".mp3")) {
+        if (video.videoUrl.includes(".mp3") ) {
+          return (
+            <UU5.Bricks.Div className={CLASS_NAMES.vimeo()}>
+              <UU5.Bricks.Audio src={video.videoUrl} poster={"/assets/logo.png"} className={CLASS_NAMES.vimeoframe()} autoPlay={false} />
+            </UU5.Bricks.Div>
+          );
+        } else { return (
           <UU5.Bricks.Div className={CLASS_NAMES.vimeo()}>
-            <UU5.Bricks.Video src={video.videoUrl} poster={"/assets/logo.png"} autoPlay={false} />
+            <UU5.Bricks.Video src={video.videoUrl} poster={"/assets/logo.png"} className={CLASS_NAMES.vimeoframe()} autoPlay={false} />
           </UU5.Bricks.Div>
         );
+        }
       } else {
         return (
-          <UU5.Bricks.Div className={CLASS_NAMES.video()}>
+          <UU5.Bricks.Div className={CLASS_NAMES.vimeo()}>
             <UU5.Bricks.Link href={video.videoUrl} target="_blank">
-              <UU5.Bricks.Image src={"/assets/novideo.png"} className={CLASS_NAMES.novideo()} />
+              <UU5.Bricks.Image src={"/assets/novideo.png"} className={CLASS_NAMES.vimeoframe()} />
             </UU5.Bricks.Link>
           </UU5.Bricks.Div>
         );
@@ -278,13 +263,7 @@ export const Video = createVisualComponent({
         </UU5.Bricks.Button>
       );
     }
-    function renderUpdate() {
-      return (
-        <UU5.Bricks.Button onClick={handleUpdate} bgStyle="transparent" colorSchema="blue">
-          <UU5.Bricks.Icon icon="mdi-pencil" />
-        </UU5.Bricks.Button>
-      );
-    }
+
 
     //@@viewOff:interface
 
