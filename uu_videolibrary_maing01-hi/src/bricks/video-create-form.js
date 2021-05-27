@@ -137,7 +137,7 @@ export const VideoCreateForm = createVisualComponent({
             </UU5.Forms.Select>
               {renderAuthorName()}
               {renderAuthorSurname()}
-            <UU5.Forms.TextArea inputAttrs={{ maxLength: 400 }} name="description" label={description} required />
+            <UU5.Forms.TextArea inputAttrs={{ maxLength: 500 }} name="description" label={description} required />
             <UU5.Forms.Controls />
           </UU5.Forms.Form>
         </UU5.Bricks.Card>
