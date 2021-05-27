@@ -13,9 +13,9 @@ let Calls = {
     return response.data;
   },
 
-  listVideos() {
+  listVideos(dtoIn) {
     let commandUri = Calls.getCommandUri("video/list");
-    return Calls.call("get", commandUri, {});
+    return Calls.call("get", commandUri, dtoIn);
   },
   createVideo(dtoIn) {
     let commandUri = Calls.getCommandUri("video/create");
@@ -23,7 +23,7 @@ let Calls = {
   },
   updateVideo(dtoIn) {
     let commandUri = Calls.getCommandUri("video/update");
-    return Calls.call("post", commandUri, dtoIn);
+    return Calls.call("put", commandUri, dtoIn);
   },
   deleteVideo(dtoIn) {
     let commandUri = Calls.getCommandUri(`video/delete`);
