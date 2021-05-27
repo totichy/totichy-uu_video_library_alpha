@@ -292,9 +292,6 @@ export const Video = createVisualComponent({
     if (!video) {
       return null;
     }
-    if (video.videoUrl.indexOf("https://") === -1) {
-      return null;
-    }
 
     return (
       <UU5.Bricks.Column colWidth="xs-12 m-6 l-4">
