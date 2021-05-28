@@ -47,5 +47,9 @@ export const Form = {
     cs: "Přidat kategorii",
     en: "Add Category",
   },
+  searchCgi: {
+    cs: "Hledat video",
+    en: "Search video",
+  },
 };
 export default Form;

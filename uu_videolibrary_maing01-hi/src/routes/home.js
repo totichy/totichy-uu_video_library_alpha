@@ -1,6 +1,7 @@
 //@@viewOn:imports
 import "uu5g04-bricks";
-import { createVisualComponent, useRef, useLsi, useDataList } from "uu5g04-hooks";
+import { createVisualComponent, useRef, useState, useLsi, useDataList } from "uu5g04-hooks";
+import { BrowserRouter as Router, useHistory } from 'react-router-dom';
 import "uu_plus4u5g01-bricks";
 import UU5 from "uu5g04";
 import Uu5Tiles from "uu5tilesg02";
@@ -27,7 +28,6 @@ export const Home = createVisualComponent({
   //@@viewOn:propTypes
 
   //@@viewOff:propTypes
-
   //@@viewOn:defaultProps
 
   //@@viewOff:defaultProps
@@ -67,6 +67,16 @@ export const Home = createVisualComponent({
       return urlParams.get("category");
     }
 
+    const { search } = window.location;
+    const query = new URLSearchParams(search).get('s');
+    const [searchQuery, setSearchQuery] = useState(query || '');
+
+    const history = useHistory();
+    const onSubmitt = e => {
+        history.push(`?s=${searchQuery}`)
+        e.preventDefault()
+    };
+
     const categoryListResult = useDataList({
       handlerMap: {
         load: Calls.listCategory,
@@ -82,6 +92,18 @@ export const Home = createVisualComponent({
     }
 
     const dada = categoryMap[categorySelection(window.location.search)];
+
+    const filterPosts = (videos, searchQ) => {
+      if (!searchQ) {
+          return videos;
+      }
+  
+      return videos.filter((video) => {
+        const postName = video.data.title.toLowerCase();
+        const postDesc = video.data.description.toLowerCase();
+          return (postName.includes(searchQuery.toLowerCase()) || postDesc.includes(searchQuery.toLowerCase()));
+      });
+  };
 
   
     //@@viewOn:private
@@ -178,10 +200,13 @@ export const Home = createVisualComponent({
       VideoHeader = SelectedVideoListHeader + ": " + dada;
     }
 
+
+
     function renderReady(videos) {
     
 
-      var videox;
+      let videox;
+
       if (categorySelection(window.location.search) === null) {
         videox = videos;
       } else {
@@ -192,9 +217,19 @@ export const Home = createVisualComponent({
           );
         });
       }
+
+      if (searchQuery && searchQuery.length >= 3) {
+        videox = filterPosts(videox, searchQuery);
+       
+      }
+
+
+
+
       return (
-        <>
-          <VideoCreate onCreate={handleCreateVideo} />
+        <Router>
+          <VideoCreate onCreate={handleCreateVideo} searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery} onSubmit={onSubmitt} />
           <UU5.Bricks.Section>
             <div>
               <UU5.Bricks.Container>
@@ -211,7 +246,7 @@ export const Home = createVisualComponent({
               </UU5.Bricks.Container>
             </div>
           </UU5.Bricks.Section>
-        </>
+        </Router>
       );
     }
 

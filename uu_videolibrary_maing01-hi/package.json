@@ -7,6 +7,7 @@
   "namespace": "UuVideolibrary",
   "spec": "uu5-app; uu_appg01_devkit@4.1.1",
   "dependencies": {
+    "react-router-dom": "^5.2.0",
     "systemjs": "0.19.47",
     "uu_contentkitg01": "^2.0.0",
     "uu_plus4u5g01": "^4.0.0",
