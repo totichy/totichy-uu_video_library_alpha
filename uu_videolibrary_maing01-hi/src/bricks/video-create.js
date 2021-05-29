@@ -59,18 +59,20 @@ export const VideoCreate = createComponent({
     searchQuery: UU5.PropTypes.any,
     onCreate: UU5.PropTypes.func,
     setSearchQuery: UU5.PropTypes.func,
+    categoryQuery: UU5.PropTypes.string,
   },
   //@@viewOff:propTypes
 
   //@@viewOn:defaultProps
   defaultProps: {
+    categoryQuery: null,
     searchQuery: null,
     setSearchQuery: () => {},
     onCreate: () => {},
   },
   //@@viewOff:defaultProps
 
-  render({ onCreate, searchQuery, setSearchQuery }) {
+  render({ onCreate, searchQuery, setSearchQuery, categoryQuery }) {
     const addBtn = Form.addButtonCgi || {};
     let addButton = useLsi(addBtn);
 
@@ -88,12 +90,18 @@ export const VideoCreate = createComponent({
     function handleFormChange() {
 
     }
+
+    
     //@@viewOn:hooks
     const [mode, setMode] = useState(Mode.BUTTON);
     //@@viewOff:hooks
     const history = useHistory();
     const onSubmitt = e => {
+      if (categoryQuery) {
+        history.push(`?category=${categoryQuery}&s=${searchQuery}`)
+      } else {
         history.push(`?s=${searchQuery}`)
+      }
         e.preventDefault()
     };
     //@@viewOn:private

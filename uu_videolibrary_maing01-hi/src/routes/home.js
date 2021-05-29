@@ -1,7 +1,7 @@
 //@@viewOn:imports
 import "uu5g04-bricks";
 import { createVisualComponent, useRef, useState, useLsi, useDataList } from "uu5g04-hooks";
-import { BrowserRouter as Router, useHistory } from 'react-router-dom';
+import { BrowserRouter as Router } from "react-router-dom";
 import "uu_plus4u5g01-bricks";
 import UU5 from "uu5g04";
 import Uu5Tiles from "uu5tilesg02";
@@ -19,7 +19,6 @@ const STATICS = {
   displayName: Config.TAG + "Home",
   //@@viewOff:statics
 };
-
 
 export const Home = createVisualComponent({
   ...STATICS,
@@ -58,11 +57,11 @@ export const Home = createVisualComponent({
     let errorCreated = useLsi(createError);
     let serverErrorData = useLsi(errorServerData);
     let VideoHeader = VideoListHeader;
-    
+
     const errorTtl = Errors.titleError || {};
-    let headerError =  useLsi(errorTtl);
+    let headerError = useLsi(errorTtl);
     const errorDn = Errors.titleDone || {};
-    let headerDone =  useLsi(errorDn);
+    let headerDone = useLsi(errorDn);
 
     function categorySelection(queryString) {
       let urlParams = new URLSearchParams(queryString);
@@ -70,14 +69,8 @@ export const Home = createVisualComponent({
     }
 
     const { search } = window.location;
-    const query = new URLSearchParams(search).get('s');
-    const [searchQuery, setSearchQuery] = useState(query || '');
-
-    const history = useHistory();
-    const onSubmitt = e => {
-        history.push(`?s=${searchQuery}`)
-        e.preventDefault()
-    };
+    const query = new URLSearchParams(search).get("s");
+    const [searchQuery, setSearchQuery] = useState(query || "");
 
     const categoryListResult = useDataList({
       handlerMap: {
@@ -97,17 +90,16 @@ export const Home = createVisualComponent({
 
     const filterPosts = (videos, searchQ) => {
       if (!searchQ) {
-          return videos;
+        return videos;
       }
-  
+
       return videos.filter((video) => {
         const postName = video.data.title.toLowerCase();
         const postDesc = video.data.description.toLowerCase();
-          return (postName.includes(searchQuery.toLowerCase()) || postDesc.includes(searchQuery.toLowerCase()));
+        return postName.includes(searchQuery.toLowerCase()) || postDesc.includes(searchQuery.toLowerCase());
       });
-  };
+    };
 
-  
     //@@viewOn:private
     function showError(content) {
       UU5.Environment.getPage().getAlertBus().addAlert({
@@ -131,8 +123,6 @@ export const Home = createVisualComponent({
 
     async function handleCreateVideo(video) {
       try {
-
-        
         await createVideoRef.current(video);
         showSuccess(`${videoWithTitle} ${video.title} ${wasCreatedC}`);
       } catch (e) {
@@ -202,12 +192,7 @@ export const Home = createVisualComponent({
       VideoHeader = SelectedVideoListHeader + ": " + dada;
     }
 
-
-
-
     function renderReady(videos) {
-    
-
       let videox;
 
       if (categorySelection(window.location.search) === null) {
@@ -223,16 +208,18 @@ export const Home = createVisualComponent({
 
       if (searchQuery && searchQuery.length >= 3) {
         videox = filterPosts(videox, searchQuery);
-        VideoHeader = VideoListHeader + " " + reusltTitle + " \"" + searchQuery + "\"";
+        VideoHeader = VideoListHeader + " " + reusltTitle + ' "' + searchQuery + '"';
+        
+        if (dada != null) {
+          VideoHeader = SelectedVideoListHeader + ": " + dada + " " + reusltTitle + ' "' + searchQuery + '"';
+        }
       }
 
-
-
-
       return (
-        <Router>
-          <VideoCreate onCreate={handleCreateVideo} searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery} onSubmit={onSubmitt} />
+        <div>
+          <Router>
+            <VideoCreate onCreate={handleCreateVideo} searchQuery={searchQuery} setSearchQuery={setSearchQuery} categoryQuery={categorySelection(window.location.search)} />
+          </Router>
           <UU5.Bricks.Section>
             <div>
               <UU5.Bricks.Container>
@@ -249,7 +236,7 @@ export const Home = createVisualComponent({
               </UU5.Bricks.Container>
             </div>
           </UU5.Bricks.Section>
-        </Router>
+        </div>
       );
     }
 
