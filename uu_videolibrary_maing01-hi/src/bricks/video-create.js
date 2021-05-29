@@ -66,7 +66,7 @@ export const VideoCreate = createComponent({
   //@@viewOn:defaultProps
   defaultProps: {
     categoryQuery: null,
-    searchQuery: null,
+    searchQuery: "",
     setSearchQuery: () => {},
     onCreate: () => {},
   },
