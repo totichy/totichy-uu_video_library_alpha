@@ -202,9 +202,6 @@ export const Home = createVisualComponent({
       VideoHeader = SelectedVideoListHeader + ": " + dada;
     }
 
-    if (searchQuery != "") {
-      VideoHeader = VideoListHeader + " " + reusltTitle + " \"" + searchQuery + "\"";
-    }
 
 
 
@@ -226,7 +223,7 @@ export const Home = createVisualComponent({
 
       if (searchQuery && searchQuery.length >= 3) {
         videox = filterPosts(videox, searchQuery);
-       
+        VideoHeader = VideoListHeader + " " + reusltTitle + " \"" + searchQuery + "\"";
       }
 
 
