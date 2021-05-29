@@ -203,7 +203,7 @@ export const Home = createVisualComponent({
     }
 
     if (searchQuery != "") {
-      VideoHeader = VideoListHeader + " " + reusltTitle + " " + searchQuery;
+      VideoHeader = VideoListHeader + " " + reusltTitle + " \"" + searchQuery + "\"";
     }
 
 
