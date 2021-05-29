@@ -47,7 +47,9 @@ export const Home = createVisualComponent({
     const errorServerData = VideoLsi.errorServer || {};
     const AllVideos = VideoLsi.AllVideos || {};
     const SelectedVideos = VideoLsi.SelectedVideos || {};
+    const forTitle = VideoLsi.forTitle || {};
 
+    let reusltTitle = useLsi(forTitle);
     let VideoListHeader = useLsi(AllVideos);
     let SelectedVideoListHeader = useLsi(SelectedVideos);
     let videoWithTitle = useLsi(delVideoText);
@@ -198,6 +200,10 @@ export const Home = createVisualComponent({
 
     if (dada != null) {
       VideoHeader = SelectedVideoListHeader + ": " + dada;
+    }
+
+    if (searchQuery != "") {
+      VideoHeader = VideoListHeader + " " + reusltTitle + " " + searchQuery;
     }
 
 

@@ -39,5 +39,9 @@ export const VideoLsi = {
     cs: "  počet hlasů: ",
     en: " votes: ",
   },
+  forTitle: {
+    cs: "pro",
+    en: "for",
+  },
 };
 export default VideoLsi;
