@@ -12,6 +12,7 @@ import VideoCreate from "../bricks/video-create";
 import VideoLsi from "../config/video";
 import Calls from "../calls";
 import Errors from "../config/errors";
+import VideoUpdateForm from "../bricks/video-update-form";
 //@@viewOff:imports
 
 const STATICS = {
@@ -20,6 +21,20 @@ const STATICS = {
   //@@viewOff:statics
 };
 
+const list = {
+  code: "1621296930029",
+  authorName: "Patrik",
+  authorSurname: "Sekerka",
+  title: "UU5 - Responsivity",
+  videoUrl: "https://vimeo.com/540126577",
+  description:
+    "In this lesson, you will learn to adjust rendered content for different types of devices such as mobiles, tablets or laptops.",
+  category: ["o1n"],
+  visible: true,
+  averageRating: 3.5,
+  ratingCount: 39,
+  rating: 11,
+};
 export const Home = createVisualComponent({
   ...STATICS,
 
@@ -32,6 +47,11 @@ export const Home = createVisualComponent({
   //@@viewOff:defaultProps
 
   render(props) {
+    const { search } = window.location;
+    const query = new URLSearchParams(search).get("s");
+    const [searchQuery, setSearchQuery] = useState(query || "");
+    const [selectedVideo, setSelectedVideo] = useState(null);
+    const [selectedVideoShow, setSelectedVideoShow] = useState(false);
     //@@viewOn:hook
     const createVideoRef = useRef();
     const deleteVideoRef = useRef();
@@ -42,7 +62,9 @@ export const Home = createVisualComponent({
     const delVideoText = VideoLsi.delVideo || {};
     const wasDeleted = VideoLsi.wasDeleted || {};
     const wasCreated = VideoLsi.wasCreated || {};
+    const wasUpdated = VideoLsi.wasUpdated || {};
     const createError = VideoLsi.errorCreate || {};
+    const updateError = VideoLsi.errorVideoUpdate || {};
     const errorServerData = VideoLsi.errorServer || {};
     const AllVideos = VideoLsi.AllVideos || {};
     const SelectedVideos = VideoLsi.SelectedVideos || {};
@@ -54,7 +76,9 @@ export const Home = createVisualComponent({
     let videoWithTitle = useLsi(delVideoText);
     let wasDeletedC = useLsi(wasDeleted);
     let wasCreatedC = useLsi(wasCreated);
+    let wasUpdatedC = useLsi(wasUpdated);
     let errorCreated = useLsi(createError);
+    let errorUpdated = useLsi(updateError);
     let serverErrorData = useLsi(errorServerData);
     let VideoHeader = VideoListHeader;
 
@@ -67,10 +91,6 @@ export const Home = createVisualComponent({
       let urlParams = new URLSearchParams(queryString);
       return urlParams.get("category");
     }
-
-    const { search } = window.location;
-    const query = new URLSearchParams(search).get("s");
-    const [searchQuery, setSearchQuery] = useState(query || "");
 
     const categoryListResult = useDataList({
       handlerMap: {
@@ -138,19 +158,33 @@ export const Home = createVisualComponent({
       }
     }
 
+    function handleCancel() {
+      setSelectedVideo(null);
+      setSelectedVideoShow(false);
+      setSelectedVideo({});
+    }
+
+    function handleUpdateVideo2(video) {
+      setSelectedVideo({});
+      setSelectedVideo(video);
+      setSelectedVideoShow(true);
+    }
+
     async function handleUpdateVideo(video) {
       try {
         await updateVideoRef.current(video);
-        showSuccess(`${videoWithTitle} ${video.title} ${wasCreatedC}`);
+        showSuccess(`${videoWithTitle} ${video.title} ${wasUpdatedC}`);
+        setSelectedVideo({});
+        setSelectedVideoShow(false);
       } catch (e) {
         if (e.response) {
           // client received an error response (5xx, 4xx)
           showError(`${e.response.data.message}`);
         } else if (e.request) {
           // client never received a response, or request never left
-          showError(errorCreated);
+          showError(errorUpdated);
         } else {
-          showError(errorCreated);
+          showError(errorUpdated);
         }
       }
     }
@@ -214,9 +248,20 @@ export const Home = createVisualComponent({
           VideoHeader = SelectedVideoListHeader + ": " + dada + " " + reusltTitle + ' "' + searchQuery + '"';
         }
       }
-
+      const attrs = UU5.Common.VisualComponent.getAttrs(props);
       return (
         <div>
+          <div {...attrs}>
+           <VideoUpdateForm
+          setSelectedVideo={setSelectedVideo}
+          onCancel={handleCancel}
+          onUpdateVideo={handleUpdateVideo}
+          selectedVideoShow={selectedVideoShow}
+          selectedVideo={selectedVideo}
+          selectedVideoShow={selectedVideoShow}
+        />
+        </div>
+        
           <Router>
             <VideoCreate
               onCreate={handleCreateVideo}
@@ -235,7 +280,7 @@ export const Home = createVisualComponent({
                 <VideoList
                   videos={videox}
                   onDelete={handleDeleteVideo}
-                  onUpdate={handleUpdateVideo}
+                  onUpdate={handleUpdateVideo2}
                   onRating={handleRatingVideo}
                 />
               </UU5.Bricks.Container>

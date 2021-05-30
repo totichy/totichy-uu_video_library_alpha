@@ -23,7 +23,7 @@ let Calls = {
   },
   updateVideo(dtoIn) {
     let commandUri = Calls.getCommandUri("video/update");
-    return Calls.call("put", commandUri, dtoIn);
+    return Calls.call("post", commandUri, dtoIn);
   },
   deleteVideo(dtoIn) {
     let commandUri = Calls.getCommandUri(`video/delete`);

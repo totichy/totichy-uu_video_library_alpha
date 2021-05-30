@@ -27,6 +27,10 @@ export const VideoLsi = {
     cs: "Nelze vytvořit videozáznam.",
     en: "Unable to create video record.",
   },
+  errorVideoUpdate: {
+    cs: "Nelze upravit videozáznam.",
+    en: "Unable to update video record.",
+  },
   loading: {
     cs: "Načítám...",
     en: "Loading...",
@@ -34,6 +38,10 @@ export const VideoLsi = {
   wasCreated: {
     cs: " bylo vytvořeno.",
     en: " was created.",
+  },
+  wasUpdated: {
+    cs: " bylo upraveno.",
+    en: " was updated.",
   },
   vote: {
     cs: "  počet hlasů: ",

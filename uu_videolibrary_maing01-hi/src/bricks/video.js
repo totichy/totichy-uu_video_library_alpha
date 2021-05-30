@@ -129,6 +129,10 @@ export const Video = createVisualComponent({
       onDelete(video);
     }
 
+    function handleUpdate() {
+      onUpdate(video);
+    }
+
     function handleRating(i) {
       let ratingAverage = ((Number(video.ratingCount) + i) / (Number(video.rating) + 1)).toFixed(1);
       handleChange(ratingAverage);
@@ -156,7 +160,7 @@ export const Video = createVisualComponent({
 
     function renderUpdate() {
       return (
-        <UU5.Bricks.Button onClick={onUpdate} bgStyle="transparent" colorSchema="blue">
+        <UU5.Bricks.Button onClick={handleUpdate} bgStyle="transparent" colorSchema="blue">
           <UU5.Bricks.Icon icon="mdi-pencil" />
         </UU5.Bricks.Button>
       );
