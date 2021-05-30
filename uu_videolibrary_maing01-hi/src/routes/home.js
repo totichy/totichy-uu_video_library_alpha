@@ -209,7 +209,7 @@ export const Home = createVisualComponent({
       if (searchQuery && searchQuery.length >= 3) {
         videox = filterPosts(videox, searchQuery);
         VideoHeader = VideoListHeader + " " + reusltTitle + ' "' + searchQuery + '"';
-        
+
         if (dada != null) {
           VideoHeader = SelectedVideoListHeader + ": " + dada + " " + reusltTitle + ' "' + searchQuery + '"';
         }
@@ -218,7 +218,12 @@ export const Home = createVisualComponent({
       return (
         <div>
           <Router>
-            <VideoCreate onCreate={handleCreateVideo} searchQuery={searchQuery} setSearchQuery={setSearchQuery} categoryQuery={categorySelection(window.location.search)} />
+            <VideoCreate
+              onCreate={handleCreateVideo}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              categoryQuery={categorySelection(window.location.search)}
+            />
           </Router>
           <UU5.Bricks.Section>
             <div>

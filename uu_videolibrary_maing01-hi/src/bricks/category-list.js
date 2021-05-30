@@ -57,7 +57,7 @@ export const CategoryList = createVisualComponent({
       <div>
         <UU5.Bricks.Container>
           <UU5.Bricks.Header level={3} content={CatetegoryListHeader} underline={true} />
-          {categories.map((category,index) => {
+          {categories.map((category, index) => {
             return (
               <UU5.Bricks.Div key={index}>
                 <Category category={category.data} onDelete={onDelete} />

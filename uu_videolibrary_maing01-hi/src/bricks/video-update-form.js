@@ -44,22 +44,21 @@ export const VideoUpdateForm = createVisualComponent({
   //@@viewOff:defaultProps
 
   render({ video, onSubmit, onCancel }) {
- //@@viewOn:private
- function validateText(opt) {
-  let result = { feedback: "initial", value: opt.value };
-  // when there is no event, validation comes from "isValid" method
-  if (opt.event === undefined) {
-    // text is empty, check file
-    if (!opt.value) {
-      result.feedback = "error";
-      result.message = "error";
-      opt.component.setFeedback(result.feedback, result.message);
+    //@@viewOn:private
+    function validateText(opt) {
+      let result = { feedback: "initial", value: opt.value };
+      // when there is no event, validation comes from "isValid" method
+      if (opt.event === undefined) {
+        // text is empty, check file
+        if (!opt.value) {
+          result.feedback = "error";
+          result.message = "error";
+          opt.component.setFeedback(result.feedback, result.message);
+        }
+      }
+      return result;
     }
-  }
-  return result;
-}
-//@@viewOff:private
-
+    //@@viewOff:private
 
     //@@viewOn:interface
     const categoryResult = useDataList({
@@ -74,31 +73,30 @@ export const VideoUpdateForm = createVisualComponent({
       categoryResult.data.forEach((category) => (categoryMap[category.data.categoryId] = category.data.categoryName));
     }
     let myDaata = Object.keys(categoryMap).map((key) => ({ categoryId: key, categoryName: categoryMap[key] }));
-        //@@viewOff:interface
+    //@@viewOff:interface
 
-        const titleCg = Form.titleCgi || {};
-        const descCg = Form.descriptionCgi || {};
-        const urlCg = Form.urlCgi || {};
-        const autorNameCg = Form.autorNameCgi || {};
-        const autorSurnameCg = Form.autorLastNameCgi || {};
-        const addVideoCg = Form.updateVideo || {};
-        const categoryCg = Form.category || {};
-        let titles = useLsi(titleCg);
-        let description = useLsi(descCg);
-        let videoUrl = useLsi(urlCg);
-        let autorName = useLsi(autorNameCg);
-        let autorSurname = useLsi(autorSurnameCg);
-        let headerAdd = useLsi(addVideoCg);
-        let categoriesCg = useLsi(categoryCg);
+    const titleCg = Form.titleCgi || {};
+    const descCg = Form.descriptionCgi || {};
+    const urlCg = Form.urlCgi || {};
+    const autorNameCg = Form.autorNameCgi || {};
+    const autorSurnameCg = Form.autorLastNameCgi || {};
+    const addVideoCg = Form.updateVideo || {};
+    const categoryCg = Form.category || {};
+    let titles = useLsi(titleCg);
+    let description = useLsi(descCg);
+    let videoUrl = useLsi(urlCg);
+    let autorName = useLsi(autorNameCg);
+    let autorSurname = useLsi(autorSurnameCg);
+    let headerAdd = useLsi(addVideoCg);
+    let categoriesCg = useLsi(categoryCg);
 
-
-        function renderCategories() {
-          return myDaata.map((category) => (
-            <UU5.Forms.Select.Option value={category.categoryId} key={category.categoryId}>
-              {category.categoryName}
-            </UU5.Forms.Select.Option>
-          ));
-        }
+    function renderCategories() {
+      return myDaata.map((category) => (
+        <UU5.Forms.Select.Option value={category.categoryId} key={category.categoryId}>
+          {category.categoryName}
+        </UU5.Forms.Select.Option>
+      ));
+    }
 
     //@@viewOn:render
 
@@ -106,45 +104,59 @@ export const VideoUpdateForm = createVisualComponent({
       return null;
     }
 
-    return  (
+    return (
       <UU5.Bricks.Container>
         <UU5.Bricks.Header level={5} content={headerAdd} underline={true} />
         <UU5.Bricks.Card className="padding-s" colorSchema="indigo">
-          <UU5.Forms.Form onSave={onSubmit}  onCancel={onCancel} labelColWidth="xs-12 m-3" inputColWidth="xs-12 m-9">
-            <UU5.Forms.Text inputAttrs={{ maxLength: 255 }} name="title" value={video.title} controlled={false} label={titles} required />
-            <UU5.Forms.Text inputAttrs={{ maxLength: 255 }} name="videoUrl" label={videoUrl} controlled={false} value={video.videoUrl} required />
+          <UU5.Forms.Form onSave={onSubmit} onCancel={onCancel} labelColWidth="xs-12 m-3" inputColWidth="xs-12 m-9">
+            <UU5.Forms.Text
+              inputAttrs={{ maxLength: 255 }}
+              name="title"
+              value={video.title}
+              controlled={false}
+              label={titles}
+              required
+            />
+            <UU5.Forms.Text
+              inputAttrs={{ maxLength: 255 }}
+              name="videoUrl"
+              label={videoUrl}
+              controlled={false}
+              value={video.videoUrl}
+              required
+            />
             <UU5.Forms.Select label={categoriesCg} name="category" value={video.category} multiple required>
               {renderCategories()}
             </UU5.Forms.Select>
-            <UU5.Forms.Text 
-              inputAttrs={{ maxLength: 255 }} 
-              name="authorName" 
-              label={autorName} 
-              value={video.authorName} 
+            <UU5.Forms.Text
+              inputAttrs={{ maxLength: 255 }}
+              name="authorName"
+              label={autorName}
+              value={video.authorName}
               controlled={false}
-              required 
-              />
-              <UU5.Forms.Text 
-              inputAttrs={{ maxLength: 255 }} 
-              name="authorSurname" 
-              label={autorSurname} 
-              value={video.authorSurname} 
+              required
+            />
+            <UU5.Forms.Text
+              inputAttrs={{ maxLength: 255 }}
+              name="authorSurname"
+              label={autorSurname}
+              value={video.authorSurname}
               controlled={false}
-              required 
-              />
-            <UU5.Forms.TextArea 
-            inputAttrs={{ maxLength: 500 }} 
-            name="description" 
-            label={description} 
-            onValidate={validateText}
-            controlled={false}
-            value={video.description}
-            required />
+              required
+            />
+            <UU5.Forms.TextArea
+              inputAttrs={{ maxLength: 500 }}
+              name="description"
+              label={description}
+              onValidate={validateText}
+              controlled={false}
+              value={video.description}
+              required
+            />
             <UU5.Forms.Controls />
           </UU5.Forms.Form>
         </UU5.Bricks.Card>
       </UU5.Bricks.Container>
-
     );
     //@@viewOff:render
   },

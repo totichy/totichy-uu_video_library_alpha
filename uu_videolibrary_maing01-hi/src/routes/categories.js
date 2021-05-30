@@ -47,9 +47,9 @@ export const Categories = createVisualComponent({
     let serverErrorData = useLsi(errorServerData);
 
     const errorTtl = Errors.titleError || {};
-    let headerError =  useLsi(errorTtl);
+    let headerError = useLsi(errorTtl);
     const errorDn = Errors.titleDone || {};
-    let headerDone =  useLsi(errorDn);
+    let headerDone = useLsi(errorDn);
     //@@viewOff:hook
 
     //@@viewOn:private

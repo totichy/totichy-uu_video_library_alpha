@@ -1,6 +1,6 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import { createComponent, useState, useLsi } from "uu5g04-hooks";
 import validator from "validator";
 import Config from "./config/config";
@@ -41,7 +41,7 @@ const CLASS_NAMES = {
   margin-right: -30px;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 `,
-searchSection: () => Config.Css.css`
+  searchSection: () => Config.Css.css`
   flex: 1;
   flex-direction: row;
   align: 'right';
@@ -87,22 +87,19 @@ export const VideoCreate = createComponent({
     const errorTtl = Errors.titleError || {};
     let headerError = useLsi(errorTtl);
 
-    function handleFormChange() {
+    function handleFormChange() {}
 
-    }
-
-    
     //@@viewOn:hooks
     const [mode, setMode] = useState(Mode.BUTTON);
     //@@viewOff:hooks
     const history = useHistory();
-    const onSubmitt = e => {
+    const onSubmitt = (e) => {
       if (categoryQuery) {
-        history.push(`?category=${categoryQuery}&s=${searchQuery}`)
+        history.push(`?category=${categoryQuery}&s=${searchQuery}`);
       } else {
-        history.push(`?s=${searchQuery}`)
+        history.push(`?s=${searchQuery}`);
       }
-        e.preventDefault()
+      e.preventDefault();
     };
     //@@viewOn:private
     function handleClick() {
@@ -192,21 +189,21 @@ export const VideoCreate = createComponent({
           <UU5.Bricks.Div className={CLASS_NAMES.addVideoUse()}>
             <UU5.Bricks.Button onClick={handleClick} content={addButton} colorSchema="blue" />
 
-          <UU5.Bricks.Div  className={CLASS_NAMES.searchSection()}>
-            <form action="/" method="get" autoComplete="off" onSubmit={onSubmitt}>
-              <input
-                className={CLASS_NAMES.input()}
-                value={searchQuery}
-                onInput={(e) => setSearchQuery(e.target.value)}
-                type="text"
-                id="header-search"
-                placeholder={searchPlaceHolder}
-                onChange={handleFormChange} 
-                name="s"
-              />
+            <UU5.Bricks.Div className={CLASS_NAMES.searchSection()}>
+              <form action="/" method="get" autoComplete="off" onSubmit={onSubmitt}>
+                <input
+                  className={CLASS_NAMES.input()}
+                  value={searchQuery}
+                  onInput={(e) => setSearchQuery(e.target.value)}
+                  type="text"
+                  id="header-search"
+                  placeholder={searchPlaceHolder}
+                  onChange={handleFormChange}
+                  name="s"
+                />
                 <UU5.Bricks.Icon icon="mdi-magnify" className={CLASS_NAMES.magnifyc()} />
-            </form>
-          </UU5.Bricks.Div>
+              </form>
+            </UU5.Bricks.Div>
           </UU5.Bricks.Div>
         </>
       );

@@ -124,11 +124,10 @@ export const Video = createVisualComponent({
     //@@viewOff:hooks
 
     //@@viewOn:private
- 
+
     function handleDelete() {
       onDelete(video);
     }
-
 
     function handleRating(i) {
       let ratingAverage = ((Number(video.ratingCount) + i) / (Number(video.rating) + 1)).toFixed(1);
@@ -233,17 +232,28 @@ export const Video = createVisualComponent({
       }
 
       if (video.videoUrl.includes(".mp4") || video.videoUrl.includes(".ogg") || video.videoUrl.includes(".mp3")) {
-        if (video.videoUrl.includes(".mp3") ) {
+        if (video.videoUrl.includes(".mp3")) {
           return (
             <UU5.Bricks.Div className={CLASS_NAMES.vimeo()}>
-              <UU5.Bricks.Audio src={video.videoUrl} poster={"/assets/logo.png"} className={CLASS_NAMES.vimeoframe()} autoPlay={false} />
+              <UU5.Bricks.Audio
+                src={video.videoUrl}
+                poster={"/assets/logo.png"}
+                className={CLASS_NAMES.vimeoframe()}
+                autoPlay={false}
+              />
             </UU5.Bricks.Div>
           );
-        } else { return (
-          <UU5.Bricks.Div className={CLASS_NAMES.vimeo()}>
-            <UU5.Bricks.Video src={video.videoUrl} poster={"/assets/logo.png"} className={CLASS_NAMES.vimeoframe()} autoPlay={false} />
-          </UU5.Bricks.Div>
-        );
+        } else {
+          return (
+            <UU5.Bricks.Div className={CLASS_NAMES.vimeo()}>
+              <UU5.Bricks.Video
+                src={video.videoUrl}
+                poster={"/assets/logo.png"}
+                className={CLASS_NAMES.vimeoframe()}
+                autoPlay={false}
+              />
+            </UU5.Bricks.Div>
+          );
         }
       } else {
         return (
@@ -263,7 +273,6 @@ export const Video = createVisualComponent({
         </UU5.Bricks.Button>
       );
     }
-
 
     //@@viewOff:interface
 

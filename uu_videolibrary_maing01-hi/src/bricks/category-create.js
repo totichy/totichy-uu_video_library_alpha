@@ -46,10 +46,10 @@ export const CategoryCreate = createVisualComponent({
     let addButton = useLsi(addBtn);
 
     const shortNameCat = Errors.shortName || {};
-    let errorName =  useLsi(shortNameCat);
+    let errorName = useLsi(shortNameCat);
 
     const errorTtl = Errors.titleError || {};
-    let headerError =  useLsi(errorTtl);
+    let headerError = useLsi(errorTtl);
 
     //@@viewOn:hooks
     const [mode, setMode] = useState(Mode.BUTTON);
@@ -60,13 +60,11 @@ export const CategoryCreate = createVisualComponent({
       setMode(Mode.FORM);
     }
     function handleSave({ values }) {
-
       if (!values.categoryName) {
         return null;
       }
       if (values.categoryName.length < 2) {
-
-        return  UU5.Environment.getPage().getAlertBus().addAlert({
+        return UU5.Environment.getPage().getAlertBus().addAlert({
           content: errorName,
           colorSchema: "red",
           closeTimer: 3000,
