@@ -20,7 +20,7 @@ router.get("/get", async (req, res) => {
   await GetAbl(body, res);
 });
 
-router.put("/update", async (req, res) => {
+router.post("/update", async (req, res) => {
   const { body } = req;
   await UpdateAbl(body, res);
 });
