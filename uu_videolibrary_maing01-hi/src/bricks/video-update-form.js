@@ -180,64 +180,64 @@ export const VideoUpdateForm = createVisualComponent({
     selectedVideo = selectedVideo || {};
     return (
       <UU5.Bricks.Modal size="l" offsetTop={100} shown={true}>
-          <UU5.Bricks.Header level={5} content={headerAdd} underline={true} />
-          <UU5.Bricks.Card className="padding-s" colorSchema="indigo">
-            <UU5.Forms.Form onSave={onSave} onCancel={onCancel} labelColWidth="xs-12 m-3" inputColWidth="xs-12 m-9">
-              <UU5.Forms.Text
-                name="code"
-                label="Code"
-                required
-                value={selectedVideo && selectedVideo.code}
-                readOnly={true}
-              />
-              <UU5.Forms.Text
-                inputAttrs={{ maxLength: 255 }}
-                name="title"
-                value={selectedVideo && selectedVideo.title}
-                label={titles}
-                required
-              />
-              <UU5.Forms.Text
-                inputAttrs={{ maxLength: 255 }}
-                name="videoUrl"
-                label={videoUrl}
-                value={selectedVideo && selectedVideo.videoUrl}
-                required
-              />
-              <UU5.Forms.Select
-                label={categoriesCg}
-                name="category"
-                value={selectedVideo && selectedVideo.category}
-                multiple
-                required
-              >
-                {renderCategories()}
-              </UU5.Forms.Select>
-              <UU5.Forms.Text
-                inputAttrs={{ maxLength: 255 }}
-                name="authorName"
-                label={autorName}
-                value={selectedVideo && selectedVideo.authorName}
-                required
-              />
-              <UU5.Forms.Text
-                inputAttrs={{ maxLength: 255 }}
-                name="authorSurname"
-                label={autorSurname}
-                value={selectedVideo && selectedVideo.authorSurname}
-                required
-              />
-              <UU5.Forms.TextArea
-                inputAttrs={{ maxLength: 500 }}
-                name="description"
-                label={description}
-                onValidate={validateText}
-                value={selectedVideo && selectedVideo.description}
-                required
-              />
-              <UU5.Forms.Controls />
-            </UU5.Forms.Form>
-          </UU5.Bricks.Card>
+        <UU5.Bricks.Header level={5} content={headerAdd} underline={true} />
+        <UU5.Bricks.Card className="padding-s" colorSchema="indigo">
+          <UU5.Forms.Form onSave={onSave} onCancel={onCancel} labelColWidth="xs-12 m-3" inputColWidth="xs-12 m-9">
+            <UU5.Forms.Text
+              name="code"
+              label="Code"
+              required
+              value={selectedVideo && selectedVideo.code}
+              readOnly={true}
+            />
+            <UU5.Forms.Text
+              inputAttrs={{ maxLength: 255 }}
+              name="title"
+              value={selectedVideo && selectedVideo.title}
+              label={titles}
+              required
+            />
+            <UU5.Forms.Text
+              inputAttrs={{ maxLength: 255 }}
+              name="videoUrl"
+              label={videoUrl}
+              value={selectedVideo && selectedVideo.videoUrl}
+              required
+            />
+            <UU5.Forms.Select
+              label={categoriesCg}
+              name="category"
+              value={selectedVideo && selectedVideo.category}
+              multiple
+              required
+            >
+              {renderCategories()}
+            </UU5.Forms.Select>
+            <UU5.Forms.Text
+              inputAttrs={{ maxLength: 255 }}
+              name="authorName"
+              label={autorName}
+              value={selectedVideo && selectedVideo.authorName}
+              required
+            />
+            <UU5.Forms.Text
+              inputAttrs={{ maxLength: 255 }}
+              name="authorSurname"
+              label={autorSurname}
+              value={selectedVideo && selectedVideo.authorSurname}
+              required
+            />
+            <UU5.Forms.TextArea
+              inputAttrs={{ maxLength: 500 }}
+              name="description"
+              label={description}
+              onValidate={validateText}
+              value={selectedVideo && selectedVideo.description}
+              required
+            />
+            <UU5.Forms.Controls />
+          </UU5.Forms.Form>
+        </UU5.Bricks.Card>
       </UU5.Bricks.Modal>
     );
     //@@viewOff:render
