@@ -35,7 +35,7 @@ async function CreateAbl(req, res) {
     visible: req.visible,
     averageRating: req.averageRating,
     ratingCount: req.ratingCount,
-    rating: req.rating,
+    ratingTotal: req.ratingTotal,
   };
 
   try {
