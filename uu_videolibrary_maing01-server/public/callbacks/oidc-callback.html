@@ -12,13 +12,12 @@
     popupUsed = false;
   }
   if (popupUsed) {
-    opener.uuOidcCallbackFn(location.href + "", window, isIE && authCtx ? JSON.stringify(authCtx) : authCtx);
+	  opener.uuOidcCallbackFn(location.href + "", window, isIE && authCtx ? JSON.stringify(authCtx) : authCtx);
   } else if (frameElement && parent && parent.uuOidcCallbackFn) {
-    parent.uuOidcCallbackFn(location.href + "", window, isIE && authCtx ? JSON.stringify(authCtx) : authCtx);
+	  parent.uuOidcCallbackFn(location.href + "", window, isIE && authCtx ? JSON.stringify(authCtx) : authCtx);
   } else {
     var appUri = state ? state.appUri : null;
     if (appUri) {
-      sessionStorage.setItem("uu_app_oidc_auth_cb", "true");
       if (authCtx) {
         sessionStorage.setItem("uu_app_oidc_auth_ctx", JSON.stringify(authCtx));
       }
