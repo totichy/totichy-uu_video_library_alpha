@@ -41,6 +41,10 @@ let Calls = {
     let commandUri = Calls.getCommandUri("category/create");
     return Calls.call("post", commandUri, dtoIn);
   },
+  updateCategory(dtoIn) {
+    let commandUri = Calls.getCommandUri("category/update");
+    return Calls.call("post", commandUri, dtoIn);
+  },
   deleteCategory(dtoIn) {
     let commandUri = Calls.getCommandUri("category/delete");
     return Calls.call("post", commandUri, dtoIn);

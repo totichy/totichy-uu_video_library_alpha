@@ -65,13 +65,13 @@
     "authorSurname": "Sekerka",
     "title": "UU5 - stav komponenty, základy práce s hooks",
     "videoUrl": "https://vimeo.com/535784896",
-    "description": "\nBudeme se držet pravidla, že jakákoliv data, která svou změnou mají způsobit vizuální změnu, tak budou ukládána ve stavu komponenty. Data, která svou změnou nemají způsobit překreslení zde nebudou, abychom se vyhnuli nepotřebnému překreslování.",
+    "description": "Budeme se držet pravidla, že jakákoliv data, která svou změnou mají způsobit vizuální změnu, tak budou ukládána ve stavu komponenty. Data, která svou změnou nemají způsobit překreslení zde nebudou, abychom se vyhnuli nepotřebnému překreslování.",
     "category": [
       "k3s"
     ],
     "visible": true,
-    "averageRating": 0,
-    "ratingCount": 0,
-    "rating": 0
+    "averageRating": 2,
+    "ratingCount": 2,
+    "rating": 1
   }
 ]

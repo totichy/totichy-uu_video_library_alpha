@@ -120,7 +120,7 @@ export const VideoCreateForm = createVisualComponent({
     //@@viewOn:render
 
     return (
-      <UU5.Bricks.Container>
+      <>
         <UU5.Bricks.Header level={5} content={headerAdd} underline={true} />
         <UU5.Bricks.Card className="padding-s" colorSchema="indigo">
           <UU5.Forms.Form onSave={onSubmit} onCancel={onCancel} labelColWidth="xs-12 m-3" inputColWidth="xs-12 m-9">
@@ -135,7 +135,7 @@ export const VideoCreateForm = createVisualComponent({
             <UU5.Forms.Controls />
           </UU5.Forms.Form>
         </UU5.Bricks.Card>
-      </UU5.Bricks.Container>
+      </>
     );
     //@@viewOff:render
   },

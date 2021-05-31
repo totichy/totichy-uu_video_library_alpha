@@ -20,6 +20,7 @@ export const CategoryList = createVisualComponent({
   propTypes: {
     categories: UU5.PropTypes.array,
     onDelete: UU5.PropTypes.func,
+    onUpdate: UU5.PropTypes.func,
   },
   //@@viewOff:propTypes
 
@@ -27,10 +28,11 @@ export const CategoryList = createVisualComponent({
   defaultProps: {
     categories: [],
     onDelete: () => {},
+    onUpdate: () => {},
   },
   //@@viewOff:defaultProps
 
-  render({ categories, onDelete }) {
+  render({ categories, onDelete, onUpdate }) {
     //@@viewOn:private
     const noCategory = CategoryLsi.noCategory || {};
     const AllCategories = CategoryLsi.AllCategories || {};
@@ -46,10 +48,7 @@ export const CategoryList = createVisualComponent({
     if (categories.length === 0) {
       return (
         <div>
-          <UU5.Bricks.Container>
-            <UU5.Bricks.Header level={3} content={CatetegoryListHeader} underline={true} />
             <UU5.Common.Error content={noCategoryCgi} />
-          </UU5.Bricks.Container>
         </div>
       );
     }
@@ -60,7 +59,7 @@ export const CategoryList = createVisualComponent({
           {categories.map((category, index) => {
             return (
               <UU5.Bricks.Div key={index}>
-                <Category category={category.data} onDelete={onDelete} />
+                <Category category={category.data} onUpdate={onUpdate} onDelete={onDelete} />
               </UU5.Bricks.Div>
             );
           })}

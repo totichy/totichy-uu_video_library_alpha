@@ -193,6 +193,21 @@
         "imageUri": "",
         "uuEccReady": false,
         "template": "<UuVideolibrary.Bricks.VideoUpdateForm />"
+      },
+      {
+        "code": "UuVideolibrary.Bricks.CategoryUpdateForm",
+        "name": "CategoryUpdateForm",
+        "tagList": [
+          "UuVideolibrary",
+          "Bricks",
+          "CategoryUpdateForm"
+        ],
+        "docCode": "UuVideolibraryBricksCategoryUpdateForm",
+        "desc": "",
+        "icon": "",
+        "imageUri": "",
+        "uuEccReady": false,
+        "template": "<UuVideolibrary.Bricks.CategoryUpdateForm />"
       }
     ]
   },

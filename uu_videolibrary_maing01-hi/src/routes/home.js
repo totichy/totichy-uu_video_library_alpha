@@ -21,20 +21,6 @@ const STATICS = {
   //@@viewOff:statics
 };
 
-const list = {
-  code: "1621296930029",
-  authorName: "Patrik",
-  authorSurname: "Sekerka",
-  title: "UU5 - Responsivity",
-  videoUrl: "https://vimeo.com/540126577",
-  description:
-    "In this lesson, you will learn to adjust rendered content for different types of devices such as mobiles, tablets or laptops.",
-  category: ["o1n"],
-  visible: true,
-  averageRating: 3.5,
-  ratingCount: 39,
-  rating: 11,
-};
 export const Home = createVisualComponent({
   ...STATICS,
 
@@ -161,11 +147,9 @@ export const Home = createVisualComponent({
     function handleCancel() {
       setSelectedVideo(null);
       setSelectedVideoShow(false);
-      setSelectedVideo({});
     }
 
     function handleUpdateVideo2(video) {
-      setSelectedVideo({});
       setSelectedVideo(video);
       setSelectedVideoShow(true);
     }
@@ -174,7 +158,7 @@ export const Home = createVisualComponent({
       try {
         await updateVideoRef.current(video);
         showSuccess(`${videoWithTitle} ${video.title} ${wasUpdatedC}`);
-        setSelectedVideo({});
+        setSelectedVideo(null);
         setSelectedVideoShow(false);
       } catch (e) {
         if (e.response) {

@@ -180,7 +180,6 @@ export const VideoUpdateForm = createVisualComponent({
     selectedVideo = selectedVideo || {};
     return (
       <UU5.Bricks.Modal size="l" offsetTop={100} shown={true}>
-        <UU5.Bricks.Container>
           <UU5.Bricks.Header level={5} content={headerAdd} underline={true} />
           <UU5.Bricks.Card className="padding-s" colorSchema="indigo">
             <UU5.Forms.Form onSave={onSave} onCancel={onCancel} labelColWidth="xs-12 m-3" inputColWidth="xs-12 m-9">
@@ -239,7 +238,6 @@ export const VideoUpdateForm = createVisualComponent({
               <UU5.Forms.Controls />
             </UU5.Forms.Form>
           </UU5.Bricks.Card>
-        </UU5.Bricks.Container>
       </UU5.Bricks.Modal>
     );
     //@@viewOff:render

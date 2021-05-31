@@ -11,6 +11,10 @@ export const Form = {
     cs: "Přidat kategorii",
     en: "Add Category",
   },
+  updateCategory: {
+    cs: "Upravit kategorii",
+    en: "Update Category",
+  },
   titleCgi: {
     cs: "Název",
     en: "Title",

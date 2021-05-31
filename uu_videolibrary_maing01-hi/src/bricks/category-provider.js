@@ -28,6 +28,7 @@ export const CategoryProvider = createComponent({
         load: Calls.listCategory,
         createCategory: Calls.createCategory,
         deleteCategory: Calls.deleteCategory,
+        updateCategory: Calls.updateCategory,
       },
     });
 

@@ -42,6 +42,7 @@ export const Category = createVisualComponent({
       categoryName: UU5.PropTypes.string.isRequired,
     }),
     onDelete: UU5.PropTypes.func,
+    onUpdate: UU5.PropTypes.func,
   },
   //@@viewOff:propTypes
 
@@ -49,25 +50,20 @@ export const Category = createVisualComponent({
   defaultProps: {
     category: null,
     onDelete: () => {},
+    onUpdate: () => {},
   },
   //@@viewOff:defaultProps
 
-  render({ category, onDelete }) {
+  render({ category, onDelete, onUpdate }) {
     //@@viewOn:private
     function handleDelete() {
       onDelete(category);
     }
 
-    function renderHeader() {
-      return (
-        <UU5.Bricks.Div level={6} className={CLASS_NAMES.header()}>
-          <UU5.Bricks.Link href={"home/?category=" + category.categoryId} target="_self">
-            <UU5.Bricks.Icon icon="mdi-tag" /> {category.categoryName}
-          </UU5.Bricks.Link>
-          {renderDelete()}
-        </UU5.Bricks.Div>
-      );
+    function handleUpdate() {
+      onUpdate(category);
     }
+
     function renderDelete() {
       return (
         <UU5.Bricks.Button
@@ -80,6 +76,32 @@ export const Category = createVisualComponent({
         </UU5.Bricks.Button>
       );
     }
+
+    function renderUpdate() {
+      return (
+        <UU5.Bricks.Button
+          className={CLASS_NAMES.delet()}
+          onClick={handleUpdate}
+          bgStyle="transparent"
+          colorSchema="green"
+        >
+          <UU5.Bricks.Icon icon="mdi-pencil" />
+        </UU5.Bricks.Button>
+      );
+    }
+
+    function renderHeader() {
+      return (
+        <UU5.Bricks.Div level={6} className={CLASS_NAMES.header()}>
+          <UU5.Bricks.Link href={"home/?category=" + category.categoryId} target="_self">
+            <UU5.Bricks.Icon icon="mdi-tag" /> {category.categoryName}
+          </UU5.Bricks.Link>
+          {renderDelete()}
+          {renderUpdate()}
+        </UU5.Bricks.Div>
+      );
+    }
+
     //@@viewOn:interface
     //@@viewOff:interface
 

@@ -2,7 +2,6 @@
 //@@import UU5 from "uu5g04";
 import { createComponent, useDataList } from "uu5g04-hooks";
 import Config from "./config/config";
-//@@import VideoLsi from "../config/video";
 import Calls from "../calls";
 //@@viewOff:imports
 

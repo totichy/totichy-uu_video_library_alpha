@@ -15,6 +15,10 @@ export const ErrorsLsi = {
     cs: "Prosím Název nesmí být kratší než 3 znaky a delší než 100 znaků.",
     en: "Please Name cannot be shorter than 3 characters and longer than 100 characters.",
   },
+  validCategoryName: {
+    cs: "Prosím Název nesmí být kratší než 2 znaky.",
+    en: "Please Name cannot be shorter than 2 characters.",
+  },
   validDescription: {
     cs: "Prosím popis nesmí být kratší než 3 znaky a delší než 500 znaků.",
     en: "Please Description cannot be shorter than 3 characters and longer than 500 characters.",

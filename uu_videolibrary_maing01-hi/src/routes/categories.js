@@ -1,6 +1,6 @@
 //@@viewOn:imports
 import "uu5g04-bricks";
-import { createVisualComponent, useRef, useLsi } from "uu5g04-hooks";
+import { createVisualComponent, useRef, useState, useLsi } from "uu5g04-hooks";
 import "uu_plus4u5g01-bricks";
 import UU5 from "uu5g04";
 import Config from "./config/config.js";
@@ -9,6 +9,7 @@ import CategoryProvider from "../bricks/category-provider.js";
 import CategoryCreate from "../bricks/category-create.js";
 import CategoryLsi from "../config/category";
 import Errors from "../config/errors";
+import CategoryUpdateForm from "../bricks/category-update-form";
 //@@viewOff:imports
 
 const STATICS = {
@@ -33,6 +34,10 @@ export const Categories = createVisualComponent({
     //@@viewOn:hook
     const createCategoryRef = useRef();
     const deleteCategoryRef = useRef();
+    const updateCategoryRef = useRef();
+
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedCategoryShow, setSelectedCategoryShow] = useState(false);
 
     const delcategoryText = CategoryLsi.delCategory || {};
     const wasDeleted = CategoryLsi.wasDeleted || {};
@@ -106,6 +111,35 @@ export const Categories = createVisualComponent({
         }
       }
     }
+
+    function handleCancel() {
+      setSelectedCategory(null);
+      setSelectedCategoryShow(false);
+    }
+
+    function handleUpdateCategory(category) {
+      setSelectedCategory(null);
+      setSelectedCategoryShow(true);
+    }
+
+    async function handleCategoryUpdate(category) {
+      try {
+        await updateCategoryRef.current(Category);
+        showSuccess(`${videoWithTitle} ${video.title} ${wasUpdatedC}`);
+        setSelectedCategory(null);
+        setSelectedCategoryShow(false);
+      } catch (e) {
+        if (e.response) {
+          // client received an error response (5xx, 4xx)
+          showError(`${e.response.data.message}`);
+        } else if (e.request) {
+          // client never received a response, or request never left
+          showError(errorUpdated);
+        } else {
+          showError(errorUpdated);
+        }
+      }
+    }
     //@@viewOff:private
 
     //@@viewOn:interface
@@ -125,9 +159,18 @@ export const Categories = createVisualComponent({
     function renderReady(categories) {
       return (
         <>
+          <CategoryUpdateForm
+          setSelectedCategory={setSelectedCategory}
+          onCancel={handleCancel}
+          onUpdateCategory={handleCategoryUpdate}
+          selectedCategoryShow={selectedCategoryShow}
+          selectedCategory={selectedCategory}
+          selectedCategoryShow={selectedCategoryShow}
+        />
           <CategoryCreate onCreate={handleCreateCategory} />
           <UU5.Bricks.Section>
-            <CategoryList categories={categories} onDelete={handleDeleteCategory} />
+            <CategoryList categories={categories} onDelete={handleDeleteCategory} onUpdate={handleUpdateCategory}
+             />
           </UU5.Bricks.Section>
         </>
       );
@@ -142,6 +185,7 @@ export const Categories = createVisualComponent({
           {({ state, data, newData, pendingData, errorData, handlerMap }) => {
             createCategoryRef.current = handlerMap.createCategory;
             deleteCategoryRef.current = handlerMap.deleteCategory;
+            updateCategoryRef.current = handlerMap.updateCategory;
 
             switch (state) {
               case "pending":
