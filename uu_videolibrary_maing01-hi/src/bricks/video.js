@@ -151,16 +151,24 @@ export const Video = createVisualComponent({
             children={video.title}
             hidden={false}
             modalProps={{ size: "l" }}
-            colorSchema="green"
+            colorSchema="blue"
             component={videoDetailModal}
           />
         </UU5.Bricks.Div>
       );
     }
 
+    function renderDelete() {
+      return (
+        <UU5.Bricks.Button onClick={handleDelete} bgStyle="transparent" colorSchema="red">
+          <UU5.Bricks.Icon icon="mdi-delete" />
+        </UU5.Bricks.Button>
+      );
+    }
+
     function renderUpdate() {
       return (
-        <UU5.Bricks.Button onClick={handleUpdate} bgStyle="transparent" colorSchema="blue">
+        <UU5.Bricks.Button onClick={handleUpdate} bgStyle="transparent" colorSchema="green">
           <UU5.Bricks.Icon icon="mdi-pencil" />
         </UU5.Bricks.Button>
       );
@@ -268,14 +276,6 @@ export const Video = createVisualComponent({
           </UU5.Bricks.Div>
         );
       }
-    }
-
-    function renderDelete() {
-      return (
-        <UU5.Bricks.Button onClick={handleDelete} bgStyle="transparent" colorSchema="red">
-          <UU5.Bricks.Icon icon="mdi-delete" />
-        </UU5.Bricks.Button>
-      );
     }
 
     //@@viewOff:interface
