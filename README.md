@@ -26,4 +26,4 @@ Start server:
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][https://www.sekerka.cz/uuvl/uuvl17.png]](https://www.sekerka.cz/uuvl/uuvl17.png)
+  <img src="https://www.sekerka.cz/uuvl/uuvl17.png" alt="Logo" width="80" height="80">
