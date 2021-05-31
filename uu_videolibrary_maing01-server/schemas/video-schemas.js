@@ -5,15 +5,15 @@ const createVideoSchema = {
   properties: {
     code: { type: "string", minLength: 1, maxLength: 30 },
     authorName: { type: "string", minLength: 1, maxLength: 30 },
-    authorSurname: { type: "string", maxLength: 30 },
+    authorSurname: { type: "string", minLength: 1, maxLength: 30 },
     title: { type: "string", minLength: 3, maxLength: 100 },
     videoUrl: { type: "string", minLength: 8, maxLength: 250 },
     description: { type: "string", minLength: 3, maxLength: 500 },
-    category: { type: "array", uniqueItems: true },
+    category: { type: "array", uniqueItems: true, maxItems: 10 },
     visible: { type: "boolean" },
-    averageRating: { type: "integer" },
+    averageRating: { type: "integer", maximum: 5 },
     ratingCount: { type: "integer" },
-    rating: { type: "integer" },
+    ratingTotal: { type: "integer" },
   },
 
   required: [
