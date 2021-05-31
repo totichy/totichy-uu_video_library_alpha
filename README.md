@@ -21,3 +21,9 @@ Start server:
 - `npm start` in folder uu_videolibrary_maing01-hi
 - open URL (http://localhost:1234) in browser
 - turn off non-native resource restrictions in browser (cors) 
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+[![Product Name Screen Shot][product-screenshot]](https://www.sekerka.cz/uuvl/uuvl17.png)
