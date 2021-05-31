@@ -96,9 +96,9 @@ export const Video = createVisualComponent({
       videoUrl: UU5.PropTypes.string.isRequired,
       description: UU5.PropTypes.string.isRequired,
       visible: UU5.PropTypes.bool,
-      ratingCount: UU5.PropTypes.number,
       averageRating: UU5.PropTypes.number,
-      rating: UU5.PropTypes.number,
+      ratingCount: UU5.PropTypes.number,
+      ratingTotal: UU5.PropTypes.number,
     }),
     onDelete: UU5.PropTypes.func,
     onRating: UU5.PropTypes.func,
@@ -137,7 +137,7 @@ export const Video = createVisualComponent({
     }
 
     function handleRating(i) {
-      let ratingAverage = ((Number(video.ratingCount) + i) / (Number(video.rating) + 1)).toFixed(1);
+      let ratingAverage = ((Number(video.ratingTotal) + i) / (Number(video.ratingCount) + 1)).toFixed(1);
       handleChange(ratingAverage);
       onRating(video, Number(i));
     }

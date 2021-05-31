@@ -128,7 +128,7 @@ export const VideoUpdateForm = createVisualComponent({
         visible: true,
         averageRating: selectedVideo.averageRating,
         ratingCount: selectedVideo.ratingCount,
-        rating: selectedVideo.rating,
+        ratingTotal: selectedVideo.ratingTotal,
       };
       setSelectedVideo(null);
       onUpdateVideo(video);
