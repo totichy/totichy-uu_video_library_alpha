@@ -59,9 +59,12 @@ const CLASS_NAMES = {
   color: #005da7;
   font-family: ClearSans-Medium, ClearSans, sans-serif;
   display: flex;
-  width: 100%;
-  min-height: 50px;
+  padding: 0 5px;
+  overflow: hidden;
+  white-space: nowrap; 
   align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin: 16px 0;
   line-height: 20px;
   `,

@@ -73,5 +73,65 @@
     "averageRating": 2,
     "ratingCount": 2,
     "rating": 1
+  },
+  {
+    "code": "1622472226219",
+    "authorName": "Patrik",
+    "authorSurname": "Sekerka",
+    "title": "uuBML",
+    "videoUrl": "https://vimeo.com/488849451",
+    "description": "V této lekci si představíte uuBml Draw - nástroj pro vizuální modelování v jazyce uuBml (Unicorn Unified Business Modeling Language). Naučíte se kreslit digramy a vyjadřovat myšlenky pomocí ikon a vazeb.",
+    "category": [
+      "k3s"
+    ],
+    "visible": true,
+    "averageRating": 0,
+    "ratingCount": 0,
+    "rating": 0
+  },
+  {
+    "code": "1622472471114",
+    "authorName": "Patrik",
+    "authorSurname": "Sekerka",
+    "title": "Vazba m:n",
+    "videoUrl": "https://player.vimeo.com/491515287",
+    "description": "Základně úrovně designu aplikace, vizuální modelování, uuBml",
+    "category": [
+      "k3s"
+    ],
+    "visible": true,
+    "averageRating": 0,
+    "ratingCount": 0,
+    "rating": 0
+  },
+  {
+    "code": "1622472572534",
+    "authorName": "Patrik",
+    "authorSurname": "Sekerka",
+    "title": "NÁVRAT KRÁLE! ADAM VOJTĚCH HLÁSÍ COMEBACK A MY MÁME SESTŘIH JEHO SONGŮ!",
+    "videoUrl": "https://www.expres.cz/video/dx/adam-vojtech-comeback-sestrih-songu.V210525_111433_denniexpres-video_mhre",
+    "description": "pffff",
+    "category": [
+      "0lg"
+    ],
+    "visible": true,
+    "averageRating": 0,
+    "ratingCount": 0,
+    "rating": 0
+  },
+  {
+    "code": "1622473090287",
+    "authorName": "Patrik",
+    "authorSurname": "Sekerka",
+    "title": "Big Buck Bunny",
+    "videoUrl": "https://www.w3schools.com/html/mov_bbb.mp4",
+    "description": "Big Buck Bunny:",
+    "category": [
+      "0lg"
+    ],
+    "visible": true,
+    "averageRating": 0,
+    "ratingCount": 0,
+    "rating": 0
   }
 ]
