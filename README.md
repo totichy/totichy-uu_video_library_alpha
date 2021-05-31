@@ -26,4 +26,4 @@ Start server:
 <!-- THE PROJECT IMAGE -->
 ## The Project Image
 
-  <img src="/img/uuvl17.png" alt="Logo" />
+  <img src="img/uuvl17.png" alt="Logo" />
