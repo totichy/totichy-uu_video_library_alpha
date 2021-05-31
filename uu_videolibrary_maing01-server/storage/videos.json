@@ -1,19 +1,18 @@
 [
   {
     "code": "1620850859006",
-    "authorName": "P",
-    "authorSurname": "Novák",
-    "title": "UU5 - Cascading Styles",
-    "videoUrl": "https://vimeo.com/540126440",
-    "description": "In this lesson, you will learn to apply CSS to your component.",
+    "authorName": "Patrik",
+    "authorSurname": "Sekerka",
+    "title": "UU5 - přidání routy",
+    "videoUrl": "https://vimeo.com/535786169",
+    "description": "UU5 - přidání routy",
     "category": [
-      "o1n",
-      "0lg"
+      "k3s"
     ],
     "visible": true,
     "averageRating": 4.3,
-    "ratingCount": 68,
-    "rating": 16
+    "ratingCount": 73,
+    "rating": 17
   },
   {
     "code": "1621296930029",
@@ -23,7 +22,7 @@
     "videoUrl": "https://vimeo.com/540126577",
     "description": "In this lesson, you will learn to adjust rendered content for different types of devices such as mobiles, tablets or laptops.",
     "category": [
-      "o1n"
+      "k3s"
     ],
     "visible": true,
     "averageRating": 3.6,
@@ -56,8 +55,23 @@
       "0lg"
     ],
     "visible": true,
-    "averageRating": 1,
-    "ratingCount": 1,
-    "rating": 1
+    "averageRating": 3,
+    "ratingCount": 6,
+    "rating": 2
+  },
+  {
+    "code": "1622419368398",
+    "authorName": "Patrik",
+    "authorSurname": "Sekerka",
+    "title": "UU5 - stav komponenty, základy práce s hooks",
+    "videoUrl": "https://vimeo.com/535784896",
+    "description": "\nBudeme se držet pravidla, že jakákoliv data, která svou změnou mají způsobit vizuální změnu, tak budou ukládána ve stavu komponenty. Data, která svou změnou nemají způsobit překreslení zde nebudou, abychom se vyhnuli nepotřebnému překreslování.",
+    "category": [
+      "k3s"
+    ],
+    "visible": true,
+    "averageRating": 0,
+    "ratingCount": 0,
+    "rating": 0
   }
 ]
