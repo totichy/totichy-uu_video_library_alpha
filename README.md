@@ -10,10 +10,10 @@ See following guidelines:
 Before start server:
 
 1. change directory to: uu_videolibrary_maing01-hi
-2. run terminal: npm config set registry https://repo.plus4u.net/repository/public-javascript/
-3. run terminal: npm install
+2. npm config set registry https://repo.plus4u.net/repository/public-javascript/
+3. npm install
 4. change directory to: uu_videolibrary_maing01-server
-5. run terminal: npm install
+5. npm install
 
 Start server:
 
