@@ -168,7 +168,7 @@ export const VideoCreate = createComponent({
         visible: true,
         averageRating: 0,
         ratingCount: 0,
-        rating: 0,
+        ratingTotal: 0
       };
 
       onCreate(video);
