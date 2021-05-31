@@ -2,7 +2,6 @@
 import UU5 from "uu5g04";
 import { createVisualComponent, useLsi } from "uu5g04-hooks";
 import "uu5g04-forms";
-import validator from "validator";
 import Config from "./config/config";
 import Form from "../config/createForm.js";
 import Errors from "../config/errors";
@@ -46,10 +45,13 @@ export const CategoryUpdateForm = createVisualComponent({
     let headerUpdate = useLsi(addCategoryCg);
     const validcategoryNameCgi = Errors.validcategoryName || {};
     let validCategoryName = useLsi(validcategoryNameCgi);
+    const errorTtl = Errors.titleError || {};
+    let headerError = useLsi(errorTtl);
     //@@viewOff:private
 
     //@@viewOn:interface
     function onSave({ values }) {
+      console.log(values);
       if (!values.categoryId || !values.categoryName) {
         return null;
       }
@@ -57,7 +59,7 @@ export const CategoryUpdateForm = createVisualComponent({
 
 
       if (values.categoryName.length < 2) {
-        errorMessage = errorMessage + validDescription;
+        errorMessage = errorMessage + validCategoryName;
         UU5.Environment.getPage().getAlertBus().addAlert({
           content: validCategoryName,
           colorSchema: "red",
@@ -84,7 +86,7 @@ export const CategoryUpdateForm = createVisualComponent({
     if (selectedCategoryShow === false) {
       return null;
     }
-    setSelectedCategory = selectedCategory || {};
+    selectedCategory = selectedCategory || {};
     //@@viewOn:render
     return (
       <UU5.Bricks.Modal offsetTop={100} shown={true}>

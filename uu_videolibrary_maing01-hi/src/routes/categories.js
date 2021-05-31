@@ -42,13 +42,17 @@ export const Categories = createVisualComponent({
     const delcategoryText = CategoryLsi.delCategory || {};
     const wasDeleted = CategoryLsi.wasDeleted || {};
     const wasCreated = CategoryLsi.wasCreated || {};
+    const wasUpdated = CategoryLsi.wasUpdated || {};
     const createError = CategoryLsi.errorCreate || {};
+    const updateError = CategoryLsi.errorCategoryUpdate || {};
     const errorServerData = CategoryLsi.errorServer || {};
 
     let categoryWithTitle = useLsi(delcategoryText);
     let wasDeletedC = useLsi(wasDeleted);
+    let wasUpdatedC = useLsi(wasUpdated);
     let wasCreatedC = useLsi(wasCreated);
     let errorCreated = useLsi(createError);
+    let errorUpdated = useLsi(updateError);
     let serverErrorData = useLsi(errorServerData);
 
     const errorTtl = Errors.titleError || {};
@@ -118,14 +122,14 @@ export const Categories = createVisualComponent({
     }
 
     function handleUpdateCategory(category) {
-      setSelectedCategory(null);
+      setSelectedCategory(category);
       setSelectedCategoryShow(true);
     }
 
     async function handleCategoryUpdate(category) {
       try {
-        await updateCategoryRef.current(Category);
-        showSuccess(`${videoWithTitle} ${video.title} ${wasUpdatedC}`);
+        await updateCategoryRef.current(category);
+        showSuccess(`${categoryWithTitle} ${category.categoryName} ${wasUpdatedC}`);
         setSelectedCategory(null);
         setSelectedCategoryShow(false);
       } catch (e) {

@@ -19,6 +19,10 @@ export const CategoryLsi = {
     cs: "Nelze vytvořit kategorii.",
     en: "Unable to create category.",
   },
+  errorCategoryUpdate: {
+    cs: "Nelze upravit kategorii.",
+    en: "Unable to update category.",
+  },
   wasDeleted: {
     cs: " byla smazána.",
     en: " was deleted.",
@@ -26,6 +30,10 @@ export const CategoryLsi = {
   wasCreated: {
     cs: " byla vytvořena.",
     en: " was created.",
+  },
+  wasUpdated: {
+    cs: " byla upravena.",
+    en: " was updated.",
   },
 };
 export default CategoryLsi;
