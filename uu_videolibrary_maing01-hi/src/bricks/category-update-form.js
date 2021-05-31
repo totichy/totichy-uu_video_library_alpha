@@ -41,11 +41,12 @@ export const CategoryUpdateForm = createVisualComponent({
     //@@viewOn:private
     const titleCg = Form.titleCategoryCgi || {};
     const addCategoryCg = Form.updateCategory || {};
+    const validcategoryNameCgi = Errors.validCategoryName || {};
+    const errorTtl = Errors.titleError || {};
+ 
     let titles = useLsi(titleCg);
     let headerUpdate = useLsi(addCategoryCg);
-    const validcategoryNameCgi = Errors.validcategoryName || {};
     let validCategoryName = useLsi(validcategoryNameCgi);
-    const errorTtl = Errors.titleError || {};
     let headerError = useLsi(errorTtl);
     //@@viewOff:private
 
