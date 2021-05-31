@@ -23,7 +23,7 @@ Start server:
 - turn off non-native resource restrictions in browser (cors) 
 
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
+<!-- THE PROJECT IMAGE -->
+## The Project Image
 
-  <img src="https://www.sekerka.cz/uuvl/uuvl17.png" alt="Logo" width="80" height="80">
+  <img src="https://www.sekerka.cz/uuvl/uuvl17.png" alt="Logo" />
