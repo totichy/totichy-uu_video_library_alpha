@@ -19,7 +19,7 @@ async function UpdateAbl(req, res) {
     visible,
     averageRating,
     ratingCount,
-    rating,
+    ratingTotal,
   } = req;
 
   if (code) {
@@ -34,7 +34,7 @@ async function UpdateAbl(req, res) {
       visible,
       averageRating,
       ratingCount,
-      rating,
+      ratingTotal,
     };
     try {
       let result = await dao.updateVideo(video);

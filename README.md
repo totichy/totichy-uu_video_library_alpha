@@ -7,6 +7,14 @@ See following guidelines:
 - [uuApp Server Project (NodeJs)](https://uuapp.plus4u.net/uu-bookkit-maing01/2590bf997d264d959b9d6a88ee1d0ff5/book/page?code=getStarted)
 - [uuApp Client Project (UU5)](https://uuapp.plus4u.net/uu-bookkit-maing01/ed11ec379073476db0aa295ad6c00178/book/page?code=getStartedHooks)
 
+Before start server:
+
+1. change directory to: uu_videolibrary_maing01-hi
+2. run terminal: npm config set registry https://repo.plus4u.net/repository/public-javascript/
+3. run terminal: npm install
+4. change directory to: uu_videolibrary_maing01-server
+5. run terminal: npm install
+
 Start server:
 
 - `npm start` in folder uu_videolibrary_maing01-server
