@@ -124,7 +124,7 @@ export const VideoDetail = createVisualComponent({
         <>
           <UU5.Bricks.Section>
             <UU5.Bricks.Rating count={5} value={video.averageRating} size={ratingSize} colorSchema="orange" />{" "}
-            <UU5.Bricks.Lsi lsi={VideoLsi.vote} /> {video.rating}
+            <UU5.Bricks.Lsi lsi={VideoLsi.vote} /> {video.ratingCount}
           </UU5.Bricks.Section>
         </>
       );
