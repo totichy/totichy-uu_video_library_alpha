@@ -23,7 +23,7 @@ const Mode = {
 const CLASS_NAMES = {
   addVideoUse: () => Config.Css.css`
     text-align: right;
-    margin: 26px;
+    margin: 26px 26px 0 0;
   `,
   magnifyc: () => Config.Css.css`
   padding:10px;
@@ -168,7 +168,7 @@ export const VideoCreate = createComponent({
         visible: true,
         averageRating: 0,
         ratingCount: 0,
-        rating: 0,
+        ratingTotal: 0
       };
 
       onCreate(video);

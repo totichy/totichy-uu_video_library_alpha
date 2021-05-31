@@ -43,7 +43,7 @@ export const CategoryUpdateForm = createVisualComponent({
     const addCategoryCg = Form.updateCategory || {};
     const validcategoryNameCgi = Errors.validCategoryName || {};
     const errorTtl = Errors.titleError || {};
- 
+
     let titles = useLsi(titleCg);
     let headerUpdate = useLsi(addCategoryCg);
     let validCategoryName = useLsi(validcategoryNameCgi);
@@ -57,7 +57,6 @@ export const CategoryUpdateForm = createVisualComponent({
         return null;
       }
       let errorMessage = "";
-
 
       if (values.categoryName.length < 2) {
         errorMessage = errorMessage + validCategoryName;

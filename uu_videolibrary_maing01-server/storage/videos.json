@@ -10,9 +10,9 @@
       "k3s"
     ],
     "visible": true,
-    "averageRating": 4.3,
-    "ratingCount": 73,
-    "rating": 17
+    "averageRating": 0,
+    "ratingCount": 0,
+    "ratingTotal": 0
   },
   {
     "code": "1621296930029",
@@ -25,9 +25,10 @@
       "k3s"
     ],
     "visible": true,
-    "averageRating": 3.6,
-    "ratingCount": 43,
-    "rating": 12
+    "averageRating": 0,
+    "ratingCount": 0,
+    "ratingTotal": 0
+
   },
   {
     "code": "1620800859427",
@@ -40,9 +41,9 @@
       "o1n"
     ],
     "visible": true,
-    "averageRating": 3.1,
-    "ratingCount": 47,
-    "rating": 15
+    "averageRating": 0,
+    "ratingCount": 0,
+    "ratingTotal": 0
   },
   {
     "code": "1622055427049",
@@ -55,9 +56,9 @@
       "0lg"
     ],
     "visible": true,
-    "averageRating": 3,
-    "ratingCount": 6,
-    "rating": 2
+    "averageRating": 0,
+    "ratingCount": 0,
+    "ratingTotal": 0
   },
   {
     "code": "1622419368398",
@@ -70,9 +71,9 @@
       "k3s"
     ],
     "visible": true,
-    "averageRating": 2,
-    "ratingCount": 2,
-    "rating": 1
+    "averageRating": 0,
+    "ratingCount": 0,
+    "ratingTotal": 0
   },
   {
     "code": "1622472226219",
@@ -87,7 +88,7 @@
     "visible": true,
     "averageRating": 0,
     "ratingCount": 0,
-    "rating": 0
+    "ratingTotal": 0
   },
   {
     "code": "1622472471114",
@@ -102,8 +103,8 @@
     "visible": true,
     "averageRating": 0,
     "ratingCount": 0,
-    "rating": 0
-  },
+    "ratingTotal": 0
+ },
   {
     "code": "1622472572534",
     "authorName": "Patrik",
@@ -117,7 +118,7 @@
     "visible": true,
     "averageRating": 0,
     "ratingCount": 0,
-    "rating": 0
+    "ratingTotal": 0
   },
   {
     "code": "1622473090287",
@@ -132,6 +133,6 @@
     "visible": true,
     "averageRating": 0,
     "ratingCount": 0,
-    "rating": 0
+    "ratingTotal": 0
   }
 ]

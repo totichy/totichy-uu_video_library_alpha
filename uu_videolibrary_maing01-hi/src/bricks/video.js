@@ -59,14 +59,14 @@ const CLASS_NAMES = {
   color: #005da7;
   font-family: ClearSans-Medium, ClearSans, sans-serif;
   display: flex;
-  padding: 0 5px;
+  padding: 5px 0;
   overflow: hidden;
   white-space: nowrap; 
   align-items: center;
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 16px 0;
-  line-height: 20px;
+  line-height: 26px;
   `,
   right: () => Config.Css.css`
   float:right;
@@ -96,9 +96,9 @@ export const Video = createVisualComponent({
       videoUrl: UU5.PropTypes.string.isRequired,
       description: UU5.PropTypes.string.isRequired,
       visible: UU5.PropTypes.bool,
-      ratingCount: UU5.PropTypes.number,
       averageRating: UU5.PropTypes.number,
-      rating: UU5.PropTypes.number,
+      ratingCount: UU5.PropTypes.number,
+      ratingTotal: UU5.PropTypes.number,
     }),
     onDelete: UU5.PropTypes.func,
     onRating: UU5.PropTypes.func,
@@ -137,7 +137,7 @@ export const Video = createVisualComponent({
     }
 
     function handleRating(i) {
-      let ratingAverage = ((Number(video.ratingCount) + i) / (Number(video.rating) + 1)).toFixed(1);
+      let ratingAverage = ((Number(video.ratingTotal) + i) / (Number(video.ratingCount) + 1)).toFixed(1);
       handleChange(ratingAverage);
       onRating(video, Number(i));
     }

@@ -21,7 +21,7 @@ const Mode = {
 const CLASS_NAMES = {
   addCategoryUse: () => Config.Css.css`
     text-align:right;
-    margin: 26px;
+    margin: 26px 26px 0 0;
   `,
 };
 const characters = "abcdefghijklmnopqrstuvwxyz0123456789";

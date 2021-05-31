@@ -164,17 +164,16 @@ export const Categories = createVisualComponent({
       return (
         <>
           <CategoryUpdateForm
-          setSelectedCategory={setSelectedCategory}
-          onCancel={handleCancel}
-          onUpdateCategory={handleCategoryUpdate}
-          selectedCategoryShow={selectedCategoryShow}
-          selectedCategory={selectedCategory}
-          selectedCategoryShow={selectedCategoryShow}
-        />
+            setSelectedCategory={setSelectedCategory}
+            onCancel={handleCancel}
+            onUpdateCategory={handleCategoryUpdate}
+            selectedCategoryShow={selectedCategoryShow}
+            selectedCategory={selectedCategory}
+            selectedCategoryShow={selectedCategoryShow}
+          />
           <CategoryCreate onCreate={handleCreateCategory} />
           <UU5.Bricks.Section>
-            <CategoryList categories={categories} onDelete={handleDeleteCategory} onUpdate={handleUpdateCategory}
-             />
+            <CategoryList categories={categories} onDelete={handleDeleteCategory} onUpdate={handleUpdateCategory} />
           </UU5.Bricks.Section>
         </>
       );

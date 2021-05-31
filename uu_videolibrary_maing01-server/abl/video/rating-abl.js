@@ -23,12 +23,12 @@ async function RatingAbl(req, res) {
   if (code) {
     let video = await dao.getVideo(code);
     let newRating = (
-      (Number(video.ratingCount) + mrating) /
-      (Number(video.rating) + 1)
+      (Number(video.ratingTotal) + mrating) /
+      (Number(video.ratingCount) + 1)
     ).toFixed(1);
 
-    video.ratingCount += mrating;
-    video.rating += 1;
+    video.ratingTotal += mrating;
+    video.ratingCount += 1;
     video.averageRating = Number(newRating);
 
     try {

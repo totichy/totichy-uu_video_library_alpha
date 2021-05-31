@@ -81,9 +81,9 @@ export const VideoDetail = createVisualComponent({
       videoUrl: UU5.PropTypes.string.isRequired,
       description: UU5.PropTypes.string.isRequired,
       visible: UU5.PropTypes.bool,
-      ratingCount: UU5.PropTypes.number,
       averageRating: UU5.PropTypes.number.isRequired,
-      rating: UU5.PropTypes.number,
+      ratingCount: UU5.PropTypes.number,
+      ratingTotal: UU5.PropTypes.number,
     }),
   },
   //@@viewOff:propTypes

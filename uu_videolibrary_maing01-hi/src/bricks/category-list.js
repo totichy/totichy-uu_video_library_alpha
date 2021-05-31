@@ -48,7 +48,7 @@ export const CategoryList = createVisualComponent({
     if (categories.length === 0) {
       return (
         <div>
-            <UU5.Common.Error content={noCategoryCgi} />
+          <UU5.Common.Error content={noCategoryCgi} />
         </div>
       );
     }

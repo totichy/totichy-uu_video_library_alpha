@@ -236,16 +236,16 @@ export const Home = createVisualComponent({
       return (
         <div>
           <div {...attrs}>
-           <VideoUpdateForm
-          setSelectedVideo={setSelectedVideo}
-          onCancel={handleCancel}
-          onUpdateVideo={handleUpdateVideo}
-          selectedVideoShow={selectedVideoShow}
-          selectedVideo={selectedVideo}
-          selectedVideoShow={selectedVideoShow}
-        />
-        </div>
-        
+            <VideoUpdateForm
+              setSelectedVideo={setSelectedVideo}
+              onCancel={handleCancel}
+              onUpdateVideo={handleUpdateVideo}
+              selectedVideoShow={selectedVideoShow}
+              selectedVideo={selectedVideo}
+              selectedVideoShow={selectedVideoShow}
+            />
+          </div>
+
           <Router>
             <VideoCreate
               onCreate={handleCreateVideo}

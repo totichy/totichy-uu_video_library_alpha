@@ -10,10 +10,13 @@ let dao = new LibraryDao(
 async function GetAbl(req, res) {
   const { code } = req;
 
-  if (!code) {
+  if (!code && typeof string && string.length < 30) {
     return res
       .status(400)
-      .json({ error_message: "Invalid input: code parameter is missing." });
+      .json({
+        error_message:
+          "Invalid input: code parameter is missing or invalid data.",
+      });
   }
 
   const video = await dao.getVideo(code);
