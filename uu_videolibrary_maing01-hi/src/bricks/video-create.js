@@ -23,9 +23,22 @@ const Mode = {
 const CLASS_NAMES = {
   addVideoUse: () => Config.Css.css`
     text-align: right;
-    margin: 26px 26px 0 0;
+    padding: 26px 26px 0 0;
+    display: inline-block;
+    vertical-align: baseline;
+    width:100%;
   `,
-  magnifyc: () => Config.Css.css`
+  addVideoItem: () => Config.Css.css`
+  padding: 0px 26px 0px 0;
+  display: inline-block;
+  vertical-align: baseline;
+`,
+addSearchItem: () => Config.Css.css`
+padding: 0 26px 0 0;
+display: inline-block;
+vertical-align: baseline;
+`,
+magnifyc: () => Config.Css.css`
   padding:10px;
 `,
   input: () => Config.Css.css`
@@ -42,11 +55,11 @@ const CLASS_NAMES = {
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 `,
   searchSection: () => Config.Css.css`
+  display: inline-block;
   flex: 1;
   flex-direction: row;
   align: 'right';
   background-color: '#fff';
-  margin: 16px 0 0 0;
   padding: 0;
   `,
 };
@@ -187,8 +200,7 @@ export const VideoCreate = createComponent({
       return (
         <>
           <UU5.Bricks.Div className={CLASS_NAMES.addVideoUse()}>
-            <UU5.Bricks.Button onClick={handleClick} content={addButton} colorSchema="blue" />
-
+            <UU5.Bricks.Div className={CLASS_NAMES.addSearchItem()}>
             <UU5.Bricks.Div className={CLASS_NAMES.searchSection()}>
               <form action="/" method="get" autoComplete="off" onSubmit={onSubmitt}>
                 <input
@@ -204,7 +216,11 @@ export const VideoCreate = createComponent({
                 <UU5.Bricks.Icon icon="mdi-magnify" className={CLASS_NAMES.magnifyc()} />
               </form>
             </UU5.Bricks.Div>
-          </UU5.Bricks.Div>
+            </UU5.Bricks.Div>
+            <UU5.Bricks.Div className={CLASS_NAMES.addVideoItem()}>
+            <UU5.Bricks.Button onClick={handleClick} content={addButton} colorSchema="blue" />
+            </UU5.Bricks.Div>
+            </UU5.Bricks.Div>
         </>
       );
     }

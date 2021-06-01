@@ -1,3 +1,4 @@
+
 # Development and Usage
 
 See following guidelines:
@@ -21,3 +22,9 @@ Start server:
 - `npm start` in folder uu_videolibrary_maing01-hi
 - open URL (http://localhost:1234) in browser
 - turn off non-native resource restrictions in browser (cors) 
+
+
+<!-- THE PROJECT IMAGE -->
+## The Project Image
+
+  <img src="img/uuvl17.png" alt="Logo" />
