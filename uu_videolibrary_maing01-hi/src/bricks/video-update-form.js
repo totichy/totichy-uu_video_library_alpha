@@ -63,6 +63,9 @@ export const VideoUpdateForm = createVisualComponent({
     const errorTtl = Errors.titleError || {};
     let headerError = useLsi(errorTtl);
 
+    const errorName = Errors.nameError || {};
+    let nameError = useLsi(errorName);
+
     //@@viewOff:private
     function onSave({ values }) {
       if (
@@ -82,6 +85,18 @@ export const VideoUpdateForm = createVisualComponent({
         errorMessage = errorMessage + validURL;
         UU5.Environment.getPage().getAlertBus().addAlert({
           content: validURL,
+          colorSchema: "red",
+          closeTimer: 3000,
+          header: headerError,
+          block: true,
+          stacked: true,
+        });
+      }
+
+      if(!validator.isAlpha(values.authorName) || !validator.isAlpha(values.authorSurname))  {
+        errorMessage = errorMessage + validTitle;
+        UU5.Environment.getPage().getAlertBus().addAlert({
+          content: nameError,
           colorSchema: "red",
           closeTimer: 3000,
           header: headerError,
