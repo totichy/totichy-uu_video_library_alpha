@@ -41,15 +41,15 @@ async function CreateAbl(req, res) {
   try {
     await dao.addVideo(video);
   } catch (e) {
-    if (e.code == "DUPLICATE_CODE") {
-      res.status(400);
+    if (e.code === "DUPLICATE_CODE") {
+      res.status(400).json({ error: e });
+    } else if (e.code === "FAILED_TO_STORE_VIDEO") {
+      res.status(500).json({ error: e });
     } else {
-      res.status(500);
+      res.status(500).json({ error: e });
     }
-    return res.json({ error_message: e.message });
   }
-
-  res.json(video);
+  res.status(200).json(video);
 }
 
 module.exports = CreateAbl;

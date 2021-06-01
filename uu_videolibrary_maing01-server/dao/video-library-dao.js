@@ -26,9 +26,7 @@ class LibraryDao {
       const e = new Error(`Video with code '${video.code}' already exists.`);
       e.code = "DUPLICATE_CODE";
       throw e;
-    }
-
-    if (this._isDuplicateUrl(videos, video.videoUrl)) {
+    } else if (this._isDuplicateUrl(videos, video.videoUrl)) {
       const e = new Error(`Video with Url '${video.videoUrl}' already exists.`);
       e.code = "DUPLICATE_URL";
       throw e;
