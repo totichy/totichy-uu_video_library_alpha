@@ -41,7 +41,7 @@ async function CreateAbl(req, res) {
   try {
     await dao.addVideo(video);
   } catch (e) {
-    if (e.code === "DUPLICATE_CODE") {
+    if (e.code === "DUPLICATE_CODE" || e.code === "DUPLICATE_URL") {
       res.status(400).json({ error: e });
     } else if (e.code === "FAILED_TO_STORE_VIDEO") {
       res.status(500).json({ error: e });

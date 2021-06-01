@@ -41,7 +41,7 @@ class LibraryDao {
       e = new Error(
         `Failed to save video with code '${video.code}' to local storage.`
       );
-      e.code = "FAILED_TO_SAVE_VIDEO";
+      e.code = "FAILED_TO_STORE_VIDEO";
       throw e;
     }
   }
@@ -144,7 +144,7 @@ class LibraryDao {
         !name ||
         videos[code].title.toLowerCase().includes(name.toLowerCase())
       ) {
-        videoList.push(videos[code]);
+        await videoList.push(videos[code]);
       }
     }
     return videoList;

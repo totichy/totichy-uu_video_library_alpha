@@ -10,7 +10,7 @@ let dao = new LibraryDao(
 async function ListAbl(req, res) {
   let { title } = req;
 
-  if (!title || (title && typeof title === "string" && title.length < 30)) {
+  if (!title || (title && typeof title === "string" && title.length < 100)) {
     try {
       let videoList = await dao.listVideos(title);
       res.status(200).json(videoList);

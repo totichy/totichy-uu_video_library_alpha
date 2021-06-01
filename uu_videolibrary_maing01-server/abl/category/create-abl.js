@@ -27,7 +27,7 @@ async function CreateAbl(req, res) {
   try {
     await dao.addCategory(category);
   } catch (e) {
-    if (e.code == "DUPLICATE_CODE") {
+    if (e.code == "DUPLICATE_CODE" || e.code == "DUPLICATE_CATEGORY") {
       res.status(400);
     } else {
       res.status(500);

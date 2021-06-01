@@ -36,6 +36,7 @@ async function UpdateAbl(req, res) {
       ratingCount,
       ratingTotal,
     };
+
     try {
       let result = await dao.updateVideo(video);
       res.status(200).json(result);
