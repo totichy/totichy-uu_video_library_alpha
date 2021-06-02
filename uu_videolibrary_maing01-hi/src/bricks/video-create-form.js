@@ -11,7 +11,6 @@ import Form from "../config/createForm.js";
 const STATICS = {
   //@@viewOn:statics
   displayName: Config.TAG + "VideoCreateForm",
-  //nestingLevel: "bigBoxCollection",
   //@@viewOff:statics
 };
 
@@ -79,6 +78,12 @@ export const VideoCreateForm = createVisualComponent({
     let categoriesCg = useLsi(categoryCg);
 
     //@@viewOn:private
+    //@@viewOff:private
+
+    //@@viewOn:interface
+    //@@viewOff:interface
+
+    //@@viewOn:render
     function renderCategories() {
       return myDaata.map((category) => (
         <UU5.Forms.Select.Option value={category.categoryId} key={category.categoryId}>
@@ -112,12 +117,6 @@ export const VideoCreateForm = createVisualComponent({
         />
       );
     }
-    //@@viewOff:private
-
-    //@@viewOn:interface
-    //@@viewOff:interface
-
-    //@@viewOn:render
 
     return (
       <>
