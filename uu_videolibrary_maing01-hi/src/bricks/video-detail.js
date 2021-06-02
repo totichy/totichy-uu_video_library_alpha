@@ -95,8 +95,9 @@ export const VideoDetail = createVisualComponent({
   //@@viewOff:defaultProps
 
   render({ video }) {
-    const date = new Date(Number(video.code)).toLocaleDateString("cs-CZ");
-    //@@viewOff:hooks
+    //@@viewOn: hooks
+    const screenSize = useScreenSize();
+    //@@viewOff: hooks
 
     //@@viewOn:private
     const descCg = Form.descriptionCgi || {};
@@ -104,14 +105,10 @@ export const VideoDetail = createVisualComponent({
 
     let description = useLsi(descCg);
     let videoUrl = useLsi(urlCg);
-
+    const date = new Date(Number(video.code)).toLocaleDateString("cs-CZ");
     //@@viewOff:private
 
-    //@@viewOn: hooks
-    const screenSize = useScreenSize();
-    //@@viewOff: hooks
     //@@viewOn:interface
-
     let nameAuthor = video.authorName + " " + video.authorSurname;
 
     function renderRating() {
