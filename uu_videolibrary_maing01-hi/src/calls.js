@@ -17,6 +17,10 @@ let Calls = {
     let commandUri = Calls.getCommandUri("video/list");
     return Calls.call("get", commandUri, dtoIn);
   },
+  getVideo(dtoIn) {
+    let commandUri = Calls.getCommandUri("video/get");
+    return Calls.call("get", commandUri, dtoIn);
+  },
   createVideo(dtoIn) {
     let commandUri = Calls.getCommandUri("video/create");
     return Calls.call("post", commandUri, dtoIn);
