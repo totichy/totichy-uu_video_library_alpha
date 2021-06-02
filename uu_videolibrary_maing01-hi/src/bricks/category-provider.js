@@ -1,5 +1,5 @@
 //@@viewOn:imports
-import UU5 from "uu5g04";
+//@@import UU5 from "uu5g04";
 import { createComponent, useDataList } from "uu5g04-hooks";
 import Config from "./config/config";
 import Calls from "../calls";
