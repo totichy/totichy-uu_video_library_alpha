@@ -168,7 +168,7 @@ class CategoryDao {
 
   _isDuplicateName(categories, name) {
     const result = categories.find((b) => {
-      return b.categoryName === name;
+      return b.categoryName.toLowerCase() === name.toLowerCase();
     });
     return result ? true : false;
   }
