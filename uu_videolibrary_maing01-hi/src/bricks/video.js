@@ -157,6 +157,9 @@ export const Video = createVisualComponent({
             colorSchema="blue"
             component={videoDetailModal}
           />
+          {/* <UU5.Bricks.Link href={"video?code=" + video.code} target="_self" colorSchema="blue">
+            {video.title}
+          </UU5.Bricks.Link> */}
         </UU5.Bricks.Div>
       );
     }
