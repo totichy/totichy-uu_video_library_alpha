@@ -125,7 +125,7 @@ class CategoryDao {
   async deleteCategory(id) {
     const categories = await this._loadAllCategories();
 
-    categories.forEach((category, i) => {
+    await categories.forEach((category, i) => {
       if (category.categoryId === id) {
         categories.splice(i, 1);
       }
@@ -139,7 +139,7 @@ class CategoryDao {
       const e = new Error(
         `Failed to delete category with id '${id}' in local storage.`
       );
-      e.code = "DELETE_FAILED";
+      e.code = "FAILED_TO_DELETE_CATEGORY";
       throw e;
     }
   }

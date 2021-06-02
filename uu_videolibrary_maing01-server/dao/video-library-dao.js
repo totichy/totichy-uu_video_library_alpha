@@ -102,7 +102,7 @@ class LibraryDao {
         const e = new Error(
           `Failed to update video with code ${video.code} in local storage.`
         );
-        e.code = "FAILED_TO_GET_VIDEO";
+        e.code = "FAILED_TO_UPDATE_VIDEO";
         throw e;
       }
     } else {

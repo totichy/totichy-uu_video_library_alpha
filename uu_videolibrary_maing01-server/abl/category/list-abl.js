@@ -18,7 +18,6 @@ async function ListAbl(req, res) {
   ) {
     try {
       let categoryList = await dao.listCategories(categoryName);
-
       res.status(200).json(categoryList);
     } catch (e) {
       res.status(500).json({ error_message: e });
