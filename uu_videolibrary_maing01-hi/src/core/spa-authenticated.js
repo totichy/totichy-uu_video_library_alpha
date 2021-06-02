@@ -9,6 +9,7 @@ import Config from "./config/config";
 import Left from "./left";
 //@@import Bottom from "./bottom";
 import Home from "../routes/home";
+import VideoDetail from "../routes/video-detail";
 import Categories from "../routes/categories";
 import NotFoundRoute from "../routes/not-found";
 //@@viewOff:imports
@@ -28,6 +29,7 @@ const ROUTES = {
   "": DEFAULT_USE_CASE,
   home: { component: <Home /> },
   notFound: { component: <NotFoundRoute /> },
+  video: { component: <VideoDetail /> },
   about: { component: <About /> },
   categories: { component: <Categories /> },
   "sys/uuAppWorkspace/initUve": { component: <InitAppWorkspace /> },
