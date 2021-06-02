@@ -117,6 +117,7 @@ export const Video = createVisualComponent({
 
   render({ video, onDelete, onRating, onUpdate }) {
     //@@viewOn:hooks
+    const screenSize = useScreenSize();
     const date = new Date(Number(video.code)).toLocaleDateString("cs-CZ");
     const [mrating, setRating] = useState(video.averageRating);
     const handleChange = (value) => {
@@ -143,9 +144,6 @@ export const Video = createVisualComponent({
     }
     //@@viewOff:private
 
-    //@@viewOn: hooks
-    const screenSize = useScreenSize();
-    //@@viewOff: hooks
     //@@viewOn:interface
     function renderHeader() {
       return (
@@ -161,41 +159,6 @@ export const Video = createVisualComponent({
             {video.title}
           </UU5.Bricks.Link> */}
         </UU5.Bricks.Div>
-      );
-    }
-
-    function renderDelete() {
-      return (
-        <UU5.Bricks.Button onClick={handleDelete} bgStyle="transparent" colorSchema="red">
-          <UU5.Bricks.Icon icon="mdi-delete" />
-        </UU5.Bricks.Button>
-      );
-    }
-
-    function renderUpdate() {
-      return (
-        <UU5.Bricks.Button onClick={handleUpdate} bgStyle="transparent" colorSchema="green">
-          <UU5.Bricks.Icon icon="mdi-pencil" />
-        </UU5.Bricks.Button>
-      );
-    }
-    function renderRating() {
-      if (screenSize === "xs") {
-        return null;
-      }
-
-      let ratingSize = screenSize === "s" ? null : "s";
-      return (
-        <UU5.Bricks.Section>
-          <UU5.Bricks.Rating
-            count={5}
-            value={mrating}
-            size={ratingSize}
-            colorSchema="orange"
-            onChange={handleChange}
-            onClick={(i) => handleRating(i)}
-          />
-        </UU5.Bricks.Section>
       );
     }
 
@@ -287,6 +250,41 @@ export const Video = createVisualComponent({
     //@@viewOff:interface
 
     //@@viewOn:render
+
+    function renderDelete() {
+      return (
+        <UU5.Bricks.Button onClick={handleDelete} bgStyle="transparent" colorSchema="red">
+          <UU5.Bricks.Icon icon="mdi-delete" />
+        </UU5.Bricks.Button>
+      );
+    }
+
+    function renderUpdate() {
+      return (
+        <UU5.Bricks.Button onClick={handleUpdate} bgStyle="transparent" colorSchema="green">
+          <UU5.Bricks.Icon icon="mdi-pencil" />
+        </UU5.Bricks.Button>
+      );
+    }
+    function renderRating() {
+      if (screenSize === "xs") {
+        return null;
+      }
+      let ratingSize = screenSize === "s" ? null : "s";
+      return (
+        <UU5.Bricks.Section>
+          <UU5.Bricks.Rating
+            count={5}
+            value={mrating}
+            size={ratingSize}
+            colorSchema="orange"
+            onChange={handleChange}
+            onClick={(i) => handleRating(i)}
+          />
+        </UU5.Bricks.Section>
+      );
+    }
+
     if (!video) {
       return null;
     }
