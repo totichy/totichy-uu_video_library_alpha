@@ -22,7 +22,6 @@ export const VideoProvider = createComponent({
 
   render({ children }) {
     //@@viewOn:hooks
-
     let listData = useDataList({
       itemIdentifier: "code",
       handlerMap: {
@@ -35,7 +34,6 @@ export const VideoProvider = createComponent({
     });
 
     let { state, data, newData, pendingData, errorData, handlerMap } = listData;
-
     //@@viewOff:hooks
 
     //@@viewOn:private
