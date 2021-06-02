@@ -39,6 +39,7 @@ export const VideoUpdateForm = createVisualComponent({
   //@@viewOff:defaultProps
 
   render({ onCancel, onUpdateVideo, setSelectedVideo, selectedVideo, selectedVideoShow }) {
+  
     //@@viewOn:private
     function validateText(opt) {
       let result = { feedback: "initial", value: opt.value };
