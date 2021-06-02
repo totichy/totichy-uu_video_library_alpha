@@ -33,12 +33,12 @@ const CLASS_NAMES = {
   display: inline-block;
   vertical-align: baseline;
 `,
-addSearchItem: () => Config.Css.css`
+  addSearchItem: () => Config.Css.css`
 padding: 0 26px 0 0;
 display: inline-block;
 vertical-align: baseline;
 `,
-magnifyc: () => Config.Css.css`
+  magnifyc: () => Config.Css.css`
   padding:10px;
 `,
   input: () => Config.Css.css`
@@ -107,7 +107,7 @@ export const VideoCreate = createComponent({
 
     //@@viewOn:hooks
     const [mode, setMode] = useState(Mode.BUTTON);
-    //@@viewOff:hooks
+
     const history = useHistory();
     const onSubmitt = (e) => {
       if (categoryQuery) {
@@ -117,6 +117,8 @@ export const VideoCreate = createComponent({
       }
       e.preventDefault();
     };
+    //@@viewOff:hooks
+
     //@@viewOn:private
     function handleClick() {
       setMode(Mode.FORM);
@@ -146,7 +148,7 @@ export const VideoCreate = createComponent({
         });
       }
 
-      if(!validator.isAlpha(values.authorName) || !validator.isAlpha(values.authorSurname))  {
+      if (!validator.isAlpha(values.authorName) || !validator.isAlpha(values.authorSurname)) {
         errorMessage = errorMessage + validTitle;
         UU5.Environment.getPage().getAlertBus().addAlert({
           content: nameError,
@@ -196,7 +198,7 @@ export const VideoCreate = createComponent({
         visible: true,
         averageRating: 0,
         ratingCount: 0,
-        ratingTotal: 0
+        ratingTotal: 0,
       };
 
       onCreate(video);
@@ -216,26 +218,26 @@ export const VideoCreate = createComponent({
         <>
           <UU5.Bricks.Div className={CLASS_NAMES.addVideoUse()}>
             <UU5.Bricks.Div className={CLASS_NAMES.addSearchItem()}>
-            <UU5.Bricks.Div className={CLASS_NAMES.searchSection()}>
-              <form action="/" method="get" autoComplete="off" onSubmit={onSubmitt}>
-                <input
-                  className={CLASS_NAMES.input()}
-                  value={searchQuery}
-                  onInput={(e) => setSearchQuery(e.target.value)}
-                  type="text"
-                  id="header-search"
-                  placeholder={searchPlaceHolder}
-                  onChange={handleFormChange}
-                  name="s"
-                />
-                <UU5.Bricks.Icon icon="mdi-magnify" className={CLASS_NAMES.magnifyc()} />
-              </form>
-            </UU5.Bricks.Div>
+              <UU5.Bricks.Div className={CLASS_NAMES.searchSection()}>
+                <form action="/" method="get" autoComplete="off" onSubmit={onSubmitt}>
+                  <input
+                    className={CLASS_NAMES.input()}
+                    value={searchQuery}
+                    onInput={(e) => setSearchQuery(e.target.value)}
+                    type="text"
+                    id="header-search"
+                    placeholder={searchPlaceHolder}
+                    onChange={handleFormChange}
+                    name="s"
+                  />
+                  <UU5.Bricks.Icon icon="mdi-magnify" className={CLASS_NAMES.magnifyc()} />
+                </form>
+              </UU5.Bricks.Div>
             </UU5.Bricks.Div>
             <UU5.Bricks.Div className={CLASS_NAMES.addVideoItem()}>
-            <UU5.Bricks.Button onClick={handleClick} content={addButton} colorSchema="blue" />
+              <UU5.Bricks.Button onClick={handleClick} content={addButton} colorSchema="blue" />
             </UU5.Bricks.Div>
-            </UU5.Bricks.Div>
+          </UU5.Bricks.Div>
         </>
       );
     }
