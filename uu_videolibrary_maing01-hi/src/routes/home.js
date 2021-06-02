@@ -56,7 +56,7 @@ export const Home = createVisualComponent({
     const SelectedVideos = VideoLsi.SelectedVideos || {};
     const forTitle = VideoLsi.forTitle || {};
 
-    let reusltTitle = useLsi(forTitle);
+    let resultTitle = useLsi(forTitle);
     let VideoListHeader = useLsi(AllVideos);
     let SelectedVideoListHeader = useLsi(SelectedVideos);
     let videoWithTitle = useLsi(delVideoText);
@@ -226,10 +226,10 @@ export const Home = createVisualComponent({
 
       if (searchQuery && searchQuery.length >= 3) {
         videox = filterPosts(videox, searchQuery);
-        VideoHeader = VideoListHeader + " " + reusltTitle + ' "' + searchQuery + '"';
+        VideoHeader = VideoListHeader + " " + resultTitle + ' "' + searchQuery + '"';
 
         if (dada != null) {
-          VideoHeader = SelectedVideoListHeader + ": " + dada + " " + reusltTitle + ' "' + searchQuery + '"';
+          VideoHeader = SelectedVideoListHeader + ": " + dada + " " + resultTitle + ' "' + searchQuery + '"';
         }
       }
       const attrs = UU5.Common.VisualComponent.getAttrs(props);
@@ -288,6 +288,7 @@ export const Home = createVisualComponent({
             deleteVideoRef.current = handlerMap.deleteVideo;
             ratingVideoRef.current = handlerMap.ratingVideo;
             updateVideoRef.current = handlerMap.updateVideo;
+            
 
             switch (state) {
               case "pending":
