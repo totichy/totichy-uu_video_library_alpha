@@ -10,6 +10,7 @@ const STATICS = {
   nestingLevel: "bigBoxCollection",
   //@@viewOff:statics
 };
+
 const CLASS_NAMES = {
   main: () => Config.Css.css`
   height: 100%;
@@ -64,6 +65,10 @@ export const Category = createVisualComponent({
       onUpdate(category);
     }
 
+    //@@viewOn:interface
+    //@@viewOff:interface
+
+    //@@viewOn:render
     function renderDelete() {
       return (
         <UU5.Bricks.Button
@@ -102,10 +107,6 @@ export const Category = createVisualComponent({
       );
     }
 
-    //@@viewOn:interface
-    //@@viewOff:interface
-
-    //@@viewOn:render
     if (!category) {
       return null;
     }
