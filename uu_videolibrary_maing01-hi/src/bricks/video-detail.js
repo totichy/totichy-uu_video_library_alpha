@@ -1,9 +1,10 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
-import { createVisualComponent, useScreenSize, useLsi } from "uu5g04-hooks";
+import { createVisualComponent, useScreenSize, useLsi, useDataList } from "uu5g04-hooks";
 import Config from "./config/config";
 import { nl2br } from "../helpers/string-helper";
 import VideoLsi from "../config/video";
+import Calls from "../calls";
 import Form from "../config/createForm";
 //@@viewOff:imports
 
@@ -22,6 +23,9 @@ const CLASS_NAMES = {
   display: flex;
   flex-direction: column;
   border-radius: 4px;
+`,
+  linkCat: () => Config.Css.css`
+margin-right: 10px;
 `,
   vimeo: () => Config.Css.css`
   margin: 16px;
@@ -102,11 +106,40 @@ export const VideoDetail = createVisualComponent({
     //@@viewOn:private
     const descCg = Form.descriptionCgi || {};
     const urlCg = Form.urlCgi || {};
+    const categoryCg = Form.category || {};
 
     let description = useLsi(descCg);
     let videoUrl = useLsi(urlCg);
+    let category = useLsi(categoryCg);
+
     const date = new Date(Number(video.code)).toLocaleDateString("cs-CZ");
+
+    const catListResult = useDataList({
+      handlerMap: {
+        load: Calls.listCategory,
+      },
+      initialDtoIn: { data: {} },
+    });
+    const categoryMap = {};
+    if (catListResult.data) {
+      catListResult.data.forEach((cat) => (categoryMap[cat.data.categoryId] = cat.data));
+    }
+
     //@@viewOff:private
+
+    function categoryList() {
+      let result = [];
+      video.category.forEach((categoryId) =>
+        result.push(
+          <UU5.Bricks.Link href={"home/?category=" + categoryId} target="_self" className={CLASS_NAMES.linkCat()}>
+            <UU5.Bricks.Icon icon="mdi-tag" /> {categoryMap[categoryId] && categoryMap[categoryId].categoryName}
+          </UU5.Bricks.Link>
+        )
+      );
+      result.join(", ");
+
+      return result;
+    }
 
     //@@viewOn:interface
     let nameAuthor = video.authorName + " " + video.authorSurname;
@@ -215,14 +248,23 @@ export const VideoDetail = createVisualComponent({
         <UU5.Bricks.Div className={CLASS_NAMES.content()}>
           <UU5.Bricks.Div>{viodeShow()}</UU5.Bricks.Div>
           <UU5.Bricks.Div className={CLASS_NAMES.content()}>
-            <strong>{videoUrl}</strong>:{" "}
+            <strong>{videoUrl}</strong>
+            {": "}
             <UU5.Bricks.Link href={video.videoUrl} target="_blank">
               {video.videoUrl}
             </UU5.Bricks.Link>
           </UU5.Bricks.Div>
           <UU5.Bricks.Div className={CLASS_NAMES.content()}>
-            <strong>{description}</strong>: <br />
+            <strong>{description}</strong>
+            {": "}
+            <br />
             {nl2br(video.description)}
+          </UU5.Bricks.Div>
+          <UU5.Bricks.Div className={CLASS_NAMES.content()}>
+            <strong>{category}</strong>
+            {": "}
+            <br />
+            {categoryList}
           </UU5.Bricks.Div>
           <UU5.Bricks.Div className={CLASS_NAMES.content()}>{nameAuthor + " | " + date}</UU5.Bricks.Div>
         </UU5.Bricks.Div>
