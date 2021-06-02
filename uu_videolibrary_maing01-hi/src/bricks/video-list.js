@@ -34,12 +34,11 @@ export const VideoList = createVisualComponent({
     onUpdate: () => {},
   },
   //@@viewOff:defaultProps
+
   render({ videos, onDelete, onRating, onUpdate }) {
     //@@viewOn:private
     const noVideo = VideoLsi.noVideo || {};
-
     let noVideoCgi = useLsi(noVideo);
-
     //@@viewOff:private
 
     //@@viewOn:interface
