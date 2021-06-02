@@ -263,7 +263,6 @@ export const VideoDetail = createVisualComponent({
           <UU5.Bricks.Div className={CLASS_NAMES.content()}>
             <strong>{category}</strong>
             {": "}
-            <br />
             {categoryList}
           </UU5.Bricks.Div>
           <UU5.Bricks.Div className={CLASS_NAMES.content()}>{nameAuthor + " | " + date}</UU5.Bricks.Div>
