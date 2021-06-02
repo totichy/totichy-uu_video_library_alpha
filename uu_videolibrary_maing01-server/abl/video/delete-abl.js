@@ -8,20 +8,23 @@ let dao = new LibraryDao(
 
 // delete video - accepts only video.code parameter
 async function DeleteAbl(req, res) {
+  // 1.
   let { code } = req;
-
+  // 2.A.
   if (code && typeof code === "string" && code.length < 25) {
     try {
       await dao.deleteVideo(code);
       res.status(200).json({});
     } catch (e) {
-      if (e.code === "FAILED_TO_DELETE_VIDEO") {
+      if (e.code === "DELETE_FAILED") {
         res.status(500).json({ error_message: e });
       } else {
         res.status(500).json({ error_message: e });
       }
     }
-  } else {
+  }
+  // 2.B.
+  else {
     res.status(400).json({
       error_message: "Invalid dtoIn",
     });

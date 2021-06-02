@@ -29,6 +29,8 @@ async function CreateAbl(req, res) {
   } catch (e) {
     if (e.code == "DUPLICATE_CODE" || e.code == "DUPLICATE_CATEGORY") {
       res.status(400);
+    } else if (e.code === "FAILED_TO_SAVE_CATEGORY") {
+      res.status(500).json({ error: e });
     } else {
       res.status(500);
     }

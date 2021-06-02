@@ -25,13 +25,13 @@ async function DeleteAbl(req, res) {
       result.push(videoList[i]);
     }
   }
-  
-  if (!categoryCheck) { //if falsy throw error. This means that the categoryCheck returned empty === no category with req ID exists
+
+  if (!categoryCheck) {
+    //if falsy throw error. This means that the categoryCheck returned empty === no category with req ID exists
     return res.status(400).json({
-      error_message: `Category with Id ${categoryId} does NOT exist!`
-    })
-  };
-  
+      error_message: `Category with Id ${categoryId} does NOT exist!`,
+    });
+  }
 
   if (result.length > 0) {
     res.status(400).json({

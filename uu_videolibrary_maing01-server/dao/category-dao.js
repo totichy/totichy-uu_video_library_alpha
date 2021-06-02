@@ -59,7 +59,7 @@ class CategoryDao {
     let result;
 
     if (id) {
-      result = categories.find((b) => {
+      result = await categories.find((b) => {
         return b.categoryId === id;
       });
     } else {
@@ -112,7 +112,7 @@ class CategoryDao {
         const e = new Error(
           `Failed to update category with code ${category.Id} in local storage.`
         );
-        e.code = "FAILED_TO_GET_CATEGORY";
+        e.code = "FAILED_TO_UPDATE_CATEGORY";
         throw e;
       }
     } else {

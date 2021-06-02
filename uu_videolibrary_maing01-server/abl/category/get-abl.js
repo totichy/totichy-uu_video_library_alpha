@@ -11,12 +11,9 @@ async function GetAbl(req, res) {
   let { categoryId } = req;
 
   if (!categoryId && typeof categoryId === "string" && categoryId.length <= 3) {
-    return res
-      .status(400)
-      .json({
-        error_message:
-          "Invalid input: code parameter is missing or is invalid.",
-      });
+    return res.status(400).json({
+      error_message: "Invalid input: code parameter is missing or is invalid.",
+    });
   }
 
   const category = await dao.getCategory(categoryId);
