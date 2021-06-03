@@ -68,6 +68,7 @@ export const SpaAuthenticated = createVisualComponent({
           type={1}
           displayedLanguages={["cs", "en"]}
           left={<Left />}
+          leftFixed
           leftWidth="!xs-300px !s-300px !m-288px !l-288px !xl-288px"
           leftRelative="m l xl"
           leftResizable="m l xl"
@@ -75,7 +76,8 @@ export const SpaAuthenticated = createVisualComponent({
           leftResizableMaxWidth={500}
           isLeftOpen="m l xl"
           fullPage
-        >
+          showLeftToggleButton       
+           >
           <Plus4U5.App.MenuConsumer>
             {({ setActiveItemId }) => {
               let handleRouteChanged = ({ useCase, parameters }) => setActiveItemId(useCase || DEFAULT_USE_CASE);
