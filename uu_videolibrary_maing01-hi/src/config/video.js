@@ -51,5 +51,21 @@ export const VideoLsi = {
     cs: "pro",
     en: "for",
   },
+    ratingSuccess: {
+    cs: "Děkujeme za hodnocení, které bylo: ",
+    en: "Thanks for the review, which was: ",
+  },
+  isFailed: {
+    cs: " nastala chyba.",
+    en: " is failed.",
+  },
+  ratingOf: {
+    cs: "Pri odnocení ",
+    en: "Rating of ",
+  },
+  deletionOf: {
+    cs: "Při mazání ",
+    en: "Deletion of ",
+  }
 };
 export default VideoLsi;
